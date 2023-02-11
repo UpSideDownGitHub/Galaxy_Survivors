@@ -8,6 +8,7 @@ TagManager:
   - Wall_Lower
   - Wall_Right
   - Wall_Left
+  - Enemy
   layers:
   - Default
   - TransparentFX
