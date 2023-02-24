@@ -18606,7 +18606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &276507882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19591,6 +19591,7 @@ GameObject:
   - component: {fileID: 769921436}
   - component: {fileID: 769921437}
   - component: {fileID: 769921438}
+  - component: {fileID: 769921439}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -19772,6 +19773,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeWeapons:
   - {fileID: 844047754}
+  - {fileID: 1631208607}
+  - {fileID: 879584911}
+  - {fileID: 1792946744}
+  - {fileID: 276507882}
+--- !u!114 &769921439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769921431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 746dedcea0dbf6d4ea7b838173dd34f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  health: 0
+  SheildUnlocked: 1
+  sheildActive: 0
+  sheidCoolDownTime: 2
+  maxBlocks: 10
+  currentBlocks: 0
 --- !u!1 &808366224
 GameObject:
   m_ObjectHideFlags: 0
@@ -19953,7 +19977,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &879584911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20913,7 +20937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1631208606
 Transform:
   m_ObjectHideFlags: 0
@@ -20994,7 +21018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1792946744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21011,7 +21035,7 @@ MonoBehaviour:
   firePoint: {fileID: 1015351573}
   _damage: 10
   _damageModifyer: 1
-  _bulletSpeed: 100
+  _bulletSpeed: 200
 --- !u!4 &1792946745
 Transform:
   m_ObjectHideFlags: 0
