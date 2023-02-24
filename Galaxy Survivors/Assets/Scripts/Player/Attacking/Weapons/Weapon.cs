@@ -53,7 +53,7 @@ public abstract class Weapon : MonoBehaviour
 
         try
         { 
-        tempBullet.GetComponent<PlayerBullet>().damage = damage * damageModifyer;
+            tempBullet.GetComponent<PlayerBullet>().damage = damage * damageModifyer;
         }
         catch
         {
@@ -124,53 +124,40 @@ public abstract class Weapon : MonoBehaviour
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(center, radius);
 
-        Collider2D[] closest = new Collider2D[_lightningCount];
-        float[] closestValues = new float[_lightningCount];
+        List<Collider2D> colList = new();
+        List<float> colDistList = new();
 
-        for (int i = 0; i < _lightningCount; i++)
-        {
-            closestValues[i] = Mathf.Infinity;
-        }
+        
+        for (int i = 0; i < _lightningCount; i++) { colList.Add(null); }
+        for (int i = 0; i < _lightningCount; i++) { colDistList.Add(Mathf.Infinity); }
+
+        Debug.Log("Col List Size: " + colList.Count);
+        Debug.Log("Col Dist List Size: " + colDistList.Count);
 
         for (int i = 0; i < colliders.Length; i++)
         {
             if (!colliders[i].CompareTag("Enemy"))
                 continue;
-
-
-            float dist = (center - (Vector2)colliders[i].transform.position).sqrMagnitude;
-
-            for (int j = 0; j < _lightningCount; j++)
+            for (int j = 0; j < colList.Count; j++)
             {
-                if (dist < closestValues[j])
+                float dist = (center - (Vector2)colliders[i].transform.position).sqrMagnitude;
+                if (dist < colDistList[j] || colDistList[j] == Mathf.Infinity)
                 {
-                    // move all items down 1
-                    for (int k = _lightningCount; k < j; k--)
-                    {
-                        closest[k] = closest[k - 1];
-                        closestValues[k] = closestValues[k - 1];
-                    }
+                    colDistList.Insert(j, dist);
+                    colList.Insert(j, colliders[i]);
 
-                    // set cuyrrent as the current distance
-                    closestValues[j] = dist;
-                    closest[j] = colliders[i];
+                    colDistList.RemoveAt(colDistList.Count - 1);
+                    colList.RemoveAt(colList.Count - 1);
                     break;
                 }
             }
         }
-
-        print("VALUES:");
-        for (int i = 0; i < closest.Length; i++)
+        // TODO - replace this with code to spawn an effect telling me where the bullet landed
+        print("Lighing Count: " + _lightningCount);
+        for (int i = 0; i < colList.Count; i++)
         {
-            print(i + ": ");
-            print("    - " + closestValues[i]);
-            print("    - " + closest[i]);
+            print("Collider " + i + ": " + colList[i].name);
         }
-
-        /*
-         * find the point and add it if it is greater than the closest point 
-        */
-
     }
 
     public virtual void startFrame() { }
