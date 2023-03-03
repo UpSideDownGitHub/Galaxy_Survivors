@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerStats : ScriptableObject
 {
     public float damageModifyer;
+    public float reduceDamageTakenModifyer;
     public float healthModifyer;
     public float attackSpeed;
     public int projectileCount;
