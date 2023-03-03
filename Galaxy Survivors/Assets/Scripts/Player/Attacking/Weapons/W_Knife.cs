@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class W_Knife : Weapon
 {
+    [Header("Stats")]
+    public PlayerStats playerStats;
+
     [Header("Objects")]
     public GameObject bullet;
     public GameObject firePoint;
 
     [Header("Values")]
     [SerializeField] private float _damage;
-    [SerializeField] private float _damageModifyer;
     [SerializeField] private float _bulletSpeed;
 
     // Start is called before the first frame update
     public override void startFrame()
     {
-        base.initiate(_damage, _damageModifyer, _bulletSpeed);
+        base.initiate(_damage, _bulletSpeed, playerStats);
     }
 
     // Update is called once per frame

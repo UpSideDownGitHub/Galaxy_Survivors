@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class W_Shotgun : Weapon
 {
+    [Header("Stats")]
+    public PlayerStats playerStats;
+
     [Header("Objects")]
     public GameObject bullet;
     public GameObject firePoint;
 
     [Header("Values")]
     [SerializeField] private float _damage;
-    [SerializeField] private float _damageModifyer;
     [SerializeField] private float _bulletSpeed;
     public float spread;
     public int bulletCount;
@@ -18,7 +20,7 @@ public class W_Shotgun : Weapon
     // Start is called before the first frame update
     public override void startFrame()
     {
-        base.initiate(_damage, _damageModifyer, _bulletSpeed);
+        base.initiate(_damage, _bulletSpeed, playerStats);
     }
 
     // Update is called once per frame

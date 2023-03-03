@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class W_Drone : Weapon
 {
+    [Header("Stats")]
+    public PlayerStats playerStats;
+
     public GameObject droneObject;
     private GameObject _drone;
     public GameObject firePoint;
@@ -13,7 +16,6 @@ public class W_Drone : Weapon
 
     [Header("Values")]
     [SerializeField] private float _damage;
-    [SerializeField] private float _damageModifyer;
     [SerializeField] private float _bulletSpeed;
 
     public float maxDistance;
@@ -31,7 +33,7 @@ public class W_Drone : Weapon
         _drone = Instantiate(droneObject, transform.position + droneSpawnOffset, Quaternion.identity);
         firePoint = _drone.transform.GetChild(0).gameObject;
 
-        base.initiate(_damage, _damageModifyer, _bulletSpeed);
+        base.initiate(_damage, _bulletSpeed, playerStats);
     }
 
     // Update is called once per frame

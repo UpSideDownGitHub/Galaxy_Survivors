@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    PlayerStats stats;
     // all
     private float damage;
     private float damageModifyer;
@@ -16,33 +17,31 @@ public abstract class Weapon : MonoBehaviour
     private float attackTimeModifyer;
 
 
-    public void initiate(float val1, float val2, float val3, float val4, float val5)
+    public void initiate(float val1, float val2, float val3, float val4, PlayerStats playerStats)
     {
         damage = val1;
-        damageModifyer = val2;
-        lifeTime = val3;
-        attackTime = val4;
+        lifeTime = val2;
+        attackTime = val3;
         attackTimeModifyer = val4;
+        stats = playerStats;
     }
 
-    public void initiate(float val1, float val2, float val3)
+    public void initiate(float val1, float val3, PlayerStats playerStats)
     {
         damage = val1;
-        damageModifyer = val2;
         bulletSpeed = val3;
+        stats = playerStats;
     }
 
-    public void initiate(float val1, float val2)
+    public void initiate(float val1, PlayerStats playerStats)
     {
         damage = val1;
-        damageModifyer = val2;
+        stats = playerStats;
     }
 
     public virtual float getDamage() { return damage; }
-    public virtual float getDamageModifyer() { return damageModifyer; }
     public virtual float getBuletSpeed() { return bulletSpeed; }
     public virtual void setDamage(float val) { damage = val; }
-    public virtual void setDamageModifyer(float val) { damageModifyer = val; }
     public virtual void setBuletSpeed(float val) { bulletSpeed = val; }
 
     // fire a straight bullet
@@ -53,11 +52,11 @@ public abstract class Weapon : MonoBehaviour
 
         try
         { 
-            tempBullet.GetComponent<PlayerBullet>().damage = damage * damageModifyer;
+            tempBullet.GetComponent<PlayerBullet>().damage = damage * stats.damageModifyer;
         }
         catch
         {
-            tempBullet.GetComponent<PlayerKnife>().damage = damage * damageModifyer;
+            tempBullet.GetComponent<PlayerKnife>().damage = damage * stats.damageModifyer;
         }
     }
 
@@ -68,7 +67,7 @@ public abstract class Weapon : MonoBehaviour
         Vector3 up = tempBullet.transform.up;
         Vector3 calculatedSpread = new Vector3(up.x + Random.Range(-spread, spread), up.y + Random.Range(-spread, spread), up.z);
         tempBullet.GetComponent<Rigidbody2D>().AddForce(calculatedSpread * bulletSpeed);
-        tempBullet.GetComponent<PlayerBullet>().damage = damage * damageModifyer;
+        tempBullet.GetComponent<PlayerBullet>().damage = damage * stats.damageModifyer;
     }
 
     // fire a bullet towards the closest enemy
@@ -99,12 +98,12 @@ public abstract class Weapon : MonoBehaviour
         
         try
         {
-            tempBullet.GetComponent<PlayerBullet>().damage = damage * damageModifyer;
+            tempBullet.GetComponent<PlayerBullet>().damage = damage * stats.damageModifyer;
             tempBullet.GetComponent<Rigidbody2D>().AddForce((closest.transform.position - firePoint.transform.position) * bulletSpeed);
         }
         catch
         {
-            tempBullet.GetComponent<PlayerRocket>().damage = damage * damageModifyer;
+            tempBullet.GetComponent<PlayerRocket>().damage = damage * stats.damageModifyer;
             tempBullet.GetComponent<PlayerRocket>().toFollow = closest.gameObject;
 
         }
@@ -116,7 +115,7 @@ public abstract class Weapon : MonoBehaviour
         PlayerAcid acidObj = acidTemp.GetComponent<PlayerAcid>();
         acidObj.attackTime = attackTime;
         acidObj.attackTimeModifyer = attackTimeModifyer;
-        acidObj.damage = damage * damageModifyer;
+        acidObj.damage = damage * stats.damageModifyer;
         acidObj.deathTime = lifeTime;
     }
 

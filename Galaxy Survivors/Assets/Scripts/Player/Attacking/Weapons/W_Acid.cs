@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class W_Acid : Weapon
 {
+    [Header("Stats")]
+    public PlayerStats playerStats;
+
     [Header("Objects")]
     public GameObject acid;
 
@@ -14,7 +17,6 @@ public class W_Acid : Weapon
 
     [Header("Values")]
     [SerializeField] private float _damage;
-    [SerializeField] private float _damageModifyer;
     [SerializeField] private float _acidDuration;
     [SerializeField] private float _acidAttackTime;
     [SerializeField] private float _acidAttackTimeModifyer;
@@ -22,7 +24,7 @@ public class W_Acid : Weapon
     // Start is called before the first frame update
     public override void startFrame()
     {
-        base.initiate(_damage, _damageModifyer, _acidDuration, _acidAttackTime, _acidAttackTimeModifyer);
+        base.initiate(_damage, _acidDuration, _acidAttackTime, _acidAttackTimeModifyer, playerStats);
     }
 
     // Update is called once per frame
@@ -32,6 +34,7 @@ public class W_Acid : Weapon
         { 
             _lastSpawnTime = Time.time;
             base.placeAcid(acid);
+            
         }
     }
 }

@@ -5,13 +5,15 @@ using UnityEngine.UIElements;
 
 public class W_Orbs : Weapon
 {
+    [Header("Stats")]
+    public PlayerStats playerStats;
+
     [Header("Objects")]
     public GameObject Orb;
     public Vector3 spawnPoint = new Vector3(0, 3, 0);
 
     [Header("Values")]
     [SerializeField] private float _damage;
-    [SerializeField] private float _damageModifyer;
     
     // max orbs & spawn time
     public int maxOrbCount;
@@ -32,7 +34,7 @@ public class W_Orbs : Weapon
     // Start is called before the first frame update
     public override void startFrame()
     {
-        base.initiate(_damage, _damageModifyer);
+        base.initiate(_damage, playerStats);
         // spawn all of the orbs
         StartCoroutine(spawnOrbs());
     }
