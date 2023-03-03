@@ -6,6 +6,9 @@ using UnityEngine.Rendering;
 
 public class Movement : MonoBehaviour
 {
+    [Header("JoySick Movement")]
+    public Joystick movementStick; // left
+
     [Header("Movement")]
     private float _inputHorzontal;
     private float _inputVertical;
@@ -98,8 +101,14 @@ public class Movement : MonoBehaviour
 
     public void Move()
     {
-        _inputVertical = Input.GetAxisRaw("Vertical");
-        _inputHorzontal = Input.GetAxisRaw("Horizontal");
+        Vector2 moveDirection = movementStick.joystickVec;
+        // TOUCH CONTROLS
+        _inputVertical = moveDirection.y;
+        _inputHorzontal = moveDirection.x;
+        // KEYBOARD CONTROLS
+        //_inputVertical = Input.GetAxisRaw("Vertical");
+        //_inputHorzontal = Input.GetAxisRaw("Horizontal");
+
 
         float num = moveVelocity.magnitude;
 

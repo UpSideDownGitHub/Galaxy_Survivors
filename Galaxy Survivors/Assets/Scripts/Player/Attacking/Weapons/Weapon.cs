@@ -130,8 +130,8 @@ public abstract class Weapon : MonoBehaviour
         for (int i = 0; i < _lightningCount; i++) { colList.Add(null); }
         for (int i = 0; i < _lightningCount; i++) { colDistList.Add(Mathf.Infinity); }
 
-        Debug.Log("Col List Size: " + colList.Count);
-        Debug.Log("Col Dist List Size: " + colDistList.Count);
+        //Debug.Log("Col List Size: " + colList.Count);
+        //Debug.Log("Col Dist List Size: " + colDistList.Count);
 
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -152,10 +152,10 @@ public abstract class Weapon : MonoBehaviour
             }
         }
         // TODO - replace this with code to spawn an effect telling me where the bullet landed
-        print("Lighing Count: " + _lightningCount);
+        //print("Lighing Count: " + _lightningCount);
         for (int i = 0; i < colList.Count; i++)
         {
-            print("Collider " + i + ": " + colList[i].name);
+            //print("Collider " + i + ": " + colList[i].name);
         }
     }
 
