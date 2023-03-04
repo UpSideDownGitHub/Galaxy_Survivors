@@ -15,7 +15,9 @@ public class W_Cannon : Weapon
     [SerializeField] private float _bulletSpeed;
 
     // shooting
+    [Header("Shooting")]
     public float shootRate;
+    public float shootRateModifyer;
     private float _timeOfLastShot;
 
 
@@ -28,7 +30,7 @@ public class W_Cannon : Weapon
     // Update is called once per frame
     public override void updateFrame()
     {
-        if (Time.time > shootRate + _timeOfLastShot)
+        if (Time.time > shootRate* shootRateModifyer + _timeOfLastShot)
         {
             for (int i = 0; i < firePoints.Length; i++)
             {

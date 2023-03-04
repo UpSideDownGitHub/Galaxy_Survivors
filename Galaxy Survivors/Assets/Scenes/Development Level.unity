@@ -2175,6 +2175,8 @@ MonoBehaviour:
   _bulletSpeed: 750
   spread: 0.65
   bulletCount: 10
+  shootRate: 1
+  shootRateModifyer: 1
 --- !u!1 &794071950
 GameObject:
   m_ObjectHideFlags: 0
@@ -21642,6 +21644,8 @@ MonoBehaviour:
   maxDistance: 30
   _damage: 10
   _bulletSpeed: 250
+  shootRate: 1
+  shootRateModifyer: 1
 --- !u!4 &1091773742
 Transform:
   m_ObjectHideFlags: 0
@@ -22880,6 +22884,8 @@ MonoBehaviour:
   firePoint: {fileID: 211300713}
   _damage: 10
   _bulletSpeed: 200
+  shootRate: 1
+  shootRateModifyer: 1
 --- !u!4 &1520454271
 Transform:
   m_ObjectHideFlags: 0
@@ -23566,7 +23572,8 @@ MonoBehaviour:
   bullet: {fileID: 2981198591102700084, guid: 8ab3a0a733933344f895a065dc3a8691, type: 3}
   _damage: 10
   _bulletSpeed: 1000
-  shootRate: 1
+  shootRate: 2
+  shootRateModifyer: 1
 --- !u!4 &1832376450
 Transform:
   m_ObjectHideFlags: 0
@@ -23800,6 +23807,8 @@ MonoBehaviour:
   firePoint: {fileID: 530747844}
   _damage: 20
   _bulletSpeed: 1000
+  shootRate: 1
+  shootRateModifyer: 1
 --- !u!1 &2017730308
 GameObject:
   m_ObjectHideFlags: 0

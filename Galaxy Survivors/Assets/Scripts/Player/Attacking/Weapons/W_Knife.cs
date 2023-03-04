@@ -15,6 +15,11 @@ public class W_Knife : Weapon
     [SerializeField] private float _damage;
     [SerializeField] private float _bulletSpeed;
 
+    [Header("Shooting")]
+    public float shootRate;
+    public float shootRateModifyer;
+    private float _timeOfLastShot;
+
     // Start is called before the first frame update
     public override void startFrame()
     {
@@ -24,9 +29,10 @@ public class W_Knife : Weapon
     // Update is called once per frame
     public override void updateFrame()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Time.time > shootRate * shootRateModifyer + _timeOfLastShot)
         {
             base.fire(bullet, firePoint);
+            _timeOfLastShot = Time.time;
         }
     }
 }
