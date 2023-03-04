@@ -35,13 +35,11 @@ public class Movement : MonoBehaviour
 
     public void Start()
     {
-        //Player_Energy.SetMaxEnergy(Energy);
     }
 
     public void Update()
     {
         Move();
-        checkForDash();
         checkForMove();
     }
 
@@ -79,26 +77,6 @@ public class Movement : MonoBehaviour
     }
 
 
-    public void checkForDash()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (Time.time > maxDashRate + _timeSinceLastDash)
-            {
-                Vector2 vector = new Vector2(_inputHorzontal, _inputVertical);
-                moveVelocity = vector.normalized * dashSpeed;
-                Invinceability_Frame();
-            }
-        }
-    }
-
-    public IEnumerator Invinceability_Frame()
-    {
-        //HealthBar_Object.GetComponent<HealthBar>().Can_Take_Damage = false;
-        yield return new WaitForSeconds(invinceabilityFrameTime);
-        //HealthBar_Object.GetComponent<HealthBar>().Can_Take_Damage = true;
-    }
-
     public void Move()
     {
         Vector2 moveDirection = movementStick.joystickVec;
@@ -106,8 +84,11 @@ public class Movement : MonoBehaviour
         _inputVertical = moveDirection.y;
         _inputHorzontal = moveDirection.x;
         // KEYBOARD CONTROLS
-        //_inputVertical = Input.GetAxisRaw("Vertical");
-        //_inputHorzontal = Input.GetAxisRaw("Horizontal");
+        if (_inputHorzontal == 0 && _inputVertical == 0)
+        {
+            _inputVertical = Input.GetAxisRaw("Vertical");
+            _inputHorzontal = Input.GetAxisRaw("Horizontal");
+        }
 
 
         float num = moveVelocity.magnitude;

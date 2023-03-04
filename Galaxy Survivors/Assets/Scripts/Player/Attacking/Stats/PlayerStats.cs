@@ -14,3 +14,4 @@ public class PlayerStats : ScriptableObject
     public float pickupModifyer;
     public float xpModifyer;
 }
+

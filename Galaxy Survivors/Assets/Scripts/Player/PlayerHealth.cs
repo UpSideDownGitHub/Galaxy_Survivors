@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     [Header("Health")]
     public int maxHealth;
     [SerializeField] private float health;
+
+    [Header("UI")]
+    public Slider slider;
 
     [Header("Sheild")]
     public bool SheildUnlocked;
@@ -22,6 +26,9 @@ public class PlayerHealth : MonoBehaviour
     {
         health = maxHealth;
         sheildActive = true;
+        slider.minValue = 0;
+        slider.maxValue = maxHealth;
+        slider.value = maxHealth;
     }
 
     public void Update()
@@ -60,5 +67,9 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
         health -= val;
+
+        // update the health UI
+        slider.value = health;
+
     }
 }
