@@ -66,6 +66,7 @@ public class W_Orbs : Weapon
             var tempOrb = Instantiate(Orb, spawnPoint, Quaternion.identity);
             orbs[i] = tempOrb;
             tempOrb.GetComponent<PlayerOrb>().ID = i;
+            tempOrb.GetComponent<PlayerOrb>().damage = _damage;
             tempOrb.GetComponent<PlayerOrb>().spawner = this;
             tempOrb.GetComponent<PlayerOrb>().player = transform.parent.gameObject;
             yield return new WaitForSeconds(orbSpawnWaitTime);

@@ -10,7 +10,7 @@ public class PlayerBullet : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            // NEED TO DEAL DAMAGE TO THE ENEMY HERE
+            collision.GetComponent<EnemyHealth>().takeDamage(damage);
             Destroy(gameObject);
         }
     }

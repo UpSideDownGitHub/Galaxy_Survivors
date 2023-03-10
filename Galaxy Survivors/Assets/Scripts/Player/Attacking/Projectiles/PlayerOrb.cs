@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerOrb : MonoBehaviour
 {
+    public float damage;
+
     public GameObject player;
     public W_Orbs spawner;
     public int ID;
@@ -28,7 +30,7 @@ public class PlayerOrb : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            // NEED TO DEAL DAMAGE TO THE ENEMY HERE
+            collision.GetComponent<EnemyHealth>().takeDamage(damage);
             spawner.checkForOrbs(ID);
             Destroy(gameObject.transform.parent.gameObject);
             Destroy(gameObject);

@@ -24,18 +24,23 @@ public class PlayerRocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 direction = toFollow.transform.position - transform.position;
-        direction.Normalize();
-        float rotateAmount = Vector3.Cross(direction, transform.up).z;
-        _rb.angularVelocity = -turnSpeed * rotateAmount;
-        _rb.velocity = transform.up * movingSpeed;
+        try
+        {
+            Vector2 direction = toFollow.transform.position - transform.position;
+            direction.Normalize();
+            float rotateAmount = Vector3.Cross(direction, transform.up).z;
+            _rb.angularVelocity = -turnSpeed * rotateAmount;
+            _rb.velocity = transform.up * movingSpeed;
+        }
+        catch { Destroy(gameObject); }
+        
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
-            // NEED TO DEAL DAMAGE TO THE ENEMY HERE
+            collision.GetComponent<EnemyHealth>().takeDamage(damage); // convert to area damage
             Destroy(gameObject);
         }
     }

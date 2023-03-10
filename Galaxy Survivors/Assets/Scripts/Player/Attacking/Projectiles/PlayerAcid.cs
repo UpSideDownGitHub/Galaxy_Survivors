@@ -19,10 +19,12 @@ public class PlayerAcid : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D collision)
     {
+        if (!collision.CompareTag("Enemy"))
+            return;
         if (Time.time > attackTime * attackTimeModifyer + _timeSinceLastAttack)
         {
             _timeSinceLastAttack = Time.time;
-            // DEAL DAMAGE TO THE ENEMY
+            collision.GetComponent<EnemyHealth>().takeDamage(damage);
         }
     }
 }

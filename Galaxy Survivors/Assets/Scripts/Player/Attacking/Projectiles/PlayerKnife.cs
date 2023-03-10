@@ -22,11 +22,11 @@ public class PlayerKnife : MonoBehaviour
             if (pierceCount - 1 >= 0)
             {
                 pierceCount--;
-                // DEAL DAMAGE TO THE ENEMY
+                collision.GetComponent<EnemyHealth>().takeDamage(damage);
             }
             else
             {
-                // NEED TO DEAL DAMAGE TO THE ENEMY HERE
+                collision.GetComponent<EnemyHealth>().takeDamage(damage);
                 Destroy(gameObject);
             }
         }
