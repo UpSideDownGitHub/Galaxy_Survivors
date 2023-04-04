@@ -8,27 +8,31 @@ public class EnemySpawner : MonoBehaviour
 {
     public float range, xStretch, yStretch;
     public GameObject test_obj;
+    public GameObject player;
+
+    public EnemyPool pool;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        pool = EnemyPool.instance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.P))
-            spawnEnemy();
+        spawnEnemy();
     }
 
     public void spawnEnemy()
     {
         Debug.Log("Spawning Item");
         // find a point around the player in (in range)
-        Vector2 point = randomCircle(Vector2.zero, range);
-        Debug.Log(point);
-        Instantiate(test_obj, point, Quaternion.identity);
+        Vector2 point = randomCircle(player.transform.position, range);
+
+        // if there is an enemy avaialbe then spawn the enemy
+        pool.spawnEnemy(0, point);
+        //Instantiate(test_obj, point, Quaternion.identity);
     }
 
     Vector2 randomCircle(Vector2 center, float radius)

@@ -10,10 +10,18 @@ public class Enemy : MonoBehaviour
     {
         transform.position = pos;
     }
-
-
-
-    public void enable() { gameObject.SetActive(true); }
-    public void disable() { gameObject.SetActive(false); }
-
+    public void setFree()
+    {
+        disable();
+    }
+    public void enable()
+    {
+        gameObject.SetActive(true);
+        isSpawnable = false;
+    }
+    public void disable()
+    {
+        gameObject.SetActive(false);
+        isSpawnable = true;
+    }
 }
