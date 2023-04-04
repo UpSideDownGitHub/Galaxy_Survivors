@@ -12,6 +12,9 @@ public class EnemySpawner : MonoBehaviour
 
     public EnemyPool pool;
 
+    [Header("Advanced Spawning")]
+    public Timer timer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,12 +29,52 @@ public class EnemySpawner : MonoBehaviour
 
     public void spawnEnemy()
     {
-        Debug.Log("Spawning Item");
-        // find a point around the player in (in range)
-        Vector2 point = randomCircle(player.transform.position, range);
+        Vector2 point;
+        int ID;
+        switch (timer.min)
+        {
+            case 0:
+                point = randomCircle(player.transform.position, range);
+                pool.spawnEnemy(0, point);
+                break;
+            case 1:
+            case 2:
+                point = randomCircle(player.transform.position, range);
+                ID = Random.Range(0, 2);
+                pool.spawnEnemy(ID, point);
+                break;
+            case 3:
+                point = randomCircle(player.transform.position, range);
+                ID = Random.Range(1, 4);
+                pool.spawnEnemy(ID, point);
+                break;
+            case 4:
+            case 5:
+                point = randomCircle(player.transform.position, range);
+                ID = Random.Range(0, 3);
+                pool.spawnEnemy(ID, point);
+                break;
 
-        // if there is an enemy avaialbe then spawn the enemy
-        pool.spawnEnemy(0, point);
+            case 6:
+                point = randomCircle(player.transform.position, range);
+                ID = Random.Range(2, 5);
+                pool.spawnEnemy(ID, point);
+                break;
+            case 7:
+            case 8:
+                point = randomCircle(player.transform.position, range);
+                ID = Random.Range(1, 4);
+                pool.spawnEnemy(ID, point);
+                break;
+            case 9:
+                point = randomCircle(player.transform.position, range);
+                ID = Random.Range(0, 5);
+                pool.spawnEnemy(ID, point);
+                break;
+            default:
+                print("NO SPAWN SELECTED");
+                break;
+        }
         //Instantiate(test_obj, point, Quaternion.identity);
     }
 

@@ -106,6 +106,13 @@ MonoBehaviour:
   _moveSpeed: 1
   _maxDistanceX: 30
   _maxDistanceY: 50
+  melee: 1
+  damage: 10
+  attackDistance: 2
+  projectile: {fileID: 0}
+  projectileForce: 0
+  attackTime: 0.5
+  attack_Distance: 0
 --- !u!114 &1072556053202754530
 MonoBehaviour:
   m_ObjectHideFlags: 0

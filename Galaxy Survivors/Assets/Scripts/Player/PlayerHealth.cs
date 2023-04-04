@@ -29,17 +29,14 @@ public class PlayerHealth : MonoBehaviour
         slider.minValue = 0;
         slider.maxValue = maxHealth;
         slider.value = maxHealth;
+        _timeSinceLastSheild = 0;
     }
 
     public void Update()
     {
-        if (SheildUnlocked)
+        if (SheildUnlocked && !sheildActive)
         {
-            if (sheildActive)
-            {
-
-            }
-            else if (Time.time > sheidCoolDownTime + _timeSinceLastSheild)
+            if (Time.time > sheidCoolDownTime + _timeSinceLastSheild)
             {
                 sheildActive = true;
                 currentBlocks = maxBlocks;
@@ -49,6 +46,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void removeHealth(float val)
     {
+        print("REMOVED HEALTH");
         if (SheildUnlocked && sheildActive)
         {
             if (currentBlocks - 1 > 0)
@@ -56,7 +54,7 @@ public class PlayerHealth : MonoBehaviour
                 currentBlocks--;
                 return;
             }
-            _timeSinceLastSheild = Time.timeScale;
+            _timeSinceLastSheild = Time.time;
             sheildActive = false;
             return;
         }

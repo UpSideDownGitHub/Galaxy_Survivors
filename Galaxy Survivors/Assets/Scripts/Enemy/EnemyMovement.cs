@@ -16,12 +16,28 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float _maxDistanceY = 60;
     private Enemy _enemy;
 
+    [Header("Attacking")]
+    public bool melee;
+    public float damage;
+    public float attackDistance;
+
+    public GameObject projectile;
+    public float projectileForce;
+
+    [Header("Attack Timer")]
+    public float attackTime;
+    private float _timeSinceLastAttack;
+
+    [Header("DELETE THESE ITEMS")]
+    public float attack_Distance;
+
     // Start is called before the first frame update
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _rb = GetComponent<Rigidbody2D>();
         _enemy = GetComponent<Enemy>();
+        _timeSinceLastAttack = 0;
     }
 
     // Update is called once per frame
@@ -37,11 +53,32 @@ public class EnemyMovement : MonoBehaviour
 
         float distX = Mathf.Abs(transform.position.x - _player.transform.position.x);
         float distY = Mathf.Abs(transform.position.y - _player.transform.position.y);
-        Debug.Log("X: " + distX + "\nY: " + distY + "\n");
+        //Debug.Log("X: " + distX + "\nY: " + distY + "\n");
         if (distX > _maxDistanceX || distY > _maxDistanceY)
         {
             // despawn the enemy
             _enemy.setFree();
+        }
+
+        // shooting
+        if (Time.time < _timeSinceLastAttack + attackTime)
+            return;
+        _timeSinceLastAttack = Time.time;
+        attack_Distance = Vector2.Distance(_player.transform.position, transform.position);
+        if (Vector2.Distance(_player.transform.position, transform.position) < attackDistance)
+        {
+            if (melee)
+            {
+                // deal damage to the player
+                _player.GetComponent<PlayerHealth>().removeHealth(damage);
+            }
+            else
+            {
+                // fire a projectile at the player
+                GameObject tempBullet = Instantiate(projectile, transform.position, transform.rotation);
+                tempBullet.GetComponent<Rigidbody2D>().AddForce(tempBullet.transform.up * projectileForce);
+                tempBullet.GetComponent<EnemyBullet>().damage = damage;
+            }
         }
     }
 }

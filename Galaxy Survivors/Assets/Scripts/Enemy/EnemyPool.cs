@@ -20,7 +20,7 @@ public class EnemyPool : MonoBehaviour
         {
             for (int i = 0; i < maxEnemies[j]; i++)
             {
-                enemies.Add(Instantiate(enemyPrefabs[0], new Vector3(0, 0, 0), new Quaternion()).GetComponent<Enemy>());
+                enemies.Add(Instantiate(enemyPrefabs[j], new Vector3(0, 0, 0), new Quaternion()).GetComponent<Enemy>());
             }
         }
 
