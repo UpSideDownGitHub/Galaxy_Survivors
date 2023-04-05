@@ -28,8 +28,29 @@ public class EnemyMovement : MonoBehaviour
     public float attackTime;
     private float _timeSinceLastAttack;
 
+    [Header("Trails")]
+    public TrailRenderer trail1;
+    public TrailRenderer trail2;
+
     [Header("DELETE THESE ITEMS")]
     public float attack_Distance;
+
+    public void OnEnable()
+    {
+        Invoke("turnOnTrails", 2f);
+    }
+
+    public void turnOffTrails()
+    {
+        trail1.enabled = false;
+        trail2.enabled = false;
+    }
+
+    public void turnOnTrails()
+    {
+        trail1.enabled = true;
+        trail2.enabled = true;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +78,7 @@ public class EnemyMovement : MonoBehaviour
         if (distX > _maxDistanceX || distY > _maxDistanceY)
         {
             // despawn the enemy
+            turnOffTrails();
             _enemy.setFree();
         }
 

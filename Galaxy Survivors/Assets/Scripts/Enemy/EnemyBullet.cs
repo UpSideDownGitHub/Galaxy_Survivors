@@ -8,6 +8,9 @@ public class EnemyBullet : MonoBehaviour
     public float damage;
     public float destroyTime;
 
+    public int particleID;
+
+
     public void Start()
     {
         Destroy(gameObject, destroyTime);
@@ -22,5 +25,10 @@ public class EnemyBullet : MonoBehaviour
             collision.gameObject.GetComponent<PlayerHealth>().removeHealth(damage);
             Destroy(gameObject);
         }
+    }
+
+    public void OnDestroy()
+    {
+        ParticlePooler.instance.spawnParticle(particleID, transform.position, Color.red);
     }
 }

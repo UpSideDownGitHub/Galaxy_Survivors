@@ -8,17 +8,20 @@ public class EnemyHealth : MonoBehaviour
     public float currentHealth;
 
     private Enemy _enemy;
+    private SpriteRenderer _renderer;
 
     public void Start()
     {
         currentHealth = maxHealth;
         _enemy = GetComponent<Enemy>();
+        _renderer = GetComponent<SpriteRenderer>();
     }
     
     public void takeDamage(float damage)
     {
         if (currentHealth - damage < 0)
         {
+            ParticlePooler.instance.spawnParticle(1, transform.position, _renderer.color);
             _enemy.setFree();
             return;
         }
