@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 
 public abstract class Weapon : MonoBehaviour
@@ -156,6 +157,8 @@ public abstract class Weapon : MonoBehaviour
         for (int i = 0; i < colList.Count; i++)
         {
             //print("Collider " + i + ": " + colList[i].name);
+            colList[i].GetComponent<EnemyHealth>().takeDamage(damage);
+            ParticlePooler.instance.spawnParticle(4, colList[i].transform.position, Color.white);
         }
     }
 

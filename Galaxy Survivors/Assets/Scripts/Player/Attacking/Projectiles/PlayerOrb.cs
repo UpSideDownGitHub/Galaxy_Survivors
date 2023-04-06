@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class PlayerOrb : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerOrb : MonoBehaviour
     public GameObject player;
     public W_Orbs spawner;
     public int ID;
+
+    public int particleID;
 
     [Header("Rotation")]
     public GameObject rotator;
@@ -32,6 +35,7 @@ public class PlayerOrb : MonoBehaviour
         {
             collision.GetComponent<EnemyHealth>().takeDamage(damage);
             spawner.checkForOrbs(ID);
+            ParticlePooler.instance.spawnParticle(particleID, transform.position, Color.blue);
             Destroy(gameObject.transform.parent.gameObject);
             Destroy(gameObject);
         }

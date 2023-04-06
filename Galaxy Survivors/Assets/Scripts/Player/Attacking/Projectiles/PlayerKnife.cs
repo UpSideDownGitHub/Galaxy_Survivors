@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class PlayerKnife : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PlayerKnife : MonoBehaviour
 
     public int maxPeirce;
     public int pierceCount;
+
+    public int particleID;
 
     public void Start()
     {
@@ -27,6 +30,7 @@ public class PlayerKnife : MonoBehaviour
             else
             {
                 collision.GetComponent<EnemyHealth>().takeDamage(damage);
+                ParticlePooler.instance.spawnParticle(particleID, transform.position, Color.blue);
                 Destroy(gameObject);
             }
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.ParticleSystem;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -46,7 +47,6 @@ public class PlayerHealth : MonoBehaviour
 
     public void removeHealth(float val)
     {
-        print("REMOVED HEALTH");
         if (SheildUnlocked && sheildActive)
         {
             if (currentBlocks - 1 > 0)
@@ -62,6 +62,8 @@ public class PlayerHealth : MonoBehaviour
         if (health - val < 0)
         {
             // Kill Player and end the round
+            ParticlePooler.instance.spawnParticle(3, transform.position, Color.blue);
+            gameObject.SetActive(false);
             return;
         }
         health -= val;
