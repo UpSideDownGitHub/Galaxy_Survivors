@@ -21,10 +21,15 @@ public class EnemyHealth : MonoBehaviour
     {
         if (currentHealth - damage < 0)
         {
-            ParticlePooler.instance.spawnParticle(1, transform.position, _renderer.color);
-            _enemy.setFree();
+            killEnemy();
             return;
         }
         currentHealth -= damage;
+    }
+
+    public void killEnemy()
+    {
+        ParticlePooler.instance.spawnParticle(1, transform.position, _renderer.color);
+        _enemy.setFree();
     }
 }

@@ -72,4 +72,10 @@ public class PlayerHealth : MonoBehaviour
         slider.value = health;
 
     }
+
+    public void increaseHealth(float val)
+    {
+        health = (health + val) > maxHealth ? maxHealth : health + val;
+        slider.value = health;
+    }
 }

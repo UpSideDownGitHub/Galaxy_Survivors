@@ -44,7 +44,7 @@ public class ParticlePooler : MonoBehaviour
             // check if they can be spawned
             if (particles[i].isSpawnable)
             {
-                // spawn the enemy
+                // spawn the particle
                 particles[i].setPosition(spawnPos);
                 particles[i].enable(color);
                 return true; // successfully spawned an particle
