@@ -13,6 +13,14 @@ public class PickupMovement : MonoBehaviour
     public bool attracted = false;
     public int ID;
 
+    public float _maxDistanceX;
+    public float _maxDistanceY;
+
+    public void OnDisable()
+    {
+        attracted = false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +32,14 @@ public class PickupMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float distX = Mathf.Abs(transform.position.x - _player.transform.position.x);
+        float distY = Mathf.Abs(transform.position.y - _player.transform.position.y);
+        if (distX > _maxDistanceX || distY > _maxDistanceY)
+        {
+            // Despawn the Pickup
+            _pickup.setFree();
+        }
+
         if (!attracted)
         {
             if (Vector2.Distance(transform.position, _player.transform.position) < maxDistance)
@@ -59,7 +75,7 @@ public class PickupMovement : MonoBehaviour
                     print("NO OPTION SELECTED");
                     break;
             }
-            Destroy(gameObject);
+            _pickup.setFree();
         }
     }
 

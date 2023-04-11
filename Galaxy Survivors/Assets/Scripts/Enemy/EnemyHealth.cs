@@ -29,6 +29,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void killEnemy()
     {
+        PickupsPool.instance.spawnPickup(0, transform.position);
         ParticlePooler.instance.spawnParticle(1, transform.position, _renderer.color);
         _enemy.setFree();
     }

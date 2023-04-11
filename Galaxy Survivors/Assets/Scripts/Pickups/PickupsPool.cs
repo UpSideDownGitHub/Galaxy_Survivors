@@ -30,7 +30,7 @@ public class PickupsPool : MonoBehaviour
         }
     }
 
-    public bool spawnPickup(int enemyID, Vector2 spawnPos, Color color)
+    public bool spawnPickup(int enemyID, Vector2 spawnPos)
     {
         // get the bound in the list of the current pickup type to be spawned
         int minPos = 0;

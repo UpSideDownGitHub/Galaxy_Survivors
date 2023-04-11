@@ -6,7 +6,7 @@ public class Pickup : MonoBehaviour
 {
     public bool isSpawnable;
 
-    [HideInInspector] public int ID;
+    public int ID;
 
     public void setPosition(Vector2 pos)
     {
