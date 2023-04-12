@@ -18,6 +18,7 @@ public abstract class Weapon : MonoBehaviour
     private float attackTimeModifyer;
 
 
+
     public void initiate(float val1, float val2, float val3, float val4, PlayerStats playerStats)
     {
         damage = val1;
@@ -48,65 +49,91 @@ public abstract class Weapon : MonoBehaviour
     // fire a straight bullet
     public void fire(GameObject bullet, GameObject firePoint)
     {
-        var tempBullet = Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
-        tempBullet.GetComponent<Rigidbody2D>().AddForce(tempBullet.transform.up * bulletSpeed);
-
-        try
-        { 
-            tempBullet.GetComponent<PlayerBullet>().damage = damage * stats.damageModifyer;
-        }
-        catch
+        StartCoroutine(fire1(bullet, firePoint));
+    }
+    public IEnumerator fire1(GameObject bullet, GameObject firePoint)
+    {
+        for (int i = -1; i < stats.projectileCount; i++)
         {
-            tempBullet.GetComponent<PlayerKnife>().damage = damage * stats.damageModifyer;
+            var tempBullet = Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
+            tempBullet.GetComponent<Rigidbody2D>().AddForce(tempBullet.transform.up * bulletSpeed);
+            try
+            {
+                tempBullet.GetComponent<PlayerBullet>().damage = damage * stats.damageModifyer;
+            }
+            catch
+            {
+                tempBullet.GetComponent<PlayerKnife>().damage = damage * stats.damageModifyer;
+            }
+            yield return new WaitForSeconds(0.2f);
         }
     }
 
     // fire a bullet with given spread
     public void fire(GameObject bullet, GameObject firePoint, float spread)
     {
-        var tempBullet = Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
-        Vector3 up = tempBullet.transform.up;
-        Vector3 calculatedSpread = new Vector3(up.x + Random.Range(-spread, spread), up.y + Random.Range(-spread, spread), up.z);
-        tempBullet.GetComponent<Rigidbody2D>().AddForce(calculatedSpread * bulletSpeed);
-        tempBullet.GetComponent<PlayerBullet>().damage = damage * stats.damageModifyer;
+        StartCoroutine(fire2(bullet, firePoint, spread));
+    }
+    public IEnumerator fire2(GameObject bullet, GameObject firePoint, float spread)
+    {
+        var rand1 = Random.Range(-spread, spread);
+        var rand2 = Random.Range(-spread, spread);
+        for (int i = -1; i < stats.projectileCount; i++)
+        {
+            var tempBullet = Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
+            Vector3 up = tempBullet.transform.up;
+            Vector3 calculatedSpread = new Vector3(up.x + rand1, up.y + rand2, up.z);
+            tempBullet.GetComponent<Rigidbody2D>().AddForce(calculatedSpread * bulletSpeed);
+            tempBullet.GetComponent<PlayerBullet>().damage = damage * stats.damageModifyer;
+            yield return new WaitForSeconds(0.2f);
+        }
     }
 
     // fire a bullet towards the closest enemy
     public void fire(GameObject bullet, GameObject firePoint, Vector2 center, float radius)
     {
-        // need to find the closest enemies first
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(center, radius);
-
-        Collider2D closest = null;
-        float minDist = Mathf.Infinity;
-        for (int i = 0; i < colliders.Length; i++)
+        StartCoroutine(fire3(bullet, firePoint, center, radius));
+    }
+    public IEnumerator fire3(GameObject bullet, GameObject firePoint, Vector2 center, float radius)
+    {
+        for (int j = -1; j < stats.projectileCount; j++)
         {
-            if (!colliders[i].CompareTag("Enemy"))
-                continue;
-            float dist = (center - (Vector2)colliders[i].transform.position).sqrMagnitude;
-            if (dist < minDist)
+            // need to find the closest enemies first
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(center, radius);
+
+            Collider2D closest = null;
+            float minDist = Mathf.Infinity;
+            for (int i = 0; i < colliders.Length; i++)
             {
-                minDist = dist;
-                closest = colliders[i];
+                if (!colliders[i].CompareTag("Enemy"))
+                    continue;
+                float dist = (center - (Vector2)colliders[i].transform.position).sqrMagnitude;
+                if (dist < minDist)
+                {
+                    minDist = dist;
+                    closest = colliders[i];
+                }
             }
-        }
-        if (closest == null)
-            return;
+            if (closest == null)
+                StopCoroutine("fire3");
 
-        // then need to shoot a bullet towards "closest"
-        var tempBullet = Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
-        //tempBullet.transform.LookAt(closest.transform.position);
-        
-        try
-        {
-            tempBullet.GetComponent<PlayerBullet>().damage = damage * stats.damageModifyer;
-            tempBullet.GetComponent<Rigidbody2D>().AddForce((closest.transform.position - firePoint.transform.position) * bulletSpeed);
-        }
-        catch
-        {
-            tempBullet.GetComponent<PlayerRocket>().damage = damage * stats.damageModifyer;
-            tempBullet.GetComponent<PlayerRocket>().toFollow = closest.gameObject;
+            // then need to shoot a bullet towards "closest"
+            var tempBullet = Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
+            //tempBullet.transform.LookAt(closest.transform.position);
 
+            try
+            {
+                tempBullet.GetComponent<PlayerBullet>().damage = damage * stats.damageModifyer;
+                tempBullet.GetComponent<Rigidbody2D>().AddForce((closest.transform.position - firePoint.transform.position) * bulletSpeed);
+            }
+            catch
+            {
+                tempBullet.GetComponent<PlayerRocket>().damage = damage * stats.damageModifyer;
+                tempBullet.GetComponent<PlayerRocket>().toFollow = closest.gameObject;
+
+            }
+
+            yield return new WaitForSeconds(0.2f);
         }
     }
 
@@ -115,7 +142,6 @@ public abstract class Weapon : MonoBehaviour
         GameObject acidTemp = Instantiate(acid, transform.position, Quaternion.identity);
         PlayerAcid acidObj = acidTemp.GetComponent<PlayerAcid>();
         acidObj.attackTime = attackTime;
-        acidObj.attackTimeModifyer = attackTimeModifyer;
         acidObj.damage = damage * stats.damageModifyer;
         acidObj.deathTime = lifeTime;
     }
@@ -127,9 +153,9 @@ public abstract class Weapon : MonoBehaviour
         List<Collider2D> colList = new();
         List<float> colDistList = new();
 
-        
-        for (int i = 0; i < _lightningCount; i++) { colList.Add(null); }
-        for (int i = 0; i < _lightningCount; i++) { colDistList.Add(Mathf.Infinity); }
+
+        for (int i = 0; i < _lightningCount + stats.projectileCount; i++) { colList.Add(null); }
+        for (int i = 0; i < _lightningCount + stats.projectileCount; i++) { colDistList.Add(Mathf.Infinity); }
 
         //Debug.Log("Col List Size: " + colList.Count);
         //Debug.Log("Col Dist List Size: " + colDistList.Count);
@@ -152,12 +178,11 @@ public abstract class Weapon : MonoBehaviour
                 }
             }
         }
-        // TODO - replace this with code to spawn an effect telling me where the bullet landed
         //print("Lighing Count: " + _lightningCount);
         for (int i = 0; i < colList.Count; i++)
         {
             //print("Collider " + i + ": " + colList[i].name);
-            colList[i].GetComponent<EnemyHealth>().takeDamage(damage);
+            colList[i].GetComponent<EnemyHealth>().takeDamage(damage * stats.damageModifyer);
             ParticlePooler.instance.spawnParticle(4, colList[i].transform.position, Color.white);
         }
     }

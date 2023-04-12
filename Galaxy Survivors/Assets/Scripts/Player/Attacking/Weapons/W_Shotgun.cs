@@ -19,7 +19,6 @@ public class W_Shotgun : Weapon
 
     [Header("Shooting")]
     public float shootRate;
-    public float shootRateModifyer;
     private float _timeOfLastShot;
 
     // Start is called before the first frame update
@@ -31,7 +30,7 @@ public class W_Shotgun : Weapon
     // Update is called once per frame
     public override void updateFrame()
     {
-        if (Time.time > shootRate * shootRateModifyer + _timeOfLastShot)
+        if (Time.time > shootRate / playerStats.attackSpeed + _timeOfLastShot)
         {
             for (int i = 0; i < bulletCount; i++)
             {

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   damageModifyer: 1
-  reduceDamageTakenModifyer: 0
-  healthModifyer: 0
-  attackSpeed: 0
-  projectileCount: 0
-  movementSpeed: 0
-  pickupModifyer: 0
-  xpModifyer: 0
+  reduceDamageTakenModifyer: 1
+  healthModifyer: 1
+  attackSpeed: 1
+  projectileCount: 3
+  movementSpeed: 1
+  pickupModifyer: 1
+  xpModifyer: 1

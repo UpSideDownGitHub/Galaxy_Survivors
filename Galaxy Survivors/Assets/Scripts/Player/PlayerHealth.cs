@@ -7,6 +7,8 @@ using static UnityEngine.ParticleSystem;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public PlayerStats stats;
+
     [Header("Health")]
     public int maxHealth;
     [SerializeField] private float health;
@@ -47,6 +49,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void removeHealth(float val)
     {
+        // decrease the ammount of damage done
+        val = val * stats.reduceDamageTakenModifyer;
+
         if (SheildUnlocked && sheildActive)
         {
             if (currentBlocks - 1 > 0)
@@ -75,7 +80,16 @@ public class PlayerHealth : MonoBehaviour
 
     public void increaseHealth(float val)
     {
+        // increase damage recovered
+        val = val / stats.reduceDamageTakenModifyer;
+
         health = (health + val) > maxHealth ? maxHealth : health + val;
         slider.value = health;
+    }
+
+    public void increaseMaxHealth()
+    {
+        var temp = maxHealth * stats.healthModifyer;
+        maxHealth = (int)temp;
     }
 }

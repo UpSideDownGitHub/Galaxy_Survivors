@@ -17,7 +17,6 @@ public class W_Knife : Weapon
 
     [Header("Shooting")]
     public float shootRate;
-    public float shootRateModifyer;
     private float _timeOfLastShot;
 
     // Start is called before the first frame update
@@ -29,7 +28,7 @@ public class W_Knife : Weapon
     // Update is called once per frame
     public override void updateFrame()
     {
-        if (Time.time > shootRate * shootRateModifyer + _timeOfLastShot)
+        if (Time.time > shootRate / playerStats.attackSpeed + _timeOfLastShot)
         {
             base.fire(bullet, firePoint);
             _timeOfLastShot = Time.time;

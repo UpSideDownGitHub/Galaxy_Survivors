@@ -1,7 +1,5 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public enum PassiveAbilities
@@ -18,26 +16,48 @@ public enum PassiveAbilities
 
 public class PassivesManager : MonoBehaviour
 {
-    PlayerStats stats;
-    PassiveLevel levels;
+    public PlayerStats stats;
+    public PassiveLevel levels;
 
     public int maxPassives;
 
     public List<PassiveAbilities> equippedPassives = new();
     public List<int> passiveLevels = new();
 
+    // enable all of the passives and set there default values in the player stats
+    public void Start()
+    {
+        stats.damageModifyer = 1;
+        stats.reduceDamageTakenModifyer= 1;
+        stats.healthModifyer = 1;
+        stats.attackSpeed = 1;
+        stats.projectileCount = 0;
+        stats.movementSpeed = 1;
+        stats.pickupModifyer = 1;
+        stats.xpModifyer = 1;
+
+        for (int i = 0; i < equippedPassives.Count; i++)
+        {
+            setPassivesLevel(equippedPassives[i], passiveLevels[i]);
+        }
+    }
+
     public void passiveEquipped(PassiveAbilities passive)
     {
+        // already have this passive then dont add
         if (equippedPassives.Contains(passive))
             return;
+        // if have can equip another passive
         if (equippedPassives.Count < maxPassives)
         { 
+            // add the passive to the list of equppied passived
             equippedPassives.Add(passive);
             passiveLevels.Add(0);
             setPassivesLevel(passive, 0);
         }
     }
 
+    // increase the level of the given passive
     public void passiveUpgrade(PassiveAbilities passive)
     {
         int currentPassive = equippedPassives.FindIndex(val => val == passive);
@@ -45,6 +65,7 @@ public class PassivesManager : MonoBehaviour
         setPassivesLevel(passive, passiveLevels[currentPassive]);
     }
 
+    // this will apply the level of the given passive 
     public void setPassivesLevel(PassiveAbilities passive, int level)
     {
         switch (passive)

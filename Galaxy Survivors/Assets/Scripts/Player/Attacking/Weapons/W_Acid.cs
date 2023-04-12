@@ -12,7 +12,6 @@ public class W_Acid : Weapon
 
     [Header("Acid Spawning")]
     public float spawnRate;
-    public float spawnRateModifyer;
     private float _lastSpawnTime;
 
     [Header("Values")]
@@ -30,7 +29,7 @@ public class W_Acid : Weapon
     // Update is called once per frame
     public override void updateFrame()
     {
-        if(Time.time > spawnRate * spawnRateModifyer + _lastSpawnTime)
+        if(Time.time > spawnRate / playerStats.attackSpeed + _lastSpawnTime)
         { 
             _lastSpawnTime = Time.time;
             base.placeAcid(acid);

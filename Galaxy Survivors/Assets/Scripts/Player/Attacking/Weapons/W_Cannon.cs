@@ -17,7 +17,6 @@ public class W_Cannon : Weapon
     // shooting
     [Header("Shooting")]
     public float shootRate;
-    public float shootRateModifyer;
     private float _timeOfLastShot;
 
 
@@ -30,7 +29,7 @@ public class W_Cannon : Weapon
     // Update is called once per frame
     public override void updateFrame()
     {
-        if (Time.time > shootRate* shootRateModifyer + _timeOfLastShot)
+        if (Time.time > shootRate / playerStats.attackSpeed + _timeOfLastShot)
         {
             for (int i = 0; i < firePoints.Length; i++)
             {

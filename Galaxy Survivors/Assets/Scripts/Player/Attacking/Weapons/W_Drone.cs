@@ -41,7 +41,7 @@ public class W_Drone : Weapon
     {
         _drone.transform.position = Vector3.Lerp(_drone.transform.position, transform.position + droneSpawnOffset, lerpTime);
 
-        if (Time.time > shootRate + _timeOfLastShot)
+        if (Time.time > shootRate / playerStats.attackSpeed + _timeOfLastShot)
         {
             base.fire(bullet, firePoint, transform.position, maxDistance);
             _timeOfLastShot = Time.time;

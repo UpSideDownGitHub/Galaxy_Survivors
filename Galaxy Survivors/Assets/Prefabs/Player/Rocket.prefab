@@ -278,6 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841f4961881ed2b41ad75c4ca9b6da0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: 88d9b88f8a369464487f089c2c701872, type: 2}
   toFollow: {fileID: 0}
   turnSpeed: 100
   movingSpeed: 10

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.SearchService;
 using static UnityEngine.GraphicsBuffer;
@@ -47,7 +48,7 @@ public class PlayerRocket : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<EnemyHealth>().takeDamage(damage); // convert to area damage
+            collision.GetComponent<EnemyHealth>().takeDamage(damage);
             ParticlePooler.instance.spawnParticle(particleID, transform.position, Color.blue);
             Destroy(gameObject);
         }

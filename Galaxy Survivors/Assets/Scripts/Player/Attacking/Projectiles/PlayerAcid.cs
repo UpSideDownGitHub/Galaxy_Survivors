@@ -5,11 +5,8 @@ using UnityEngine;
 public class PlayerAcid : MonoBehaviour
 {
     public float damage;
-
     public float deathTime;
-
     public float attackTime;
-    public float attackTimeModifyer;
     private float _timeSinceLastAttack;
 
     public void Start()
@@ -21,7 +18,7 @@ public class PlayerAcid : MonoBehaviour
     {
         if (!collision.CompareTag("Enemy"))
             return;
-        if (Time.time > attackTime * attackTimeModifyer + _timeSinceLastAttack)
+        if (Time.time > attackTime + _timeSinceLastAttack)
         {
             _timeSinceLastAttack = Time.time;
             collision.GetComponent<EnemyHealth>().takeDamage(damage);

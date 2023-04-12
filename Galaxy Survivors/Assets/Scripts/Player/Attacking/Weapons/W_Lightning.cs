@@ -9,7 +9,6 @@ public class W_Lightning : Weapon
 
     [Header("Spawning")]
     public float spawnRate;
-    public float spawnRateModifyer;
     private float _lastSpawnTime;
 
     [Header("Attacking")]
@@ -31,7 +30,7 @@ public class W_Lightning : Weapon
     // Update is called once per frame
     public override void updateFrame()
     {
-        if (Time.time > spawnRate * spawnRateModifyer + _lastSpawnTime)
+        if (Time.time > spawnRate / playerStats.attackSpeed + _lastSpawnTime)
         {
             _lastSpawnTime = Time.time;
             base.placeLightning(transform.position, _radius, _lightningCount);

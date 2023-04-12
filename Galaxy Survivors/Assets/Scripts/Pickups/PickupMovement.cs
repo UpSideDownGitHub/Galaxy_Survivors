@@ -4,21 +4,33 @@ using UnityEngine;
 
 public class PickupMovement : MonoBehaviour
 {
+    public PlayerStats stats;
+
     private GameObject _player;
     private Pickup _pickup;
 
     public float lerpTime = 0.01f;
     public float minDistance;
     public float maxDistance;
+
+    private float _orignalMaxDistance;
+
     public bool attracted = false;
     public int ID;
-
     public float _maxDistanceX;
     public float _maxDistanceY;
 
     public void OnDisable()
     {
         attracted = false;
+    }
+    public void OnEnable()
+    {
+        maxDistance = _orignalMaxDistance * stats.pickupModifyer;
+    }
+    private void Awake()
+    {
+        _orignalMaxDistance = maxDistance;
     }
 
     // Start is called before the first frame update
@@ -57,7 +69,8 @@ public class PickupMovement : MonoBehaviour
             switch(ID)
             {
                 case 0: // XP
-                    StatsManager.instance.setXP(1, true);
+                    var temp = 1 * stats.xpModifyer;
+                    StatsManager.instance.setXP((int)temp, true);
                     break;
                 case 1: // Coin
                     StatsManager.instance.setCoins(1, true);
@@ -100,5 +113,10 @@ public class PickupMovement : MonoBehaviour
     public void increasePlayerHealth()
     {
         _player.GetComponent<PlayerHealth>().increaseHealth(30);
+    }
+
+    public void increasePickupRange(float val)
+    {
+        maxDistance = maxDistance * val;
     }
 }

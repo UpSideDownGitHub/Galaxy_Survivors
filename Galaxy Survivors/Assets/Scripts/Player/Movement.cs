@@ -6,6 +6,8 @@ using UnityEngine.Rendering;
 
 public class Movement : MonoBehaviour
 {
+    public PlayerStats stats;
+
     [Header("JoySick Movement")]
     public Joystick movementStick; // left
 
@@ -17,65 +19,19 @@ public class Movement : MonoBehaviour
     public float acceleration = 1800f;
     public float friction = 1800f;
 
-    [Header("Touching Walls")]
-    public bool touchingLeftWall;
-    public bool touchingRightWall;
-    public bool touchingUpperWall;
-    public bool touchingLowerWall;
-
-    [Header("Dash")]
-    public float dashSpeed;
-    public float invinceabilityFrameTime;
-    public float maxDashRate;
-    private float _timeSinceLastDash;
-
     [Header("Gameobject Links")]
     public GameObject healthBar;
 
-
     public void Start()
     {
+        increaseMoveementSpeed();
     }
 
     public void Update()
     {
         Move();
-        checkForMove();
-    }
-
-    public void checkForMove()
-    {
-        if (touchingLeftWall)
-        {
-            if (moveVelocity.x < 0)
-            {
-                moveVelocity.x = 0;
-            }
-        }
-        else if (touchingRightWall)
-        {
-            if (moveVelocity.x > 0)
-            {
-                moveVelocity.x = 0;
-            }
-        }
-        if (touchingUpperWall)
-        {
-            if (moveVelocity.y > 0)
-            {
-                moveVelocity.y = 0;
-            }
-        }
-        if (touchingLowerWall)
-        {
-            if (moveVelocity.y < 0)
-            {
-                moveVelocity.y = 0;
-            }
-        }
         transform.Translate(moveVelocity * Time.deltaTime, Space.World);
     }
-
 
     public void Move()
     {
@@ -123,44 +79,8 @@ public class Movement : MonoBehaviour
         }
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void increaseMoveementSpeed()
     {
-        if (collision.gameObject.tag == "Wall_Upper")
-        {
-            touchingUpperWall = true;
-        }
-        else if (collision.gameObject.tag == "Wall_Lower")
-        {
-            touchingLowerWall = true;
-        }
-        if (collision.gameObject.tag == "Wall_Left")
-        {
-            touchingLeftWall = true;
-        }
-        else if (collision.gameObject.tag == "Wall_Right")
-        {
-            touchingRightWall = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Wall_Upper")
-        {
-            touchingUpperWall = false;
-        }
-        else if (collision.gameObject.tag == "Wall_Lower")
-        {
-            touchingLowerWall = false;
-        }
-        if (collision.gameObject.tag == "Wall_Left")
-        {
-            touchingLeftWall = false;
-        }
-        else if (collision.gameObject.tag == "Wall_Right")
-        {
-            touchingRightWall = false;
-        }
+        maxSpeed = maxSpeed * stats.movementSpeed;
     }
 }

@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ef0d88be514d6b43809dd2ec1db6e1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: 88d9b88f8a369464487f089c2c701872, type: 2}
   lerpTime: 0.01
   minDistance: 2
   maxDistance: 5

@@ -50,7 +50,7 @@ public class W_Orbs : Weapon
         }
         if (!checkingTime)
             return;
-        if (Time.time > orbDestroyedAt + orbSpawnTime)
+        if (Time.time > orbDestroyedAt + orbSpawnTime / playerStats.attackSpeed)
         {
             checkingTime = false;
             // spawn the orbs
