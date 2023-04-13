@@ -6,10 +6,11 @@ public class W_Pistol : Weapon
 {
     [Header("Stats")]
     public PlayerStats playerStats;
+    public PlayerPerks perks;
 
     [Header("Objects")]
     public GameObject bullet;
-    public GameObject firePoint;
+    public GameObject[] firePoints;
 
     [Header("Values")]
     [SerializeField] private float _damage;
@@ -19,10 +20,16 @@ public class W_Pistol : Weapon
     public float shootRate;
     private float _timeOfLastShot;
 
+    [Header("Level")]
+    public WeaponLevels level;
+
     // Start is called before the first frame update
     public override void startFrame()
     {
-        base.initiate(_damage, _bulletSpeed, playerStats);
+        updateWeaponLevel();
+        var damageIncrease = perks.damageIncrease == 0 ? 1 : perks.damageIncreaseLevels[perks.damageIncrease - 1];
+        shootRate = shootRate * (perks.fireRate == 0 ? 1 : perks.fireRateLevels[perks.fireRate - 1]);
+        base.initiate(_damage * damageIncrease, _bulletSpeed, playerStats);
     }
 
     // Update is called once per frame
@@ -30,8 +37,30 @@ public class W_Pistol : Weapon
     {
         if (Time.time > shootRate / playerStats.attackSpeed + _timeOfLastShot)
         {
-            base.fire(bullet, firePoint);
+            switch (base.getWeaponLevel())
+            {
+                case 0:
+                    base.fire(bullet, firePoints[0]);
+                    break;
+                case 1:
+                    base.fire(bullet, firePoints[1]);
+                    base.fire(bullet, firePoints[2]);
+                    break;
+                case 2:
+                    print("Here");
+                    base.fire(bullet, firePoints[3]);
+                    base.fire(bullet, firePoints[4]);
+                    base.fire(bullet, firePoints[5]);
+                    break;
+                default:
+                    break;
+            }
             _timeOfLastShot = Time.time;
         }
+    }
+
+    public override void updateWeaponLevel()
+    {
+        base.setWeaponLevel(level.pistolLevel);
     }
 }

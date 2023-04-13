@@ -6,10 +6,11 @@ public class W_Rockets : Weapon
 {
     [Header("Stats")]
     public PlayerStats playerStats;
+    public PlayerPerks perks;
 
     [Header("Shooting")]
     public GameObject bullet;
-    public GameObject firePoint;
+    public GameObject[] firePoints;
     public float maxDistance;
 
     [Header("Values")]
@@ -20,10 +21,17 @@ public class W_Rockets : Weapon
     public float shootRate;
     private float _timeOfLastShot;
 
+    [Header("Level")]
+    public WeaponLevels level;
+
     // Start is called before the first frame update
     public override void startFrame()
     {
-        base.initiate(_damage, _bulletSpeed, playerStats);
+        updateWeaponLevel();
+
+        var damageIncrease = perks.damageIncrease == 0 ? 1 : perks.damageIncreaseLevels[perks.damageIncrease - 1];
+        shootRate = shootRate * (perks.fireRate == 0 ? 1 : perks.fireRateLevels[perks.fireRate - 1]);
+        base.initiate(_damage * damageIncrease, _bulletSpeed, playerStats);
     }
 
     // Update is called once per frame
@@ -31,8 +39,29 @@ public class W_Rockets : Weapon
     {
         if (Time.time > shootRate / playerStats.attackSpeed + _timeOfLastShot)
         {
-            base.fire(bullet, firePoint, transform.position, maxDistance);
+            switch (base.getWeaponLevel())
+            {
+                case 0:
+                    base.fire(bullet, firePoints[0], transform.position, maxDistance);
+                    break;
+                case 1:
+                    base.fire(bullet, firePoints[0], transform.position, maxDistance);
+                    base.fire(bullet, firePoints[1], transform.position, maxDistance);
+                    break;
+                case 2:
+                    base.fire(bullet, firePoints[0], transform.position, maxDistance);
+                    base.fire(bullet, firePoints[1], transform.position, maxDistance);
+                    base.fire(bullet, firePoints[2], transform.position, maxDistance);
+                    break;
+                default:
+                    break;
+            }
             _timeOfLastShot = Time.time;
         }
+    }
+
+    public override void updateWeaponLevel()
+    {
+        base.setWeaponLevel(level.rocketsLevel);
     }
 }

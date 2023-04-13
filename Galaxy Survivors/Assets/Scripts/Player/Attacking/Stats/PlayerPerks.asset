@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70423681dd1302644af9e90327dfe352, type: 3}
+  m_Name: PlayerPerks
+  m_EditorClassIdentifier: 
+  minusDamageTaken: 0
+  minusDamageTakenLevels:
+  - 2
+  - 2.5
+  - 4
+  damageIncrease: 0
+  damageIncreaseLevels:
+  - 2
+  - 3
+  - 4
+  movementSpeed: 3
+  movementSpeedLevels:
+  - 1.5
+  - 2
+  - 3
+  healthIncrease: 0
+  healthIncreaseLevels:
+  - 2
+  - 2.5
+  - 4
+  healthRegen: 0
+  healthRegenLevels:
+  - 3
+  - 1.5
+  - 0.75
+  fireRate: 0
+  fireRateLevels:
+  - 0.75
+  - 0.5
+  - 0.25
+  xpIncrease: 0
+  xpIncreaseLevels:
+  - 2
+  - 3
+  - 5
+  coinsIncrease: 0
+  coinsIncreaseLevels:
+  - 2
+  - 3
+  - 5

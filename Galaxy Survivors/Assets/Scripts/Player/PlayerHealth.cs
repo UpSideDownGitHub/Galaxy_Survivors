@@ -8,13 +8,20 @@ using static UnityEngine.ParticleSystem;
 public class PlayerHealth : MonoBehaviour
 {
     public PlayerStats stats;
+    public PlayerPerks perks;
 
     [Header("Health")]
     public int maxHealth;
     [SerializeField] private float health;
+    public float damageReduction;
 
     [Header("UI")]
     public Slider slider;
+
+    [Header("Health Regen")]
+    public bool regenHealth;
+    public float regenRate;
+    private float _timeSiceLastRegen;
 
     [Header("Sheild")]
     public bool SheildUnlocked;
@@ -27,16 +34,31 @@ public class PlayerHealth : MonoBehaviour
 
     public void Start()
     {
+        regenHealth = perks.healthRegen == 0 ? false : true;
+        regenRate = regenHealth ? perks.healthRegenLevels[perks.healthRegen - 1] : 0;
+
+        var temp = maxHealth * (perks.healthIncrease == 0 ? 1 : perks.healthIncreaseLevels[perks.healthIncrease - 1]);
+        maxHealth = (int)temp;
+
         health = maxHealth;
         sheildActive = true;
         slider.minValue = 0;
         slider.maxValue = maxHealth;
         slider.value = maxHealth;
         _timeSinceLastSheild = 0;
+        damageReduction = (perks.minusDamageTaken == 0 ? 1 : perks.minusDamageTakenLevels[perks.minusDamageTaken - 1]);
     }
 
     public void Update()
     {
+        if (regenHealth & health < maxHealth)
+        {
+            if (Time.time > regenRate + _timeSiceLastRegen)
+            {
+                increaseHealth(1);
+            }
+        }
+
         if (SheildUnlocked && !sheildActive)
         {
             if (Time.time > sheidCoolDownTime + _timeSinceLastSheild)
@@ -50,6 +72,7 @@ public class PlayerHealth : MonoBehaviour
     public void removeHealth(float val)
     {
         // decrease the ammount of damage done
+        val = val * damageReduction;
         val = val * stats.reduceDamageTakenModifyer;
 
         if (SheildUnlocked && sheildActive)
@@ -80,7 +103,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void increaseHealth(float val)
     {
-        // increase damage recovered
+        // increase health recovered
         val = val / stats.reduceDamageTakenModifyer;
 
         health = (health + val) > maxHealth ? maxHealth : health + val;

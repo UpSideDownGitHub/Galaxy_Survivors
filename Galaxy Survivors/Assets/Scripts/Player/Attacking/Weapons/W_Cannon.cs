@@ -6,6 +6,7 @@ public class W_Cannon : Weapon
 {
     [Header("Stats")]
     public PlayerStats playerStats;
+    public PlayerPerks perks;
 
     public GameObject[] firePoints;
     public GameObject bullet;
@@ -23,6 +24,8 @@ public class W_Cannon : Weapon
     // Start is called before the first frame update
     public override void startFrame()
     {
+        var damageIncrease = perks.damageIncrease == 0 ? 1 : perks.damageIncreaseLevels[perks.damageIncrease - 1];
+        shootRate = shootRate * (perks.fireRate == 0 ? 1 : perks.fireRateLevels[perks.fireRate - 1]);
         base.initiate(_damage, _bulletSpeed, playerStats);
     }
 

@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 88d9b88f8a369464487f089c2c701872, type: 2}
+  perks: {fileID: 11400000, guid: 3342c70343a71194185cf9ceb85458e8, type: 2}
   lerpTime: 0.01
   minDistance: 2
   maxDistance: 5

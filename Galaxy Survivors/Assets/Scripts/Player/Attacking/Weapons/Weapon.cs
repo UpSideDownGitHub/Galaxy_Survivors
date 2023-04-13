@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using static UnityEngine.ParticleSystem;
 
 
 public abstract class Weapon : MonoBehaviour
 {
     PlayerStats stats;
+    WeaponLevels levels;
+
+    private int _currentWeaponLevel;
+
     // all
     private float damage;
     private float damageModifyer;
@@ -16,8 +21,6 @@ public abstract class Weapon : MonoBehaviour
     private float lifeTime;
     private float attackTime;
     private float attackTimeModifyer;
-
-
 
     public void initiate(float val1, float val2, float val3, float val4, PlayerStats playerStats)
     {
@@ -187,6 +190,10 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
+    public int getWeaponLevel() { return _currentWeaponLevel; }
+    public void setWeaponLevel(int weaponLevel) { _currentWeaponLevel = weaponLevel; }
+
     public virtual void startFrame() { }
     public virtual void updateFrame() { }
+    public virtual void updateWeaponLevel() { }
 }
