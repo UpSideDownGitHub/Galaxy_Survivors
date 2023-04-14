@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pistolLevel: 0
   shotGunLevel: 0
-  orbsLevel: 2
-  droneLevel: 2
+  orbsLevel: 0
+  droneLevel: 0
   rocketsLevel: 0
   knifeLevel: 0
-  acidLevel: 2
+  acidLevel: 0
   lightningLevel: 0
-  cannonsLevel: 2
+  cannonsLevel: 0
   sheildLevel: 0

@@ -19,71 +19,122 @@ MonoBehaviour:
   - {fileID: 124373417, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
   - {fileID: -1087057619, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
   - {fileID: -1495731619, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: -2026330263, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -61870064, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: 1533991235, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -2000888927, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -757704584, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: 567322446, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -2010681709, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: 1120401814, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -440792809, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -469355622, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -546892742, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: 577852059, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -1591311557, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: 28554328, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -895155603, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -310875171, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: 2082149193, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -1692542966, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: 747039399, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: 1637781755, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -197370731, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
   weaponTitle:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Pistol
+  - Shotgun
+  - Orbs
+  - Drones
+  - Rockets
+  - Knives
+  - Acid
+  - Lightning
+  - Cannons
   weaponDescription:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - fires a shot in the direction of the player
+  - +1 bullet
+  - +1 bullet
+  - fires a spread of bullets in the direction of the player
+  - 50% more bullets
+  - 50% more bullets
+  - spawns orbs that will circle around the player
+  - increase orb ammount to 6
+  - increase orb ammount to 12
+  - a drone that will follow the player and shoot at the closest enemy
+  - +1 drone
+  - +1 drone
+  - Fire a rocket that will auto track to the closest enemy
+  - +1 rocket
+  - +1 rocket
+  - shoot a knife in the direction the player is facing that will peirce through
+    enemies
+  - +1 peirce
+  - +1 peirce
+  - spawn acid in the location of the player that will damge the player
+  - '50% larger '
+  - 100% larger
+  - Spawns lighting that will attack the closest enemys
+  - +2 Lightning bolts
+  - +2 Lightning bolts
+  - Fires 2 bullets to the side of the player
+  - + 2 bullets for 4 directional firring
+  - +4 bullets for 8 directional firing
   passiveSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
   passiveTitle:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Chromatic Charge
+  - Nano Defense
+  - Vivid Vitality
+  - Neon Blitz
+  - Fluorescent Frenzy
+  - Hyper Hurdle
+  - Luminous Lasso
+  - Radiant Boost
   passiveDescription:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Increase the damage dealt to enemies
+  - large increase to damage delt
+  - Massive increase to damage delt
+  - reduction in damage taken
+  - large reduction in damage taken
+  - massive reduction in damage taken
+  - increase player max health
+  - large increase to player max health
+  - massive increase to player max health
+  - increase player attack speed
+  - large increase to player attack speed
+  - massive increase to player attack speed
+  - +1 projectiles for all weapons
+  - +1 projectile
+  - +1 projectile
+  - increase the movement speed of the player
+  - large increase to movement speed
+  - massive increase to movement speed
+  - increase item pickup range
+  - large increase to item pickup range
+  - massive increase to item pickup range
+  - increase in xp gained
+  - large increase in xp gained
+  - massive increase in xp gained

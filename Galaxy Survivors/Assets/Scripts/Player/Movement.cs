@@ -25,10 +25,8 @@ public class Movement : MonoBehaviour
 
     public void Start()
     {
-        print(maxSpeed);
         var temp = perks.movementSpeed == 0 ? 1 : perks.movementSpeedLevels[perks.movementSpeed - 1];
         maxSpeed = maxSpeed * temp;
-        print(maxSpeed);
         increaseMoveementSpeed();
     }
 

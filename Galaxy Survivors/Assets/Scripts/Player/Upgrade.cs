@@ -1,8 +1,13 @@
+using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Upgrade : MonoBehaviour
 {
@@ -15,10 +20,9 @@ public class Upgrade : MonoBehaviour
      * - Level
     */
     [Header("UI Elements")]
-    public GameObject[] upgrade1;
-    public GameObject[] upgrade2;
-    public GameObject[] upgrade3;
+    public GameObject[] upgradeUIElements;
     public GameObject mainLevelUpUI;
+    public UpgradeInformation info;
 
     [Header("Links")]
     public PassivesManager passives;
@@ -43,6 +47,19 @@ public class Upgrade : MonoBehaviour
         public int index;
     }
 
+    public void Start()
+    {
+        weaponLevels.pistolLevel = 0;
+        weaponLevels.shotGunLevel = 0;
+        weaponLevels.orbsLevel = 0;
+        weaponLevels.droneLevel = 0;
+        weaponLevels.rocketsLevel = 0;
+        weaponLevels.knifeLevel = 0;
+        weaponLevels.acidLevel = 0;
+        weaponLevels.lightningLevel = 0;
+        weaponLevels.cannonsLevel = 0;
+    }
+
 
     public void levelUp()
     {
@@ -52,29 +69,147 @@ public class Upgrade : MonoBehaviour
 
         generate3Upgrades();
         getInfo();
-
-        // add listeners to the buttons to be call buttonPressed which will apply the 
-        // selected item
-        upgrade1[0].GetComponent<Button>().onClick.AddListener(() => buttonPressed(0));
-        upgrade2[0].GetComponent<Button>().onClick.AddListener(() => buttonPressed(1));
-        upgrade3[0].GetComponent<Button>().onClick.AddListener(() => buttonPressed(2));
     }
 
-    
+
 
     public void getInfo()
     {
-        // get all of the info for the 3 selected items
+        for (int i = 0; i < upgradeUIElements.Length / 6; i++)
+        {
+            bool newItem = false;
+
+            int index = 0;
+            if (items[i].list == 1)
+            {
+                index = (int)newWeapons[items[i].index];
+                newItem = true;
+            }
+            else if (items[i].list == 2)
+                index = (int)upgradeWeapons[items[i].index];
+            else if (items[i].list == 3)
+            {
+                index = (int)newPassives[items[i].index];
+                newItem = true;
+            }
+            else if (items[i].list == 4)
+                index = (int)upgradePassives[items[i].index];
+
+            int index2;
+            string title;
+            Sprite upgrade1Icon;
+            string description;
+
+            if (items[i].list <= 2)
+            {
+                index2 = index * 3 + weaponLevels.weaponLevels[index];
+                title = info.weaponTitle[index];
+                upgrade1Icon = info.weaponSprites[index2];
+                description = info.weaponDescription[index2];
+            }
+            else if (items[i].list == 3)
+            {
+                // as new will be the base level
+                index2 = index * 3 + 0;
+                title = info.passiveTitle[index];
+                upgrade1Icon = info.passiveSprites[index2];
+                description = info.passiveDescription[index2];
+            }
+            else
+            {
+                int index3 = passives.equippedPassives.IndexOf(listOfPassives[index]);
+                index2 = index * 3 + passives.passiveLevels[index3];
+                title = info.passiveTitle[index];
+                upgrade1Icon = info.passiveSprites[index2];
+                description = info.passiveDescription[index2];
+            }
+
+            upgradeUIElements[(i * 6) + 1].GetComponent<Image>().sprite = upgrade1Icon;
+            upgradeUIElements[(i * 6) + 2].GetComponent<TMP_Text>().text = title;
+            upgradeUIElements[(i * 6) + 3].GetComponent<TMP_Text>().text = description;
+            
+            if (newItem)
+            {
+                upgradeUIElements[(i * 6) + 4].SetActive(true);
+                upgradeUIElements[(i * 6) + 5].SetActive(false);
+            }
+            else
+            {
+                upgradeUIElements[(i * 6) + 4].SetActive(false);
+                upgradeUIElements[(i * 6) + 5].SetActive(true);
+            }
+        }
     }
 
     public void buttonPressed(int ID)
     {
         // apply the upgrade
+        int i = ID;
+        if (items[i].list == 1)
+        {
+            // new weapon
+            weapons.addWeapon(newWeapons[items[i].index]);
+        }
+        else if (items[i].list == 2)
+        {
+            // weapon upgrade
+            switch (upgradeWeapons[items[i].index])
+            {
+                case EquippedWeapons.PISTOL:
+                    weaponLevels.pistolLevel++;
+                    weapons.weapons[0].updateWeaponLevel();
+                    break;
+                case EquippedWeapons.SHOTGUN:
+                    weaponLevels.shotGunLevel++;
+                    weapons.weapons[1].updateWeaponLevel();
+                    break;
+                case EquippedWeapons.ORBS:
+                    weaponLevels.orbsLevel++;
+                    weapons.weapons[2].updateWeaponLevel();
+                    break;
+                case EquippedWeapons.DRONE:
+                    weaponLevels.droneLevel++;
+                    weapons.weapons[3].updateWeaponLevel();
+                    break;
+                case EquippedWeapons.ROCKETS:
+                    weaponLevels.rocketsLevel++;
+                    weapons.weapons[4].updateWeaponLevel();
+                    break;
+                case EquippedWeapons.KNIFE:
+                    weaponLevels.knifeLevel++;
+                    weapons.weapons[5].updateWeaponLevel();
+                    break;
+                case EquippedWeapons.ACID:
+                    weaponLevels.acidLevel++;
+                    weapons.weapons[6].updateWeaponLevel();
+                    break;
+                case EquippedWeapons.LIGHTNING:
+                    weaponLevels.lightningLevel++;
+                    weapons.weapons[7].updateWeaponLevel();
+                    break;
+                case EquippedWeapons.CANNONS:
+                    weaponLevels.cannonsLevel++;
+                    weapons.weapons[8].updateWeaponLevel();
+                    break;
+                default:
+                    print("Should not be here");
+                    break;
+            }
 
-        // remove listeners from the buttons
-        upgrade1[0].GetComponent<Button>().onClick.RemoveAllListeners();
-        upgrade2[0].GetComponent<Button>().onClick.RemoveAllListeners();
-        upgrade3[0].GetComponent<Button>().onClick.RemoveAllListeners();
+        }
+        else if (items[i].list == 3)
+        {
+            // new passive
+            passives.passiveEquipped(newPassives[items[i].index]);
+        }
+        else if (items[i].list == 4)
+        {
+            // passive upgrade
+            passives.passiveUpgrade(upgradePassives[items[i].index]);
+        }
+        // disable UI and enable the gameplay
+        Time.timeScale = 1f;
+        mainLevelUpUI.SetActive(false);
     }
 
 
@@ -120,7 +255,23 @@ public class Upgrade : MonoBehaviour
         // generate which list should be used IE what type of item to offer the player
         // there are 4 items (new & upgrades of passives & weapons) then loop through them 
         // choosing the item to show the player from each of them.
-        var upgradeOptions = new int[] { Random.Range(1, 5), Random.Range(1, 5), Random.Range(1, 5) };
+        // NEED TO ACTOUNT FOR IF NONE OF THEM ARE AVAIABLE
+        List<int> available = new List<int>();
+        if (newWeapons.Count > 0)
+            available.Add(1);
+        if (upgradeWeapons.Count > 0)
+            available.Add(2);
+        if (newPassives.Count > 0)
+            available.Add(3);
+        if (upgradePassives.Count > 0)
+            available.Add(4);
+
+        var upgradeOptions = new int[] { 
+            available[Random.Range(0, available.Count)],
+            available[Random.Range(0, available.Count)],
+            available[Random.Range(0, available.Count)]
+        };
+
         for (int i = 0; i < upgradeOptions.Length; i++)
         {
             switch (upgradeOptions[i])

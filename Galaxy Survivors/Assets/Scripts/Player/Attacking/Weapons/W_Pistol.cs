@@ -47,7 +47,6 @@ public class W_Pistol : Weapon
                     base.fire(bullet, firePoints[2]);
                     break;
                 case 2:
-                    print("Here");
                     base.fire(bullet, firePoints[3]);
                     base.fire(bullet, firePoints[4]);
                     base.fire(bullet, firePoints[5]);

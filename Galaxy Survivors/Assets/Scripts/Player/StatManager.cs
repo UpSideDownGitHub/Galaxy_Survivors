@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public class StatManager : MonoBehaviour
 {
-    public bool DELETE_ME_I_AM_FOR_TESTING;
     public static bool statsChanged;
-
     public GameStats stats;
+
+    public Upgrade upgradeSystem;
 
     [Header("XP/Level")]
     public Slider xpSlider;
@@ -51,14 +51,16 @@ public class StatManager : MonoBehaviour
 
     public void Update()
     {
-        if (statsChanged || DELETE_ME_I_AM_FOR_TESTING) 
+        if (statsChanged) 
         {
             statsChanged = false;
-            DELETE_ME_I_AM_FOR_TESTING = false;
 
             // XP/Level
             if (stats.XP > (float)((Math.Pow(stats.level + 1, 1.5) / 2) * 10))
+            { 
                 stats.level++;
+                upgradeSystem.levelUp();
+            }
             xpSlider.minValue = (float)((Math.Pow(stats.level, 1.5) / 2) * 10);
             xpSlider.maxValue = (float)((Math.Pow(stats.level + 1, 1.5) / 2) * 10);
             xpSlider.value = stats.XP;
