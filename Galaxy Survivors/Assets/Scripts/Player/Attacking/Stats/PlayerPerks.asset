@@ -22,7 +22,7 @@ MonoBehaviour:
   - 2
   - 3
   - 4
-  movementSpeed: 3
+  movementSpeed: 0
   movementSpeedLevels:
   - 1.5
   - 2

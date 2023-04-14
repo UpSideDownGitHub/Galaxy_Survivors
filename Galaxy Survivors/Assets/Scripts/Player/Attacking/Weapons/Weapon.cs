@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.TextCore.Text;
 using static UnityEngine.ParticleSystem;
 
@@ -60,14 +61,9 @@ public abstract class Weapon : MonoBehaviour
         {
             var tempBullet = Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
             tempBullet.GetComponent<Rigidbody2D>().AddForce(tempBullet.transform.up * bulletSpeed);
-            try
-            {
-                tempBullet.GetComponent<PlayerBullet>().damage = damage * stats.damageModifyer;
-            }
-            catch
-            {
-                tempBullet.GetComponent<PlayerKnife>().damage = damage * stats.damageModifyer;
-            }
+
+            tempBullet.GetComponent<PlayerBullet>().damage = damage * stats.damageModifyer;
+
             yield return new WaitForSeconds(0.2f);
         }
     }
@@ -140,10 +136,31 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
-    public void placeAcid(GameObject acid)
+    // fire a straight bullet
+    public void fire(GameObject bullet, GameObject firePoint, int peirceCount)
+    {
+        StartCoroutine(fire4(bullet, firePoint, peirceCount));
+    }
+    public IEnumerator fire4(GameObject bullet, GameObject firePoint, int peirceCount)
+    {
+        for (int i = -1; i < stats.projectileCount; i++)
+        {
+            var tempBullet = Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
+            tempBullet.GetComponent<Rigidbody2D>().AddForce(tempBullet.transform.up * bulletSpeed);
+
+            tempBullet.GetComponent<PlayerKnife>().damage = damage * stats.damageModifyer;
+            tempBullet.GetComponent<PlayerKnife>().maxPeirce = peirceCount;
+            tempBullet.GetComponent<PlayerKnife>().pierceCount = peirceCount;
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+    public void placeAcid(GameObject acid, float size)
     {
         GameObject acidTemp = Instantiate(acid, transform.position, Quaternion.identity);
+        acidTemp.transform.localScale = new Vector3(size, size, size);
         PlayerAcid acidObj = acidTemp.GetComponent<PlayerAcid>();
+        acidObj.particlesReference.transform.localScale = new Vector3(size/2, size/2, size/2);
         acidObj.attackTime = attackTime;
         acidObj.damage = damage * stats.damageModifyer;
         acidObj.deathTime = lifeTime;
@@ -185,8 +202,12 @@ public abstract class Weapon : MonoBehaviour
         for (int i = 0; i < colList.Count; i++)
         {
             //print("Collider " + i + ": " + colList[i].name);
-            colList[i].GetComponent<EnemyHealth>().takeDamage(damage * stats.damageModifyer);
-            ParticlePooler.instance.spawnParticle(4, colList[i].transform.position, Color.white);
+            try
+            {
+                colList[i].GetComponent<EnemyHealth>().takeDamage(damage * stats.damageModifyer);
+                ParticlePooler.instance.spawnParticle(4, colList[i].transform.position, Color.white);
+            }
+            catch { continue; }
         }
     }
 

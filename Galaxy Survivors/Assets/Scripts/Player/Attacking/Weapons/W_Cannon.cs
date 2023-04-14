@@ -9,6 +9,7 @@ public class W_Cannon : Weapon
     public PlayerPerks perks;
 
     public GameObject[] firePoints;
+    public int[] levelFirepoints;
     public GameObject bullet;
 
     [Header("Values")]
@@ -20,10 +21,13 @@ public class W_Cannon : Weapon
     public float shootRate;
     private float _timeOfLastShot;
 
+    [Header("Level")]
+    public WeaponLevels level;
 
     // Start is called before the first frame update
     public override void startFrame()
     {
+        updateWeaponLevel();
         var damageIncrease = perks.damageIncrease == 0 ? 1 : perks.damageIncreaseLevels[perks.damageIncrease - 1];
         shootRate = shootRate * (perks.fireRate == 0 ? 1 : perks.fireRateLevels[perks.fireRate - 1]);
         base.initiate(_damage, _bulletSpeed, playerStats);
@@ -34,11 +38,16 @@ public class W_Cannon : Weapon
     {
         if (Time.time > shootRate / playerStats.attackSpeed + _timeOfLastShot)
         {
-            for (int i = 0; i < firePoints.Length; i++)
+            for (int i = 0; i < levelFirepoints[base.getWeaponLevel()]; i++)
             {
                 base.fire(bullet, firePoints[i]);
             }
             _timeOfLastShot = Time.time;
         }
+    }
+
+    public override void updateWeaponLevel()
+    {
+        base.setWeaponLevel(level.cannonsLevel);
     }
 }

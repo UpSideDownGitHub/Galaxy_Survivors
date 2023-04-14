@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,8 +8,13 @@ using static UnityEngine.ParticleSystem;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [Header("Stats")]
     public PlayerStats stats;
     public PlayerPerks perks;
+
+    [Header("Level")]
+    public WeaponLevels level;
+    public int currentLevel;
 
     [Header("Health")]
     public int maxHealth;
@@ -29,11 +35,13 @@ public class PlayerHealth : MonoBehaviour
     public float sheidCoolDownTime;
     private float _timeSinceLastSheild;
 
-    public int maxBlocks;
+    public int[] maxBlocks;
     public int currentBlocks;
 
     public void Start()
     {
+        currentLevel = level.sheildLevel;
+
         regenHealth = perks.healthRegen == 0 ? false : true;
         regenRate = regenHealth ? perks.healthRegenLevels[perks.healthRegen - 1] : 0;
 
@@ -64,7 +72,7 @@ public class PlayerHealth : MonoBehaviour
             if (Time.time > sheidCoolDownTime + _timeSinceLastSheild)
             {
                 sheildActive = true;
-                currentBlocks = maxBlocks;
+                currentBlocks = maxBlocks[currentLevel];
             }
         }
     }
@@ -114,5 +122,10 @@ public class PlayerHealth : MonoBehaviour
     {
         var temp = maxHealth * stats.healthModifyer;
         maxHealth = (int)temp;
+    }
+
+    public void updateLevel()
+    {
+        currentLevel = level.sheildLevel;
     }
 }

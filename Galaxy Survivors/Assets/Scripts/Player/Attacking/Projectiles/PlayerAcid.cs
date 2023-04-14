@@ -9,6 +9,8 @@ public class PlayerAcid : MonoBehaviour
     public float attackTime;
     private float _timeSinceLastAttack;
 
+    public GameObject particlesReference;
+
     public void Start()
     {
         Destroy(gameObject, deathTime);

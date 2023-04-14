@@ -4927,8 +4927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c958ea9bc033e945ab2bd11bbce3120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 88d9b88f8a369464487f089c2c701872, type: 2}
   damage: 0
   deathTime: 0
   attackTime: 0
-  attackTimeModifyer: 0
+  particlesReference: {fileID: 4318575347470210135}

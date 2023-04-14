@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class W_Acid : Weapon
 {
@@ -20,10 +21,15 @@ public class W_Acid : Weapon
     [SerializeField] private float _acidDuration;
     [SerializeField] private float _acidAttackTime;
     [SerializeField] private float _acidAttackTimeModifyer;
+    public float[] sizes;
+
+    [Header("Level")]
+    public WeaponLevels level;
 
     // Start is called before the first frame update
     public override void startFrame()
     {
+        updateWeaponLevel();
         var damageIncrease = perks.damageIncrease == 0 ? 1 : perks.damageIncreaseLevels[perks.damageIncrease - 1];
         spawnRate = spawnRate * (perks.fireRate == 0 ? 1 : perks.fireRateLevels[perks.fireRate - 1]);
         base.initiate(_damage * damageIncrease, _acidDuration, _acidAttackTime, _acidAttackTimeModifyer, playerStats);
@@ -35,8 +41,12 @@ public class W_Acid : Weapon
         if(Time.time > spawnRate / playerStats.attackSpeed + _lastSpawnTime)
         { 
             _lastSpawnTime = Time.time;
-            base.placeAcid(acid);
-            
+            base.placeAcid(acid, sizes[base.getWeaponLevel()]);
         }
+    }
+
+    public override void updateWeaponLevel()
+    {
+        base.setWeaponLevel(level.acidLevel);
     }
 }
