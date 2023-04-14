@@ -24,9 +24,21 @@ public class StatManager : MonoBehaviour
 
     public void Start()
     {
+        stats.kills = 0;
+        stats.coins = 0;
+        stats.XP = 0;
+        stats.level = 0;
+
         // XP/Level
-        xpSlider.minValue = (float)(Math.Pow(stats.level, 2) * 100);
-        xpSlider.maxValue = (float)(Math.Pow(stats.level + 1, 2) * 100);
+        /*
+         * Equation for Levels:
+         * 
+         *   n^1.5
+         *  ------ x 10
+         *     2  
+        */
+        xpSlider.minValue = (float)((Math.Pow(stats.level, 1.5)/2) * 10);
+        xpSlider.maxValue = (float)((Math.Pow(stats.level + 1, 1.5)/2) * 10);
         xpSlider.value = stats.XP;
         levelText.text = "Level: " + stats.level;
 
@@ -45,10 +57,10 @@ public class StatManager : MonoBehaviour
             DELETE_ME_I_AM_FOR_TESTING = false;
 
             // XP/Level
-            if (stats.XP > (float)(Math.Pow(stats.level + 1, 2) * 100))
+            if (stats.XP > (float)((Math.Pow(stats.level + 1, 1.5) / 2) * 10))
                 stats.level++;
-            xpSlider.minValue = (float)(Math.Pow(stats.level, 2) * 100);
-            xpSlider.maxValue = (float)(Math.Pow(stats.level + 1, 2) * 100);
+            xpSlider.minValue = (float)((Math.Pow(stats.level, 1.5) / 2) * 10);
+            xpSlider.maxValue = (float)((Math.Pow(stats.level + 1, 1.5) / 2) * 10);
             xpSlider.value = stats.XP;
             levelText.text = "Level: " + stats.level;
 

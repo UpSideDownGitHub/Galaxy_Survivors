@@ -6,6 +6,7 @@ public class PickupMovement : MonoBehaviour
 {
     public PlayerStats stats;
     public PlayerPerks perks;
+    public GameStats gameStats;
 
     private GameObject _player;
     private Pickup _pickup;
@@ -72,11 +73,13 @@ public class PickupMovement : MonoBehaviour
                 case 0: // XP
                     var temp = 1 * stats.xpModifyer;
                     temp *= perks.xpIncrease == 0 ? 1 : perks.xpIncreaseLevels[perks.xpIncrease - 1];
-                    StatsManager.instance.setXP((int)temp, true);
+                    gameStats.XP += (int)temp;
+                    StatManager.statsChanged = true;
                     break;
                 case 1: // Coin
                     var temp2 = 1 * perks.coinsIncrease == 0 ? 1 : perks.coinsIncreaseLevels[perks.coinsIncrease - 1];
-                    StatsManager.instance.setCoins((int) temp2, true);
+                    gameStats.coins += (int)temp2;
+                    StatManager.statsChanged = true;
                     break;
                 case 2: // Nuke
                     killAllEnemies();

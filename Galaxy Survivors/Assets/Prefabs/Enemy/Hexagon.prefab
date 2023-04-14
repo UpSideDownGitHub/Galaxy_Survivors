@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 0
+  stats: {fileID: 11400000, guid: 8481fc705fdedcc419157a539d2ba042, type: 2}
 --- !u!114 &4135034432971422595
 MonoBehaviour:
   m_ObjectHideFlags: 0

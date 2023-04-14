@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 1506797371004193297}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.91014767, y: 1.5219004, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -114,7 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 88d9b88f8a369464487f089c2c701872, type: 2}
   perks: {fileID: 11400000, guid: 3342c70343a71194185cf9ceb85458e8, type: 2}
-  lerpTime: 0.01
+  gameStats: {fileID: 11400000, guid: 8481fc705fdedcc419157a539d2ba042, type: 2}
+  lerpTime: 0.02
   minDistance: 2
   maxDistance: 5
   attracted: 0

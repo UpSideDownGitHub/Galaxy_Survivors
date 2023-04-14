@@ -14,4 +14,13 @@ public class WeaponLevels : ScriptableObject
     public int lightningLevel;
     public int cannonsLevel;
     public int sheildLevel;
+
+    public int[] weaponLevels
+    {
+        get
+        {
+            return new int[] {pistolLevel, shotGunLevel, orbsLevel, droneLevel, rocketsLevel, 
+                knifeLevel, acidLevel, lightningLevel, cannonsLevel, sheildLevel};
+        }
+    }
 }
