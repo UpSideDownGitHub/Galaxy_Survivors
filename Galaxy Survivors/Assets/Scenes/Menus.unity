@@ -848,7 +848,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 216008699}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 287173602}
+        m_TargetAssemblyTypeName: NavigationBar, Assembly-CSharp
+        m_MethodName: openMenu
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &216008699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1417,15 +1429,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52678301f158c1341a6ae8c2722c1a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menus: []
+  menus:
+  - {fileID: 1958176592}
+  - {fileID: 993507238}
+  - {fileID: 1892000360}
+  - {fileID: 828920977}
+  - {fileID: 1177017188}
   navTexts:
   - {fileID: 2092286463}
   - {fileID: 1149670509}
   - {fileID: 1970420543}
   - {fileID: 1821474793}
   - {fileID: 1824919056}
-  previousMenu: {fileID: 0}
-  previousNavText: {fileID: 0}
+  previousMenu: {fileID: 1892000360}
+  previousNavText: {fileID: 1970420543}
 --- !u!1 &310196205
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,7 +1771,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 318467154}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 287173602}
+        m_TargetAssemblyTypeName: NavigationBar, Assembly-CSharp
+        m_MethodName: openMenu
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &318467154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3125,7 +3154,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 550106116}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 287173602}
+        m_TargetAssemblyTypeName: NavigationBar, Assembly-CSharp
+        m_MethodName: openMenu
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &550106116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4932,7 +4973,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 821775080}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 287173602}
+        m_TargetAssemblyTypeName: NavigationBar, Assembly-CSharp
+        m_MethodName: openMenu
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &821775080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6462,7 +6515,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1072125711}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 287173602}
+        m_TargetAssemblyTypeName: NavigationBar, Assembly-CSharp
+        m_MethodName: openMenu
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1072125711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12493,7 +12558,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1970420544
 RectTransform:
   m_ObjectHideFlags: 0
