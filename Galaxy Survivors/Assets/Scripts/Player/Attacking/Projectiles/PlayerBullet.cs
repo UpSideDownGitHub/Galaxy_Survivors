@@ -10,6 +10,11 @@ public class PlayerBullet : MonoBehaviour
 
     public int particleID;
 
+    public void Start()
+    {
+        Destroy(gameObject, 5);
+    }
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))

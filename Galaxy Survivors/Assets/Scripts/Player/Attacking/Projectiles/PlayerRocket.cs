@@ -23,6 +23,8 @@ public class PlayerRocket : MonoBehaviour
     public void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+
+        Destroy(gameObject, 5);
     }
 
     // Update is called once per frame

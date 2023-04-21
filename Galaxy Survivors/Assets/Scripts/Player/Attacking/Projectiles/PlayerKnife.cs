@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
@@ -17,6 +18,8 @@ public class PlayerKnife : MonoBehaviour
     public void Start()
     {
         pierceCount = maxPeirce;
+
+        Destroy(gameObject, 10);
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
