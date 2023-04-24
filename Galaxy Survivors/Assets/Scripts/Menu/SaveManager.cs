@@ -76,7 +76,18 @@ public class SaveData
 {
     public int gold;
     public int currentPlayer;
+    public int currentPerk1;
+    public int currentPerk2;
+    public int currentPerk3;
     public PlayerInformation[] playerInformation;
+    public Perks[] perks;
+}
+
+[Serializable]
+public class Perks
+{
+    public int ID;
+    public bool unlocked;
 }
 
 [Serializable]

@@ -10,6 +10,7 @@ public class customButton : MonoBehaviour
     public Button button;
     public int buttonID;
     public PlayerMenuManager manager;
+    public PerksUpgradeManager manager2;
 
     public void setUp(int ID, PlayerMenuManager man)
     {
@@ -19,9 +20,21 @@ public class customButton : MonoBehaviour
         button.onClick.AddListener(buttonPressed);
 
     }
+    public void setUp(int ID, PerksUpgradeManager man)
+    {
+        buttonID = ID;
+        manager2 = man;
+        button = GetComponent<Button>();
+        button.onClick.AddListener(buttonPressed2);
+
+    }
 
     public void buttonPressed()
     {
         manager.buttonPressed(buttonID);
+    }
+    public void buttonPressed2()
+    {
+        manager2.buttonPressed(buttonID);
     }
 }
