@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61cabf265867da449861bb5b16dfee21, type: 3}
+  m_Name: playerInfo
+  m_EditorClassIdentifier: 
+  playerSprites:
+  - {fileID: -1196141126, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: 1510955468, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -909369050, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -1677976905, guid: fc538d272bc4f4d44987c8b4a66d793c, type: 3}
+  - {fileID: -372257412, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: -969856399, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  playerInfo:
+  - Powerup \n Increased movement speed
+  - Powerup \n Invincibility for short time
+  - Powerup \n increase fire rate
+  - Powerup \n kills all enemys around the player
+  - Powerup \n gives player an extra life
+  - Powerup \n increase damage done
+  costs: 0000000064000000c80000002c01000090010000f4010000
