@@ -40,14 +40,12 @@ public class PlayerMenuManager : MonoBehaviour
             tempObj.GetComponent<Image>().sprite = tempSprite;
             tempObj.GetComponent<customButton>().setUp(ID, this);
         }
-
-        
+        goldText.text = _saveManager.data.gold.ToString();
     }
     public void OnEnable()
     {
-        _saveManager = SaveManager.instance;
-        _saveManager.loadFromJson();
-        goldText.text = _saveManager.data.gold.ToString();
+        if (_saveManager)
+            goldText.text = _saveManager.data.gold.ToString();
     }
 
     public void buyButtonPressed()

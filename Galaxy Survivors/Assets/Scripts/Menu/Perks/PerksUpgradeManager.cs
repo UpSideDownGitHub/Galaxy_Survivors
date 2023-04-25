@@ -63,13 +63,13 @@ public class PerksUpgradeManager : MonoBehaviour
         {
             extraPerkCostsText[i].text = extraButonCosts[i].ToString();
         }
+        goldText.text = _saveManager.data.gold.ToString();
     }
 
     public void OnEnable()
     {
-        _saveManager = SaveManager.instance;
-        _saveManager.loadFromJson();
-        goldText.text = _saveManager.data.gold.ToString();
+        if (_saveManager)
+            goldText.text = _saveManager.data.gold.ToString();
     }
 
     public void buyButtonPressed()

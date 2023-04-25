@@ -83,6 +83,8 @@ public class SaveManager : MonoBehaviour
             initiliseData();
             saveIntoJson();
         }
+
+        loadFromJson();
     }
 
     public void saveIntoJson()
