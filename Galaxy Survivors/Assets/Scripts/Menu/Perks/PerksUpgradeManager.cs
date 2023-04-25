@@ -14,9 +14,10 @@ public class PerksUpgradeManager : MonoBehaviour
     private int[] equippedPerks = new int[] {-1,-1,-1};
     public TMP_Text infoText;
     public TMP_Text costText;
+    public TMP_Text perkNameText;
     public Image selectedPerk;
 
-    private int[] _currentSelectedPerks;
+    private int _previousSlotSelected;
     private int _currentSelected;
 
     [Header("Buttons")]
@@ -95,7 +96,7 @@ public class PerksUpgradeManager : MonoBehaviour
 
         //
         perk[currentSlotSelected].sprite = info.perkSprite[_currentSelected];
-        equippedPerks[currentSlotSelected] = currentSlotSelected;
+        equippedPerks[currentSlotSelected] = _currentSelected;
     }
 
     public void buttonPressed(int ID)
@@ -118,6 +119,7 @@ public class PerksUpgradeManager : MonoBehaviour
 
         infoText.text = info.perkInfo[ID];
         costText.text = info.costs[ID].ToString();
+        perkNameText.text = info.names[ID];
         selectedPerk.sprite = info.perkSprite[ID];
     }
 
@@ -139,5 +141,17 @@ public class PerksUpgradeManager : MonoBehaviour
     public void changeSlotSelected(int ID)
     {
         currentSlotSelected = ID;
+
+        perk[_previousSlotSelected].color = Color.white;
+        _previousSlotSelected = currentSlotSelected;
+        perk[currentSlotSelected].color = Color.red;
+
+        if (equippedPerks[currentSlotSelected] >= 0)
+        {
+            infoText.text = info.perkInfo[equippedPerks[currentSlotSelected]];
+            costText.text = info.costs[equippedPerks[currentSlotSelected]].ToString();
+            perkNameText.text = info.names[equippedPerks[currentSlotSelected]];
+            selectedPerk.sprite = info.perkSprite[equippedPerks[currentSlotSelected]];
+        }
     }
 }

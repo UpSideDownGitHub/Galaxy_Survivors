@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de66083be272f104db2f40c79aa88fd7, type: 3}
   m_Name: PerkInfo
   m_EditorClassIdentifier: 
+  names:
+  - Defence Boost
+  - Damage Boost
+  - Speed Boost
+  - Health Boost
+  - Regen Boost
+  - Fire Rate Boost
+  - XP Boost
+  - Coin Boost
   perkSprite:
   - {fileID: 1009637763, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
   - {fileID: 1621501593, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}

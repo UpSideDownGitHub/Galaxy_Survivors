@@ -4734,6 +4734,7 @@ MonoBehaviour:
   - {fileID: 487192643}
   infoText: {fileID: 1422598842}
   costText: {fileID: 745089044}
+  perkNameText: {fileID: 1770180576}
   selectedPerk: {fileID: 1332111139}
   buyButton: {fileID: 1026987882}
   equipButton: {fileID: 1283354970}
