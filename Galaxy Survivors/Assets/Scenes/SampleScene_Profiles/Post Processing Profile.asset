@@ -27,7 +27,7 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.221
+    value: 0.3
   smoothness:
     overrideState: 1
     value: 1
@@ -62,7 +62,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 18
+    value: 15
   threshold:
     overrideState: 1
     value: 1
@@ -74,7 +74,7 @@ MonoBehaviour:
     value: 65472
   diffusion:
     overrideState: 1
-    value: 10
+    value: 7.92
   anamorphicRatio:
     overrideState: 1
     value: 0
@@ -85,12 +85,12 @@ MonoBehaviour:
     overrideState: 1
     value: 0
   dirtTexture:
-    overrideState: 1
-    value: {fileID: 0}
+    overrideState: 0
+    value: {fileID: 2800000, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
     defaultState: 1
   dirtIntensity:
-    overrideState: 1
-    value: 0
+    overrideState: 0
+    value: 182.04
 --- !u!114 &-1608839058958895515
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -113,7 +113,7 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.25
+    value: 0.01
   fastMode:
     overrideState: 1
     value: 1
@@ -133,3 +133,32 @@ MonoBehaviour:
   - {fileID: -2445418386447871368}
   - {fileID: -1608839058958895515}
   - {fileID: -3612056827382554449}
+  - {fileID: 4959047479186403679}
+--- !u!114 &4959047479186403679
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65e486e4de6e5448a8fbb43dc8756a0, type: 3}
+  m_Name: Grain
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  colored:
+    overrideState: 1
+    value: 1
+  intensity:
+    overrideState: 1
+    value: 0.345
+  size:
+    overrideState: 1
+    value: 0.92
+  lumContrib:
+    overrideState: 1
+    value: 0

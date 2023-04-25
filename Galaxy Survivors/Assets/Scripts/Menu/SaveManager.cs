@@ -1,4 +1,3 @@
-#define INSERT_DATA
 using JetBrains.Annotations;
 using System;
 using System.Collections;
@@ -13,9 +12,8 @@ public class SaveManager : MonoBehaviour
     public SaveData data;
 
     // Start is called before the first frame update
-    void Awake()
+    public void initiliseData()
     {
-#if INSERT_DATA
         PlayerInformation info1 = new();
         PlayerInformation info2 = new();
         PlayerInformation info3 = new();
@@ -63,15 +61,28 @@ public class SaveManager : MonoBehaviour
         SaveData tempData = new SaveData();
         tempData.playerInformation = new PlayerInformation[] { info1, info2, info3, info4, info5, info6 };
         tempData.perks = new Perks[] { perk1, perk2, perk3, perk4, perk5, perk6, perk7, perk8 };
+        tempData.currentPlayer = 0;
+        tempData.currentPerk1 = -1;
+        tempData.currentPerk2 = -1;
+        tempData.currentPerk3 = -1;
+        tempData.gold = 1000;
+        tempData.perksUnlocked = new bool[] {false, false};
         data = tempData;
-#endif
 
+    }
+
+    void Awake()
+    {
         if (instance == null)
             instance = this;
         else
             Destroy(gameObject);
 
-        saveIntoJson();
+        if (!fileExists())
+        {
+            initiliseData();
+            saveIntoJson();
+        }
     }
 
     public void saveIntoJson()
@@ -105,6 +116,7 @@ public class SaveData
     public int currentPerk1;
     public int currentPerk2;
     public int currentPerk3;
+    public bool[] perksUnlocked;
     public PlayerInformation[] playerInformation;
     public Perks[] perks;
 }

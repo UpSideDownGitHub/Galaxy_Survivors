@@ -23,6 +23,8 @@ public class PlayerMenuManager : MonoBehaviour
     public PlayerInfo info;
     private SaveManager _saveManager;
 
+    public TMP_Text goldText;
+
     public void Start()
     {
         // loop through all of the options and then
@@ -38,15 +40,24 @@ public class PlayerMenuManager : MonoBehaviour
             tempObj.GetComponent<Image>().sprite = tempSprite;
             tempObj.GetComponent<customButton>().setUp(ID, this);
         }
+
+        
+    }
+    public void OnEnable()
+    {
+        _saveManager = SaveManager.instance;
+        _saveManager.loadFromJson();
+        goldText.text = _saveManager.data.gold.ToString();
     }
 
     public void buyButtonPressed()
     {
         _saveManager.loadFromJson();
-        if (_saveManager.data.gold - info.costs[_currentSelected] > 0)
+        if (_saveManager.data.gold - info.costs[_currentSelected] >= 0)
         {
             // can afford to buy
             _saveManager.data.gold -= info.costs[_currentSelected];
+            goldText.text = _saveManager.data.gold.ToString();
             _saveManager.data.playerInformation[_currentSelected].unlocked = true;
             _saveManager.saveIntoJson();
             equipButton.SetActive(true);
@@ -54,6 +65,7 @@ public class PlayerMenuManager : MonoBehaviour
         }
         else
         {
+            print("Cant Afford This Item");
             // do nothing as cannot afford
             return;
         }

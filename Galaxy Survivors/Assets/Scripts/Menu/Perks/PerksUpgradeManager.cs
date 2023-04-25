@@ -11,11 +11,12 @@ public class PerksUpgradeManager : MonoBehaviour
 
     [Header("UI Changing ")]
     public Image[] perk;
-    private int[] equippedPerks = new int[] {-1,-1,-1};
+    private int[] equippedPerks = new int[] { -1, -1, -1 };
     public TMP_Text infoText;
     public TMP_Text costText;
     public TMP_Text perkNameText;
     public Image selectedPerk;
+    public Color color;
 
     private int _previousSlotSelected;
     private int _currentSelected;
@@ -37,6 +38,11 @@ public class PerksUpgradeManager : MonoBehaviour
     public GameObject perk3Button;
     public GameObject perk2;
     public GameObject perk3;
+    public int[] extraButonCosts;
+    public TMP_Text[] extraPerkCostsText;
+
+    [Header("Gold")]
+    public TMP_Text goldText;
 
     public void Start()
     {
@@ -53,16 +59,28 @@ public class PerksUpgradeManager : MonoBehaviour
             tempObj.GetComponent<Image>().sprite = tempSprite;
             tempObj.GetComponent<customButton>().setUp(ID, this);
         }
+        for (int i = 0; i < extraPerkCostsText.Length; i++)
+        {
+            extraPerkCostsText[i].text = extraButonCosts[i].ToString();
+        }
+    }
+
+    public void OnEnable()
+    {
+        _saveManager = SaveManager.instance;
+        _saveManager.loadFromJson();
+        goldText.text = _saveManager.data.gold.ToString();
     }
 
     public void buyButtonPressed()
     {
         _saveManager.loadFromJson();
-        if (_saveManager.data.gold - info.costs[_currentSelected] > 0)
+        if (_saveManager.data.gold - info.costs[_currentSelected] >= 0)
         {
             // can afford to buy
             _saveManager.data.gold -= info.costs[_currentSelected];
-            _saveManager.data.playerInformation[_currentSelected].unlocked = true;
+            goldText.text = _saveManager.data.gold.ToString();
+            _saveManager.data.perks[_currentSelected].unlocked = true;
             _saveManager.saveIntoJson();
             equipButton.SetActive(true);
             buyButton.SetActive(false);
@@ -70,6 +88,7 @@ public class PerksUpgradeManager : MonoBehaviour
         else
         {
             // do nothing as cannot afford
+            print("Cant Afford This Item");
             return;
         }
     }
@@ -78,7 +97,7 @@ public class PerksUpgradeManager : MonoBehaviour
     {
         for (int i = 0; i < equippedPerks.Length; i++)
         {
-            if(equippedPerks[i] == _currentSelected)
+            if (equippedPerks[i] == _currentSelected)
             {
                 print("Allready Equipped");
                 return;
@@ -125,15 +144,37 @@ public class PerksUpgradeManager : MonoBehaviour
 
     public void buyExtra(int ID)
     {
+        _saveManager.loadFromJson();
+
         if (ID == 0)
         {
-            perk2Button.SetActive(false);
-            perk2.SetActive(true);
+            if (_saveManager.data.gold - extraButonCosts[0] >= 0)
+            {
+                perk2Button.SetActive(false);
+                perk2.SetActive(true);
+
+                _saveManager.data.gold -= extraButonCosts[0];
+                goldText.text = _saveManager.data.gold.ToString();
+                _saveManager.data.perksUnlocked[0] = true;
+                _saveManager.saveIntoJson();
+            }
+            else
+                print("Cant Afford Perk Slot");
         }
         else if (ID == 1)
         {
-            perk3Button.SetActive(false);
-            perk3.SetActive(true);
+            if (_saveManager.data.gold - extraButonCosts[1] >= 0)
+            {
+                perk3Button.SetActive(false);
+                perk3.SetActive(true);
+
+                _saveManager.data.gold -= extraButonCosts[1];
+                goldText.text = _saveManager.data.gold.ToString();
+                _saveManager.data.perksUnlocked[1] = true;
+                _saveManager.saveIntoJson();
+            }
+            else
+                print("Cant Afford Perk Slot");
         }
     }
 
@@ -142,7 +183,7 @@ public class PerksUpgradeManager : MonoBehaviour
     {
         currentSlotSelected = ID;
 
-        perk[_previousSlotSelected].color = Color.white;
+        perk[_previousSlotSelected].color = color;
         _previousSlotSelected = currentSlotSelected;
         perk[currentSlotSelected].color = Color.red;
 
