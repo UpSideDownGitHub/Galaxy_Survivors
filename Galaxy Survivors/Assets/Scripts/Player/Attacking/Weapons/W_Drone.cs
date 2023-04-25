@@ -31,6 +31,8 @@ public class W_Drone : Weapon
     [Header("Level")]
     public WeaponLevels level;
 
+    [HideInInspector] public float shootRatePowerup = 1f;
+
     // Start is called before the first frame update
     public override void startFrame()
     {
@@ -65,7 +67,7 @@ public class W_Drone : Weapon
         _drones[1].transform.position = Vector3.Lerp(_drones[1].transform.position, transform.position + droneSpawnOffsets[1], lerpTime);
         _drones[2].transform.position = Vector3.Lerp(_drones[2].transform.position, transform.position + droneSpawnOffsets[2], lerpTime);
 
-        if (Time.time > shootRate / playerStats.attackSpeed + _timeOfLastShot)
+        if (Time.time > shootRate / playerStats.attackSpeed * shootRatePowerup + _timeOfLastShot)
         {
             switch (base.getWeaponLevel())
             {

@@ -38,6 +38,9 @@ public class PlayerHealth : MonoBehaviour
     public int[] maxBlocks;
     public int currentBlocks;
 
+    public bool invinsiblePowerup;
+    public bool extraLifePowerup;
+
     public void Start()
     {
         currentLevel = level.sheildLevel;
@@ -79,6 +82,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void removeHealth(float val)
     {
+        if (invinsiblePowerup)
+            return;
+
         // decrease the ammount of damage done
         val = val * damageReduction;
         val = val * stats.reduceDamageTakenModifyer;
@@ -97,6 +103,13 @@ public class PlayerHealth : MonoBehaviour
         
         if (health - val < 0)
         {
+            if (extraLifePowerup)
+            {
+                extraLifePowerup = false;
+                health = maxHealth;
+                ParticlePooler.instance.spawnParticle(3, transform.position, Color.blue);
+                return;
+            }
             // Kill Player and end the round
             ParticlePooler.instance.spawnParticle(3, transform.position, Color.blue);
             gameObject.SetActive(false);

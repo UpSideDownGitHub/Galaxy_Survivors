@@ -34,6 +34,8 @@ public class W_Orbs : Weapon
     [Header("Level")]
     public WeaponLevels level;
 
+    [HideInInspector] public float shootRatePowerup = 1f;
+
 
     // Start is called before the first frame update
     public override void startFrame()
@@ -56,7 +58,7 @@ public class W_Orbs : Weapon
         }
         if (!checkingTime)
             return;
-        if (Time.time > orbDestroyedAt + orbSpawnTime / playerStats.attackSpeed)
+        if (Time.time > orbDestroyedAt + orbSpawnTime / playerStats.attackSpeed * shootRatePowerup)
         {
             checkingTime = false;
             // spawn the orbs

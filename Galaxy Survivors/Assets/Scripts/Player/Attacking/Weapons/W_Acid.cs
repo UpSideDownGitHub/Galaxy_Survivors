@@ -26,6 +26,8 @@ public class W_Acid : Weapon
     [Header("Level")]
     public WeaponLevels level;
 
+    [HideInInspector] public float shootRatePowerup = 1f;
+
     // Start is called before the first frame update
     public override void startFrame()
     {
@@ -38,7 +40,7 @@ public class W_Acid : Weapon
     // Update is called once per frame
     public override void updateFrame()
     {
-        if(Time.time > spawnRate / playerStats.attackSpeed + _lastSpawnTime)
+        if(Time.time > spawnRate / playerStats.attackSpeed * shootRatePowerup + _lastSpawnTime)
         { 
             _lastSpawnTime = Time.time;
             base.placeAcid(acid, sizes[base.getWeaponLevel()]);

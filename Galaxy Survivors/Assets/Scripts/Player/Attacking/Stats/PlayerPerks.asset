@@ -12,43 +12,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70423681dd1302644af9e90327dfe352, type: 3}
   m_Name: PlayerPerks
   m_EditorClassIdentifier: 
-  minusDamageTaken: 0
+  minusDamageTaken: 1
   minusDamageTakenLevels:
   - 2
-  - 2.5
-  - 4
-  damageIncrease: 0
+  - 1
+  - 1
+  damageIncrease: 1
   damageIncreaseLevels:
   - 2
-  - 3
-  - 4
+  - 1
+  - 1
   movementSpeed: 0
   movementSpeedLevels:
   - 1.5
-  - 2
-  - 3
-  healthIncrease: 0
+  - 1
+  - 1
+  healthIncrease: 1
   healthIncreaseLevels:
   - 2
-  - 2.5
-  - 4
+  - 1
+  - 1
   healthRegen: 0
   healthRegenLevels:
-  - 3
   - 1.5
-  - 0.75
+  - 1
+  - 1
   fireRate: 0
   fireRateLevels:
-  - 0.75
   - 0.5
-  - 0.25
+  - 1
+  - 1
   xpIncrease: 0
   xpIncreaseLevels:
-  - 2
   - 3
-  - 5
+  - 1
+  - 1
   coinsIncrease: 0
   coinsIncreaseLevels:
-  - 2
   - 3
-  - 5
+  - 1
+  - 1

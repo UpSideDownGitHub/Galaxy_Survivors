@@ -24,6 +24,8 @@ public class W_Knife : Weapon
     [Header("Level")]
     public WeaponLevels level;
 
+    [HideInInspector] public float shootRatePowerup = 1f;
+
     // Start is called before the first frame update
     public override void startFrame()
     {
@@ -36,7 +38,7 @@ public class W_Knife : Weapon
     // Update is called once per frame
     public override void updateFrame()
     {
-        if (Time.time > shootRate / playerStats.attackSpeed + _timeOfLastShot)
+        if (Time.time > shootRate / playerStats.attackSpeed * shootRatePowerup + _timeOfLastShot)
         {
             base.fire(bullet, firePoint, peirceCount[base.getWeaponLevel()]);
             _timeOfLastShot = Time.time;

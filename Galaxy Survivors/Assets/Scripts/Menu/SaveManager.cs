@@ -101,7 +101,10 @@ public class SaveManager : MonoBehaviour
             data = JsonUtility.FromJson<SaveData>(temp);
         }
         else
+        {
+            initiliseData();
             saveIntoJson();
+        }
     }
 
     public bool fileExists()

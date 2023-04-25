@@ -2436,6 +2436,7 @@ MonoBehaviour:
   radius: 20
   _damage: 10
   level: {fileID: 11400000, guid: c5494b8b2b8a6d542bb2976af3f89f8a, type: 2}
+  shootRatePowerup: 1
 --- !u!4 &539389799
 Transform:
   m_ObjectHideFlags: 0
@@ -2500,6 +2501,7 @@ GameObject:
   - component: {fileID: 571382796}
   - component: {fileID: 571382789}
   - component: {fileID: 571382798}
+  - component: {fileID: 571382799}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2534,6 +2536,8 @@ MonoBehaviour:
   sheidCoolDownTime: 10
   maxBlocks: 010000000300000005000000
   currentBlocks: 0
+  invinsiblePowerup: 0
+  extraLifePowerup: 0
 --- !u!114 &571382789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2638,6 +2642,7 @@ MonoBehaviour:
   maxSpeed: 10
   acceleration: 2000
   friction: 1800
+  movementPowerup: 1
   healthBar: {fileID: 0}
 --- !u!212 &571382794
 SpriteRenderer:
@@ -2721,7 +2726,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupButton: {fileID: 1417860518}
-  powerupCooldown: 3
+  powerupCooldown: 20
+  powerupTime: 5
+  movement: {fileID: 571382793}
+  playerHealth: {fileID: 571382788}
+  shotgun: {fileID: 789801679}
+  pistol: {fileID: 1967015587}
+  lightning: {fileID: 539389798}
+  cannnon: {fileID: 1832376449}
+  acid: {fileID: 2017730309}
+  kinfe: {fileID: 1520454270}
+  rockets: {fileID: 1091773741}
+  drone: {fileID: 2121912070}
+  orbs: {fileID: 1403468341}
+  weapons:
+  - {fileID: 1967015587}
+  - {fileID: 789801679}
+  - {fileID: 1403468341}
+  - {fileID: 2121912070}
+  - {fileID: 1091773741}
+  - {fileID: 1520454270}
+  - {fileID: 2017730309}
+  - {fileID: 539389798}
+  - {fileID: 1832376449}
 --- !u!114 &571382798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2739,6 +2766,19 @@ MonoBehaviour:
   maxPassives: 5
   equippedPassives: 
   passiveLevels: 
+--- !u!114 &571382799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571382787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 459535047d60ef448ad4433a5d2db36a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perks: {fileID: 11400000, guid: 3342c70343a71194185cf9ceb85458e8, type: 2}
 --- !u!1 &583871411
 GameObject:
   m_ObjectHideFlags: 0
@@ -3036,6 +3076,7 @@ MonoBehaviour:
   bulletCount: 10
   shootRate: 1
   level: {fileID: 11400000, guid: c5494b8b2b8a6d542bb2976af3f89f8a, type: 2}
+  shootRatePowerup: 1
 --- !u!1 &796153975
 GameObject:
   m_ObjectHideFlags: 0
@@ -22616,6 +22657,7 @@ MonoBehaviour:
   _bulletSpeed: 250
   shootRate: 1
   level: {fileID: 11400000, guid: c5494b8b2b8a6d542bb2976af3f89f8a, type: 2}
+  shootRatePowerup: 1
 --- !u!4 &1091773742
 Transform:
   m_ObjectHideFlags: 0
@@ -23305,6 +23347,7 @@ GameObject:
   - component: {fileID: 1327847683}
   - component: {fileID: 1327847681}
   - component: {fileID: 1327847684}
+  - component: {fileID: 1327847685}
   m_Layer: 0
   m_Name: Manger
   m_TagString: Untagged
@@ -23460,6 +23503,27 @@ MonoBehaviour:
   weaponLevels: {fileID: 11400000, guid: c5494b8b2b8a6d542bb2976af3f89f8a, type: 2}
   listOfWeapons: 000000000100000002000000030000000400000005000000060000000700000008000000
   listOfPassives: 0000000001000000020000000300000004000000050000000600000007000000
+--- !u!114 &1327847685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327847677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12bad5c7201e0cf49a3b7700ca7e1470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    gold: 0
+    currentPlayer: 0
+    currentPerk1: 0
+    currentPerk2: 0
+    currentPerk3: 0
+    perksUnlocked: 
+    playerInformation: []
+    perks: []
 --- !u!1 &1379047062
 GameObject:
   m_ObjectHideFlags: 0
@@ -23655,6 +23719,7 @@ MonoBehaviour:
   - 0.28
   orbSpawnTime: 2
   level: {fileID: 11400000, guid: c5494b8b2b8a6d542bb2976af3f89f8a, type: 2}
+  shootRatePowerup: 1
 --- !u!1 &1417860516
 GameObject:
   m_ObjectHideFlags: 0
@@ -24032,6 +24097,7 @@ MonoBehaviour:
   - 3
   shootRate: 1
   level: {fileID: 11400000, guid: c5494b8b2b8a6d542bb2976af3f89f8a, type: 2}
+  shootRatePowerup: 1
 --- !u!4 &1520454271
 Transform:
   m_ObjectHideFlags: 0
@@ -25221,6 +25287,7 @@ MonoBehaviour:
   _bulletSpeed: 1000
   shootRate: 2
   level: {fileID: 11400000, guid: c5494b8b2b8a6d542bb2976af3f89f8a, type: 2}
+  shootRatePowerup: 1
 --- !u!4 &1832376450
 Transform:
   m_ObjectHideFlags: 0
@@ -25888,6 +25955,7 @@ MonoBehaviour:
   _bulletSpeed: 1000
   shootRate: 1
   level: {fileID: 11400000, guid: c5494b8b2b8a6d542bb2976af3f89f8a, type: 2}
+  shootRatePowerup: 1
 --- !u!1 &2007823750
 GameObject:
   m_ObjectHideFlags: 0
@@ -26070,6 +26138,7 @@ MonoBehaviour:
   - 4
   - 6
   level: {fileID: 11400000, guid: c5494b8b2b8a6d542bb2976af3f89f8a, type: 2}
+  shootRatePowerup: 1
 --- !u!4 &2017730310
 Transform:
   m_ObjectHideFlags: 0
@@ -26507,6 +26576,7 @@ MonoBehaviour:
   shootRate: 1.5
   lerpTime: 0.05
   level: {fileID: 11400000, guid: c5494b8b2b8a6d542bb2976af3f89f8a, type: 2}
+  shootRatePowerup: 1
 --- !u!1 &2122122912
 GameObject:
   m_ObjectHideFlags: 0

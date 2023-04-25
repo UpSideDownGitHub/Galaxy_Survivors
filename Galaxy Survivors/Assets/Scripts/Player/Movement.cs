@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
     public float maxSpeed = 180f;
     public float acceleration = 1800f;
     public float friction = 1800f;
+    public float movementPowerup = 1f;
 
     [Header("Gameobject Links")]
     public GameObject healthBar;
@@ -54,21 +55,21 @@ public class Movement : MonoBehaviour
 
         if (_inputHorzontal != 0 || _inputVertical != 0)
         {
-            if (num <= maxSpeed)
+            if (num <= maxSpeed * movementPowerup)
             {
                 num += acceleration * Time.deltaTime;
-                num = Mathf.Min(num, maxSpeed);
+                num = Mathf.Min(num, maxSpeed * movementPowerup);
             }
             else
             {
                 float num2 = friction * Time.deltaTime;
-                if (num - num2 >= maxSpeed)
+                if (num - num2 >= maxSpeed * movementPowerup)
                 {
                     num -= num2;
                 }
                 else
                 {
-                    num = maxSpeed;
+                    num = maxSpeed * movementPowerup;
                 }
             }
             Vector2 vector = new Vector2(_inputHorzontal, _inputVertical);
