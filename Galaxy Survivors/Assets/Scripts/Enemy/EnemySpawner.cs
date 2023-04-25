@@ -14,6 +14,9 @@ public class EnemySpawner : MonoBehaviour
     [Header("Advanced Spawning")]
     public Timer timer;
 
+    [Header("End The Game")]
+    public GameObject endScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +72,11 @@ public class EnemySpawner : MonoBehaviour
                 point = randomCircle(player.transform.position, range);
                 ID = Random.Range(0, 5);
                 pool.spawnEnemy(ID, point);
+                break;
+            case 10:
+                // END THE GAME
+                endScreen.SetActive(true);
+                endScreen.GetComponent<EndScreen>().notDied = true;
                 break;
             default:
                 print("NO SPAWN SELECTED");

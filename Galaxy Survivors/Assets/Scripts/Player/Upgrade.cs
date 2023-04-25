@@ -278,22 +278,66 @@ public class Upgrade : MonoBehaviour
                 // New Weapon
                 case 1:
                     items[i].list = 1;
-                    items[i].index = Random.Range(0, newWeapons.Count);
+                    var rand = Random.Range(0, newWeapons.Count);
+                    // do this a couple of times to make sure we get an orignal
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (items[0].list == 1 && items[0].index == rand ||
+                            items[1].list == 1 && items[1].index == rand ||
+                            items[2].list == 1 && items[2].index == rand)
+                            rand = Random.Range(0, newWeapons.Count);
+                        else
+                            break;
+                    }
+                    items[i].index = rand;
                     break;
                 // Weapon Upgrade
                 case 2:
                     items[i].list = 2;
-                    items[i].index = Random.Range(0, upgradeWeapons.Count);
+                    var rand2 = Random.Range(0, upgradeWeapons.Count);
+                    // do this a couple of times to make sure we get an orignal
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (items[0].list == 2 && items[0].index == rand2 ||
+                            items[1].list == 2 && items[1].index == rand2 ||
+                            items[2].list == 2 && items[2].index == rand2)
+                            rand2 = Random.Range(0, upgradeWeapons.Count);
+                        else
+                            break;
+                    }
+                    items[i].index = rand2;
                     break;
                 // New Passive
                 case 3:
                     items[i].list = 3;
-                    items[i].index = Random.Range(0, newPassives.Count);
+                    var rand3 = Random.Range(0, newPassives.Count);
+                    // do this a couple of times to make sure we get an orignal
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (items[0].list == 3 && items[0].index == rand3 ||
+                            items[1].list == 3 && items[1].index == rand3 ||
+                            items[2].list == 3 && items[2].index == rand3)
+                            rand3 = Random.Range(0, newPassives.Count);
+                        else
+                            break;
+                    }
+                    items[i].index = rand3;
                     break;
                 // Passive Upgrade
                 case 4:
                     items[i].list = 4;
-                    items[i].index = Random.Range(0, upgradePassives.Count);
+                    var rand4 = Random.Range(0, upgradePassives.Count);
+                    // do this a couple of times to make sure we get an orignal
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (items[0].list == 4 && items[0].index == rand4 ||
+                            items[1].list == 4 && items[1].index == rand4 ||
+                            items[2].list == 4 && items[2].index == rand4)
+                            rand4 = Random.Range(0, upgradePassives.Count);
+                        else
+                            break;
+                    }
+                    items[i].index = rand4;
                     break;
                 default:
                     print("Should be impossible to be here");

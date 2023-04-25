@@ -38,8 +38,12 @@ public class PlayerHealth : MonoBehaviour
     public int[] maxBlocks;
     public int currentBlocks;
 
+    [Header("Power Ups")]
     public bool invinsiblePowerup;
     public bool extraLifePowerup;
+
+    [Header("End Screen")]
+    public GameObject endScreen;
 
     public void Start()
     {
@@ -112,6 +116,7 @@ public class PlayerHealth : MonoBehaviour
             }
             // Kill Player and end the round
             ParticlePooler.instance.spawnParticle(3, transform.position, Color.blue);
+            endScreen.SetActive(true);
             gameObject.SetActive(false);
             return;
         }
