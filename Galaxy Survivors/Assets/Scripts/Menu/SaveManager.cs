@@ -16,12 +16,12 @@ public class SaveManager : MonoBehaviour
     void Awake()
     {
 #if INSERT_DATA
-        PlayerInformation info1 = new PlayerInformation();
-        PlayerInformation info2 = new PlayerInformation();
-        PlayerInformation info3 = new PlayerInformation();
-        PlayerInformation info4 = new PlayerInformation();
-        PlayerInformation info5 = new PlayerInformation();
-        PlayerInformation info6 = new PlayerInformation();
+        PlayerInformation info1 = new();
+        PlayerInformation info2 = new();
+        PlayerInformation info3 = new();
+        PlayerInformation info4 = new();
+        PlayerInformation info5 = new();
+        PlayerInformation info6 = new();
         info1.ID = 0;
         info2.ID = 1;
         info3.ID = 2;
@@ -35,8 +35,34 @@ public class SaveManager : MonoBehaviour
         info5.unlocked = false;
         info6.unlocked = false;
 
+        Perks perk1 = new();
+        Perks perk2 = new();
+        Perks perk3 = new();
+        Perks perk4 = new();
+        Perks perk5 = new();
+        Perks perk6 = new();
+        Perks perk7 = new();
+        Perks perk8 = new();
+        perk1.ID = 0;
+        perk2.ID = 1;
+        perk3.ID = 2;
+        perk4.ID = 3;
+        perk5.ID = 4;
+        perk6.ID = 5;
+        perk7.ID = 6;
+        perk8.ID = 7;
+        perk1.unlocked = true;
+        perk2.unlocked = false;
+        perk3.unlocked = false;
+        perk4.unlocked = true;
+        perk5.unlocked = false;
+        perk6.unlocked = true;
+        perk7.unlocked = true;
+        perk8.unlocked = false;
+
         SaveData tempData = new SaveData();
         tempData.playerInformation = new PlayerInformation[] { info1, info2, info3, info4, info5, info6 };
+        tempData.perks = new Perks[] { perk1, perk2, perk3, perk4, perk5, perk6, perk7, perk8 };
         data = tempData;
 #endif
 

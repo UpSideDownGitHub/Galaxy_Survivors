@@ -11,6 +11,7 @@ public class PerksUpgradeManager : MonoBehaviour
 
     [Header("UI Changing ")]
     public Image[] perk;
+    private int[] equippedPerks = new int[] {-1,-1,-1};
     public TMP_Text infoText;
     public TMP_Text costText;
     public Image selectedPerk;
@@ -29,6 +30,12 @@ public class PerksUpgradeManager : MonoBehaviour
     [Header("Data")]
     public PerkInfoMenu info;
     private SaveManager _saveManager;
+
+    [Header("Extra Buttons")]
+    public GameObject perk2Button;
+    public GameObject perk3Button;
+    public GameObject perk2;
+    public GameObject perk3;
 
     public void Start()
     {
@@ -68,6 +75,15 @@ public class PerksUpgradeManager : MonoBehaviour
 
     public void equipButtonPressed()
     {
+        for (int i = 0; i < equippedPerks.Length; i++)
+        {
+            if(equippedPerks[i] == _currentSelected)
+            {
+                print("Allready Equipped");
+                return;
+            }
+        }
+
         _saveManager.loadFromJson();
         if (currentSlotSelected == 0)
             _saveManager.data.currentPerk1 = _currentSelected;
@@ -76,7 +92,10 @@ public class PerksUpgradeManager : MonoBehaviour
         else if (currentSlotSelected == 2)
             _saveManager.data.currentPerk3 = _currentSelected;
         _saveManager.saveIntoJson();
+
+        //
         perk[currentSlotSelected].sprite = info.perkSprite[_currentSelected];
+        equippedPerks[currentSlotSelected] = currentSlotSelected;
     }
 
     public void buttonPressed(int ID)
@@ -100,6 +119,20 @@ public class PerksUpgradeManager : MonoBehaviour
         infoText.text = info.perkInfo[ID];
         costText.text = info.costs[ID].ToString();
         selectedPerk.sprite = info.perkSprite[ID];
+    }
+
+    public void buyExtra(int ID)
+    {
+        if (ID == 0)
+        {
+            perk2Button.SetActive(false);
+            perk2.SetActive(true);
+        }
+        else if (ID == 1)
+        {
+            perk3Button.SetActive(false);
+            perk3.SetActive(true);
+        }
     }
 
 

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de66083be272f104db2f40c79aa88fd7, type: 3}
+  m_Name: PerkInfo
+  m_EditorClassIdentifier: 
+  perkSprite:
+  - {fileID: 1009637763, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 1621501593, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 261081020, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 995530700, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: -649867464, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 443600473, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: -1374506662, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: -890757456, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  perkInfo:
+  - Increase Damage taken from enemies
+  - Increase the damage delt to enemies
+  - Increase the movement speed of the player
+  - Increase the max health of the layer
+  - Player will regen health over time
+  - Increase the fire rate of the player
+  - Increase the XP the player recives
+  - Increase the Coins the player recives
+  costs: 64000000c80000002c01000090010000f401000058020000bc02000020030000
