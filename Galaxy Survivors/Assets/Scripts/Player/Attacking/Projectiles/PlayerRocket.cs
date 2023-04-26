@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
@@ -30,6 +31,8 @@ public class PlayerRocket : MonoBehaviour
 
     public void Start()
     {
+        toFollow = GameObject.FindGameObjectWithTag("Player");
+        _rb = GetComponent<Rigidbody2D>();
         _spawnTime = Time.time;
     }
     public void OnEnable()
@@ -57,6 +60,7 @@ public class PlayerRocket : MonoBehaviour
 
     public void customDestroy()
     {
+        print("DESTROYED");
         ParticlePooler.instance.spawnParticle(particleID, transform.position, Color.blue);
         GetComponent<Proj>().setFree();
     }
@@ -72,14 +76,18 @@ public class PlayerRocket : MonoBehaviour
             _rb.angularVelocity = -turnSpeed * rotateAmount;
             _rb.velocity = transform.up * movingSpeed;
         }
-        catch 
+        catch (Exception e)
         {
+            print(e);
             customDestroy();
             return;
         }
 
         if (Time.time > _spawnTime + destroyTime)
+        {
+            print("Destroyed");
             customDestroy();
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -87,6 +95,7 @@ public class PlayerRocket : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             collision.GetComponent<EnemyHealth>().takeDamage(damage);
+            print("HIT ENEMY");
             customDestroy();
         }
     }

@@ -26,6 +26,12 @@ public class PlayerAcid : MonoBehaviour
         GetComponent<Proj>().setFree();
     }
 
+    public void Update()
+    {
+        if (Time.time > deathTime + _spawnTime)
+            customDestroy();
+    }
+
     public void OnTriggerStay2D(Collider2D collision)
     {
         if (!collision.CompareTag("Enemy"))
@@ -35,8 +41,5 @@ public class PlayerAcid : MonoBehaviour
             _timeSinceLastAttack = Time.time;
             collision.GetComponent<EnemyHealth>().takeDamage(damage);
         }
-
-        if (Time.time > deathTime + _spawnTime)
-            customDestroy();
     }
 }

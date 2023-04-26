@@ -22,12 +22,17 @@ public class PickupMovement : MonoBehaviour
     public float _maxDistanceX;
     public float _maxDistanceY;
 
+    [Header("Time Limit")]
+    public float despawnTime;
+    private float _timeSpawned;
+
     public void OnDisable()
     {
         attracted = false;
     }
     public void OnEnable()
     {
+        _timeSpawned = Time.time;
         maxDistance = _orignalMaxDistance * stats.pickupModifyer;
     }
     private void Awake()
@@ -41,8 +46,7 @@ public class PickupMovement : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player");
         _pickup = GetComponent<Pickup>();
         ID = _pickup.ID;
-        if (ID == 0)
-            Invoke("freePickup", 5);
+        _timeSpawned = Time.time;
     }
 
     public void freePickup()
@@ -55,6 +59,9 @@ public class PickupMovement : MonoBehaviour
     {
         if (Time.timeScale == 0)
             return;
+
+        if (Time.time > _timeSpawned + despawnTime && ID == 0)
+            _pickup.setFree();
 
         float distX = Mathf.Abs(transform.position.x - _player.transform.position.x);
         float distY = Mathf.Abs(transform.position.y - _player.transform.position.y);

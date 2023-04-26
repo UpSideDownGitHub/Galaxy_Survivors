@@ -115,10 +115,11 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: 88d9b88f8a369464487f089c2c701872, type: 2}
   perks: {fileID: 11400000, guid: 3342c70343a71194185cf9ceb85458e8, type: 2}
   gameStats: {fileID: 11400000, guid: 8481fc705fdedcc419157a539d2ba042, type: 2}
-  lerpTime: 4
+  lerpTime: 0.01
   minDistance: 2
   maxDistance: 5
   attracted: 0
   ID: 0
   _maxDistanceX: 500
   _maxDistanceY: 700
+  despawnTime: 7.5
