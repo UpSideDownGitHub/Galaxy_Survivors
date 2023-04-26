@@ -24,6 +24,13 @@ public class Upgrade : MonoBehaviour
     public GameObject mainLevelUpUI;
     public UpgradeInformation info;
 
+    [Header("Equipped UI")]
+    public Image[] weaponSprites;
+    public Image[] passiveSprites;
+    private int _maxEquips = 5;
+    private int _currentWeapon = 1;
+    private int _currentPassive = 0;
+
     [Header("Links")]
     public PassivesManager passives;
     public AttackManager weapons;
@@ -40,6 +47,8 @@ public class Upgrade : MonoBehaviour
     List<PassiveAbilities> newPassives = new List<PassiveAbilities>();
     List<PassiveAbilities> upgradePassives = new List<PassiveAbilities>();
     public itemSelected[] items = new itemSelected[3];
+
+    private int _level = 0;
 
     public struct itemSelected
     {
@@ -63,6 +72,8 @@ public class Upgrade : MonoBehaviour
 
     public void levelUp()
     {
+        if (_level > 28)
+            return;
         // stop gameplay and enable the UI
         Time.timeScale = 0f;
         mainLevelUpUI.SetActive(true);
@@ -77,66 +88,75 @@ public class Upgrade : MonoBehaviour
     {
         for (int i = 0; i < upgradeUIElements.Length / 6; i++)
         {
-            bool newItem = false;
+            upgradeUIElements[(i * 6) + 1].transform.parent.gameObject.SetActive(true);
+            try
+            {
+                bool newItem = false;
 
-            int index = 0;
-            if (items[i].list == 1)
-            {
-                index = (int)newWeapons[items[i].index];
-                newItem = true;
-            }
-            else if (items[i].list == 2)
-                index = (int)upgradeWeapons[items[i].index];
-            else if (items[i].list == 3)
-            {
-                index = (int)newPassives[items[i].index];
-                newItem = true;
-            }
-            else if (items[i].list == 4)
-                index = (int)upgradePassives[items[i].index];
+                int index = 0;
+                if (items[i].list == 1)
+                {
+                    index = (int)newWeapons[items[i].index];
+                    newItem = true;
+                }
+                else if (items[i].list == 2)
+                    index = (int)upgradeWeapons[items[i].index];
+                else if (items[i].list == 3)
+                {
+                    index = (int)newPassives[items[i].index];
+                    newItem = true;
+                }
+                else if (items[i].list == 4)
+                    index = (int)upgradePassives[items[i].index];
 
-            int index2;
-            string title;
-            Sprite upgrade1Icon;
-            string description;
+                int index2;
+                string title;
+                Sprite upgrade1Icon;
+                string description;
 
-            if (items[i].list <= 2)
-            {
-                index2 = index * 3 + weaponLevels.weaponLevels[index];
-                title = info.weaponTitle[index];
-                upgrade1Icon = info.weaponSprites[index2];
-                description = info.weaponDescription[index2];
-            }
-            else if (items[i].list == 3)
-            {
-                // as new will be the base level
-                index2 = index * 3 + 0;
-                title = info.passiveTitle[index];
-                upgrade1Icon = info.passiveSprites[index2];
-                description = info.passiveDescription[index2];
-            }
-            else
-            {
-                int index3 = passives.equippedPassives.IndexOf(listOfPassives[index]);
-                index2 = index * 3 + passives.passiveLevels[index3];
-                title = info.passiveTitle[index];
-                upgrade1Icon = info.passiveSprites[index2];
-                description = info.passiveDescription[index2];
-            }
+                if (items[i].list <= 2)
+                {
+                    index2 = index * 3 + weaponLevels.weaponLevels[index];
+                    title = info.weaponTitle[index];
+                    upgrade1Icon = info.weaponSprites[index2];
+                    description = info.weaponDescription[index2];
+                }
+                else if (items[i].list == 3)
+                {
+                    // as new will be the base level
+                    index2 = index * 3 + 0;
+                    title = info.passiveTitle[index];
+                    upgrade1Icon = info.passiveSprites[index2];
+                    description = info.passiveDescription[index2];
+                }
+                else
+                {
+                    int index3 = passives.equippedPassives.IndexOf(listOfPassives[index]);
+                    index2 = index * 3 + passives.passiveLevels[index3];
+                    title = info.passiveTitle[index];
+                    upgrade1Icon = info.passiveSprites[index2];
+                    description = info.passiveDescription[index2];
+                }
 
-            upgradeUIElements[(i * 6) + 1].GetComponent<Image>().sprite = upgrade1Icon;
-            upgradeUIElements[(i * 6) + 2].GetComponent<TMP_Text>().text = title;
-            upgradeUIElements[(i * 6) + 3].GetComponent<TMP_Text>().text = description;
-            
-            if (newItem)
-            {
-                upgradeUIElements[(i * 6) + 4].SetActive(true);
-                upgradeUIElements[(i * 6) + 5].SetActive(false);
+                upgradeUIElements[(i * 6) + 1].GetComponent<Image>().sprite = upgrade1Icon;
+                upgradeUIElements[(i * 6) + 2].GetComponent<TMP_Text>().text = title;
+                upgradeUIElements[(i * 6) + 3].GetComponent<TMP_Text>().text = description;
+
+                if (newItem)
+                {
+                    upgradeUIElements[(i * 6) + 4].SetActive(true);
+                    upgradeUIElements[(i * 6) + 5].SetActive(false);
+                }
+                else
+                {
+                    upgradeUIElements[(i * 6) + 4].SetActive(false);
+                    upgradeUIElements[(i * 6) + 5].SetActive(true);
+                }
             }
-            else
+            catch
             {
-                upgradeUIElements[(i * 6) + 4].SetActive(false);
-                upgradeUIElements[(i * 6) + 5].SetActive(true);
+                // this means that there is only one upgrade left so dont show the empty slots
+                upgradeUIElements[(i * 6) + 1].transform.parent.gameObject.SetActive(false);
             }
         }
     }
@@ -144,11 +164,19 @@ public class Upgrade : MonoBehaviour
     public void buttonPressed(int ID)
     {
         // apply the upgrade
+        _level++;
         int i = ID;
         if (items[i].list == 1)
         {
             // new weapon
             weapons.addWeapon(newWeapons[items[i].index]);
+            // set the UI for the new options being added
+            print("\nCurrent Weapon: " + (_currentWeapon));
+            print("Chosen Value: " + (i * 6) + 1);
+            print("Max Allowed Value" + upgradeUIElements.Length);
+            weaponSprites[_currentWeapon].sprite = upgradeUIElements[(i * 6) + 1].GetComponent<Image>().sprite;
+            _currentWeapon++;
+
         }
         else if (items[i].list == 2)
         {
@@ -201,6 +229,11 @@ public class Upgrade : MonoBehaviour
         {
             // new passive
             passives.passiveEquipped(newPassives[items[i].index]);
+            print("Current Passive: " + (_currentPassive));
+            print("Chosen Value: " + (i * 6) + 1);
+            print("Max Allowed Value" + upgradeUIElements.Length);
+            passiveSprites[_currentPassive].sprite = upgradeUIElements[(i * 6) + 1].GetComponent<Image>().sprite;
+            _currentPassive++;
         }
         else if (items[i].list == 4)
         {
@@ -230,8 +263,8 @@ public class Upgrade : MonoBehaviour
                 if (weaponLevels.weaponLevels[i] < 2)
                     upgradeWeapons.Add(listOfWeapons[i]);
             }
-            // add the weapon to the new category
-            else
+            // add the weapon to the new category if there is not currently 5 weapons equipped
+            else if (_currentWeapon < _maxEquips)
                 newWeapons.Add(listOfWeapons[i]);
         }
 
@@ -247,10 +280,16 @@ public class Upgrade : MonoBehaviour
                 if (passives.passiveLevels[index] < 2)
                     upgradePassives.Add(listOfPassives[i]);
             }
-            // add the passive to the new category
-            else
+            // add the passive to the new category if there is not currently 5 passives equipped
+            else if (_currentPassive < _maxEquips)
                 newPassives.Add(listOfPassives[i]);
         }
+
+        print("New Weapons Count: " + newWeapons.Count);
+        print("Weapon Upgrade Count: " + upgradeWeapons.Count);
+        print("New Passives Count: " + newPassives.Count);
+        print("Passive Upgrade Count: " + upgradePassives.Count);
+        print("\n\n");
 
         // generate which list should be used IE what type of item to offer the player
         // there are 4 items (new & upgrades of passives & weapons) then loop through them 
@@ -272,51 +311,49 @@ public class Upgrade : MonoBehaviour
         var upgradeOptions = new int[3];
         for (int i = 0; i < upgradeOptions.Length; i++)
         {
-            int temp = available[Random.Range(0, available.Count)];
-            if (temp == 1)
+            for (int J = 0; J < 10; J++)
             {
-                int[] count = Array.FindAll(upgradeOptions, element => element == 1);
-                int ammount = count.Length;
-                if (ammount >= newWeapons.Count)
-                    continue;
-                break;
-            }
-            else if (temp == 2)
-            {
-                int[] count = Array.FindAll(upgradeOptions, element => element == 2);
-                int ammount = count.Length;
-                if (ammount >= upgradeWeapons.Count)
-                    continue;
-                break;
-            }
-            else if (temp == 3)
-            {
-                int[] count = Array.FindAll(upgradeOptions, element => element == 3);
-                int ammount = count.Length;
-                if (ammount >= newPassives.Count)
-                    continue;
-                break;
-            }
-            else if (temp == 4)
-            {
-                int[] count = Array.FindAll(upgradeOptions, element => element == 4);
-                int ammount = count.Length;
-                if (ammount >= upgradePassives.Count)
-                    continue;
-                break;
+                int temp = available[Random.Range(0, available.Count)];
+                if (temp == 1)
+                {
+                    int[] count = Array.FindAll(upgradeOptions, element => element == 1);
+                    int ammount = count.Length;
+                    if (ammount >= newWeapons.Count)
+                        continue;
+                    upgradeOptions[i] = temp;
+                    break;
+                }
+                else if (temp == 2)
+                {
+                    int[] count = Array.FindAll(upgradeOptions, element => element == 2);
+                    int ammount = count.Length;
+                    if (ammount >= upgradeWeapons.Count)
+                        continue;
+                    upgradeOptions[i] = temp;
+                    break;
+                }
+                else if (temp == 3)
+                {
+                    int[] count = Array.FindAll(upgradeOptions, element => element == 3);
+                    int ammount = count.Length;
+                    if (ammount >= newPassives.Count)
+                        continue;
+                    upgradeOptions[i] = temp;
+                    break;
+                }
+                else if (temp == 4)
+                {
+                    int[] count = Array.FindAll(upgradeOptions, element => element == 4);
+                    int ammount = count.Length;
+                    if (ammount >= upgradePassives.Count)
+                        continue;
+                    upgradeOptions[i] = temp;
+                    break;
+                }
             }
         }
 
-        if (upgradeWeapons.Count == 1)
-        {
-            // only allow one
-        }
-        else if (upgradeWeapons.Count == 2)
-        {
-            // only allow two
-        }
-
-        print("Options Chosen: " + upgradeOptions[0] + ", " + upgradeOptions[1] + ", " + upgradeOptions[2]);
+        //print("Options Chosen: " + upgradeOptions[0] + ", " + upgradeOptions[1] + ", " + upgradeOptions[2]);
 
         for (int i = 0; i < upgradeOptions.Length; i++)
         {
@@ -391,9 +428,11 @@ public class Upgrade : MonoBehaviour
                     break;
             }
         }
+        /*
         print("Items:");
         print("Item 1: " + items[0].list + ", " + items[0].index);
         print("Item 2: " + items[1].list + ", " + items[1].index);
         print("Item 3: " + items[2].list + ", " + items[2].index);
+        */
     }
 }

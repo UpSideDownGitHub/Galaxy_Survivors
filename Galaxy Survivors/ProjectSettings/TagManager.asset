@@ -10,6 +10,7 @@ TagManager:
   - Wall_Left
   - Enemy
   - Pickup
+  - Loading
   layers:
   - Default
   - TransparentFX

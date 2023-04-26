@@ -12,7 +12,8 @@ public class MapManager : MonoBehaviour
     public Color[] mapColors;
     private int _previousMapPressed;
 
-
+    [Header("Loading Screen")]
+    public GameObject LoadingScreen;
 
     [Header("Data")]
     private SaveManager _saveManager;
@@ -36,6 +37,13 @@ public class MapManager : MonoBehaviour
     public void playPressed()
     {
         // load the map with the correct color but for now i am just going to load the first map as this feature needs some development yet
+        Invoke("dontAsk", 2);
+        LoadingScreen.SetActive(true);
+    }
+
+    public void dontAsk()
+    {
+        // this is mearly here so the loading screen can be seen
         SceneManager.LoadSceneAsync(1);
     }
 

@@ -12,5 +12,8 @@ public class PlayerSetter : MonoBehaviour
     {
         _saveManager = SaveManager.instance;
         playerSprite.sprite = players[_saveManager.data.currentPlayer];
+
+        GameObject loadingScreen = GameObject.FindGameObjectWithTag("Loading");
+        loadingScreen.SetActive(false);
     }
 }

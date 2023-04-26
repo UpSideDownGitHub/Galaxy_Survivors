@@ -41,6 +41,12 @@ public class PickupMovement : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player");
         _pickup = GetComponent<Pickup>();
         ID = _pickup.ID;
+        Invoke("freePickup", 5);
+    }
+
+    public void freePickup()
+    {
+        attracted = true;
     }
 
     // Update is called once per frame

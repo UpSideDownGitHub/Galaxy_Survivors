@@ -12,7 +12,10 @@ public class cameraMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        Vector3 newPos = Vector3.Lerp(transform.position, player.transform.position, lerpTime);
-        transform.position = new Vector3(newPos.x, newPos.y, transform.position.z); 
+        if (Time.timeScale > 0)
+        {
+            Vector3 newPos = Vector3.Lerp(transform.position, player.transform.position, lerpTime * Time.deltaTime);
+            transform.position = new Vector3(newPos.x, newPos.y, transform.position.z);
+        }
     }
 }

@@ -40,7 +40,7 @@ public class W_Knife : Weapon
     {
         if (Time.time > shootRate / playerStats.attackSpeed * shootRatePowerup + _timeOfLastShot)
         {
-            base.fire(bullet, firePoint, peirceCount[base.getWeaponLevel()]);
+            base.fire(bullet, firePoint, (int)peirceCount[base.getWeaponLevel()]);
             _timeOfLastShot = Time.time;
         }
     }

@@ -71,7 +71,7 @@ public abstract class Weapon : MonoBehaviour
     // fire a bullet with given spread
     public void fire(GameObject bullet, GameObject firePoint, float spread)
     {
-        StartCoroutine(fire2(bullet, firePoint, spread));
+            StartCoroutine(fire2(bullet, firePoint, spread));
     }
     public IEnumerator fire2(GameObject bullet, GameObject firePoint, float spread)
     {
@@ -113,8 +113,8 @@ public abstract class Weapon : MonoBehaviour
                     closest = colliders[i];
                 }
             }
-            if (closest == null)
-                StopCoroutine("fire3");
+            //if (closest == null)
+                //StopCoroutine("fire3");
 
             // then need to shoot a bullet towards "closest"
             var tempBullet = Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
@@ -123,20 +123,25 @@ public abstract class Weapon : MonoBehaviour
             try
             {
                 tempBullet.GetComponent<PlayerBullet>().damage = damage * stats.damageModifyer;
-                tempBullet.GetComponent<Rigidbody2D>().AddForce((closest.transform.position - firePoint.transform.position) * bulletSpeed);
+                if (closest != null)
+                    tempBullet.GetComponent<Rigidbody2D>().AddForce((closest.transform.position - firePoint.transform.position) * bulletSpeed);
+                else
+                    tempBullet.GetComponent<Rigidbody2D>().AddForce((transform.position - firePoint.transform.position) * bulletSpeed);
             }
             catch
             {
                 tempBullet.GetComponent<PlayerRocket>().damage = damage * stats.damageModifyer;
-                tempBullet.GetComponent<PlayerRocket>().toFollow = closest.gameObject;
-
+                if (closest != null)
+                    tempBullet.GetComponent<PlayerRocket>().toFollow = closest.gameObject;
+                else
+                    tempBullet.GetComponent<PlayerRocket>().toFollow = null;
             }
 
             yield return new WaitForSeconds(0.2f);
         }
     }
 
-    // fire a straight bullet
+    // Knife fire method
     public void fire(GameObject bullet, GameObject firePoint, int peirceCount)
     {
         StartCoroutine(fire4(bullet, firePoint, peirceCount));
