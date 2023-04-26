@@ -80,30 +80,30 @@ MonoBehaviour:
   - + 2 bullets for 4 directional firring
   - +4 bullets for 8 directional firing
   passiveSprites:
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
-  - {fileID: -106902778, guid: 42700e687e7829541ae9fffdb4b64b41, type: 3}
+  - {fileID: 1621501593, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 1621501593, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 1621501593, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 1009637763, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 1009637763, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 1009637763, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 995530700, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 995530700, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 995530700, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 443600473, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 443600473, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 443600473, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: -103512736, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: -103512736, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: -103512736, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 261081020, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 261081020, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 261081020, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: -521547966, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: -521547966, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: -521547966, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: -1374506662, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: -1374506662, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: -1374506662, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
   passiveTitle:
   - Chromatic Charge
   - Nano Defense

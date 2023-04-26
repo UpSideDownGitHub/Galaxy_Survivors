@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class W_Shotgun : Weapon
 {
@@ -9,7 +10,7 @@ public class W_Shotgun : Weapon
     public PlayerPerks perks;
 
     [Header("Objects")]
-    public GameObject bullet;
+    public int bullet;
     public GameObject firePoint;
 
     [Header("Values")]

@@ -9,7 +9,7 @@ public class W_Rockets : Weapon
     public PlayerPerks perks;
 
     [Header("Shooting")]
-    public GameObject bullet;
+    public int bullet;
     public GameObject[] firePoints;
     public float maxDistance;
 

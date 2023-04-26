@@ -9,7 +9,7 @@ public class W_Pistol : Weapon
     public PlayerPerks perks;
 
     [Header("Objects")]
-    public GameObject bullet;
+    public int bullet;
     public GameObject[] firePoints;
 
     [Header("Values")]

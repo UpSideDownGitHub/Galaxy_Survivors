@@ -10,6 +10,7 @@ public class W_Orbs : Weapon
     public PlayerPerks perks;
 
     [Header("Objects")]
+    public Sprite[] orbSprites;
     public GameObject Orb;
     public Vector3 spawnPoint = new Vector3(0, 3, 0);
 
@@ -80,6 +81,7 @@ public class W_Orbs : Weapon
                     tempOrb.GetComponent<PlayerOrb>().damage = _damage;
                     tempOrb.GetComponent<PlayerOrb>().spawner = this;
                     tempOrb.GetComponent<PlayerOrb>().player = transform.parent.gameObject;
+                    tempOrb.GetComponent<SpriteRenderer>().sprite = orbSprites[0];
                     yield return new WaitForSeconds(orbSpawnWaitTime[0]);
                 }
                 break;
@@ -93,6 +95,7 @@ public class W_Orbs : Weapon
                     tempOrb.GetComponent<PlayerOrb>().damage = _damage;
                     tempOrb.GetComponent<PlayerOrb>().spawner = this;
                     tempOrb.GetComponent<PlayerOrb>().player = transform.parent.gameObject;
+                    tempOrb.GetComponent<SpriteRenderer>().sprite = orbSprites[1];
                     yield return new WaitForSeconds(orbSpawnWaitTime[1]);
                 }
                 break;
@@ -106,6 +109,7 @@ public class W_Orbs : Weapon
                     tempOrb.GetComponent<PlayerOrb>().damage = _damage;
                     tempOrb.GetComponent<PlayerOrb>().spawner = this;
                     tempOrb.GetComponent<PlayerOrb>().player = transform.parent.gameObject;
+                    tempOrb.GetComponent<SpriteRenderer>().sprite = orbSprites[2];
                     yield return new WaitForSeconds(orbSpawnWaitTime[2]);
                 }
                 break;

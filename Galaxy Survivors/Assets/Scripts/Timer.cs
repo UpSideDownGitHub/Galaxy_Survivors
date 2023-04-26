@@ -7,9 +7,15 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     public TMP_Text timerText;
+    public float startTime;
     public float time;
     public float min;
     public float sec;
+
+    public void Start()
+    {
+        startTime = Time.time;
+    }
 
     // Update is called once per frame
     void Update()
@@ -24,7 +30,7 @@ public class Timer : MonoBehaviour
         }
 
 
-        time = Time.time;
+        time = Time.time - startTime;
         min = TimeSpan.FromSeconds(time).Minutes;
         sec = TimeSpan.FromSeconds(time).Seconds;
         timerText.text = string.Format("{0:00}:{1:00}", min, sec);

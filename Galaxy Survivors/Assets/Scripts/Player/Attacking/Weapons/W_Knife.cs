@@ -9,7 +9,7 @@ public class W_Knife : Weapon
     public PlayerPerks perks;
 
     [Header("Objects")]
-    public GameObject bullet;
+    public int bullet;
     public GameObject firePoint;
 
     [Header("Values")]

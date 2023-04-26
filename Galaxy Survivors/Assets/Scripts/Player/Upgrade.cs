@@ -26,7 +26,9 @@ public class Upgrade : MonoBehaviour
 
     [Header("Equipped UI")]
     public Image[] weaponSprites;
+    public EquippedWeapons[] equippedWeaponSprites;
     public Image[] passiveSprites;
+    public PassiveAbilities[] equippedPassivesSprites;
     private int _maxEquips = 5;
     private int _currentWeapon = 1;
     private int _currentPassive = 0;
@@ -56,7 +58,7 @@ public class Upgrade : MonoBehaviour
         public int index;
     }
 
-    public void Start()
+    public void Awake()
     {
         weaponLevels.pistolLevel = 0;
         weaponLevels.shotGunLevel = 0;
@@ -116,7 +118,7 @@ public class Upgrade : MonoBehaviour
 
                 if (items[i].list <= 2)
                 {
-                    index2 = index * 3 + weaponLevels.weaponLevels[index];
+                    index2 = index * 3 + weaponLevels.weaponLevels[index] + 1;
                     title = info.weaponTitle[index];
                     upgrade1Icon = info.weaponSprites[index2];
                     description = info.weaponDescription[index2];
@@ -132,7 +134,7 @@ public class Upgrade : MonoBehaviour
                 else
                 {
                     int index3 = passives.equippedPassives.IndexOf(listOfPassives[index]);
-                    index2 = index * 3 + passives.passiveLevels[index3];
+                    index2 = index * 3 + passives.passiveLevels[index3] + 1;
                     title = info.passiveTitle[index];
                     upgrade1Icon = info.passiveSprites[index2];
                     description = info.passiveDescription[index2];
@@ -171,15 +173,16 @@ public class Upgrade : MonoBehaviour
             // new weapon
             weapons.addWeapon(newWeapons[items[i].index]);
             // set the UI for the new options being added
-            print("\nCurrent Weapon: " + (_currentWeapon));
-            print("Chosen Value: " + (i * 6) + 1);
-            print("Max Allowed Value" + upgradeUIElements.Length);
+            equippedWeaponSprites[_currentWeapon] = newWeapons[items[i].index];
             weaponSprites[_currentWeapon].sprite = upgradeUIElements[(i * 6) + 1].GetComponent<Image>().sprite;
             _currentWeapon++;
 
         }
         else if (items[i].list == 2)
         {
+            // need to find the position of the wepaon being upgraded
+            int index = Array.FindIndex(equippedWeaponSprites, element => element == upgradeWeapons[items[i].index]);
+            weaponSprites[index].sprite = upgradeUIElements[(i * 6) + 1].GetComponent<Image>().sprite;
             // weapon upgrade
             switch (upgradeWeapons[items[i].index])
             {
@@ -229,15 +232,15 @@ public class Upgrade : MonoBehaviour
         {
             // new passive
             passives.passiveEquipped(newPassives[items[i].index]);
-            print("Current Passive: " + (_currentPassive));
-            print("Chosen Value: " + (i * 6) + 1);
-            print("Max Allowed Value" + upgradeUIElements.Length);
+            equippedPassivesSprites[_currentPassive] = newPassives[items[i].index];
             passiveSprites[_currentPassive].sprite = upgradeUIElements[(i * 6) + 1].GetComponent<Image>().sprite;
             _currentPassive++;
         }
         else if (items[i].list == 4)
         {
             // passive upgrade
+            int index = Array.FindIndex(equippedPassivesSprites, element => element == upgradePassives[items[i].index]);
+            passiveSprites[index].sprite = upgradeUIElements[(i * 6) + 1].GetComponent<Image>().sprite;
             passives.passiveUpgrade(upgradePassives[items[i].index]);
         }
         // disable UI and enable the gameplay

@@ -1099,7 +1099,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2013878135}
   m_HandleRect: {fileID: 2013878134}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8275,6 +8275,8 @@ MonoBehaviour:
     currentPerk1: 0
     currentPerk2: 0
     currentPerk3: 0
+    currentMap: 0
+    mapsUnlocked: 
     perksUnlocked: 
     playerInformation: []
     perks: []
@@ -10361,6 +10363,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8efacb68dc450a442a7172a159b9d550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapButtons:
+  - {fileID: 1432682351}
+  - {fileID: 2041901852}
+  - {fileID: 818268801}
+  - {fileID: 123629435}
+  - {fileID: 54374385}
+  - {fileID: 1295296569}
+  - {fileID: 310196207}
   mapObjects:
   - {fileID: 1432682352}
   - {fileID: 2041901853}

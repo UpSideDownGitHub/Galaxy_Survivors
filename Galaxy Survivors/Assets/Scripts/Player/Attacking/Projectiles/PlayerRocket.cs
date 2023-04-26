@@ -20,11 +20,45 @@ public class PlayerRocket : MonoBehaviour
     public float damage;
     public float explosionRadius;
 
+    [Header("Destroying")]
+    public float destroyTime;
+    private float _spawnTime;
+
+    [Header("Trails")]
+    public GameObject trail1;
+    public GameObject trail2;
+
     public void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        _spawnTime = Time.time;
+    }
+    public void OnEnable()
+    {
+        _spawnTime = Time.time;
+        turnOnTrails();
+    }
 
-        Destroy(gameObject, 5);
+    public void OnDisable()
+    {
+        turnOffTrails();
+    }
+
+    public void turnOffTrails()
+    {
+        trail1.SetActive(false);
+        trail2.SetActive(false);
+    }
+
+    public void turnOnTrails()
+    {
+        trail1.SetActive(true);
+        trail2.SetActive(true);
+    }
+
+    public void customDestroy()
+    {
+        ParticlePooler.instance.spawnParticle(particleID, transform.position, Color.blue);
+        GetComponent<Proj>().setFree();
     }
 
     // Update is called once per frame
@@ -40,10 +74,12 @@ public class PlayerRocket : MonoBehaviour
         }
         catch 
         {
-            ParticlePooler.instance.spawnParticle(particleID, transform.position, Color.blue);
-            Destroy(gameObject); 
+            customDestroy();
+            return;
         }
-        
+
+        if (Time.time > _spawnTime + destroyTime)
+            customDestroy();
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -51,8 +87,8 @@ public class PlayerRocket : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             collision.GetComponent<EnemyHealth>().takeDamage(damage);
-            ParticlePooler.instance.spawnParticle(particleID, transform.position, Color.blue);
-            Destroy(gameObject);
+            CancelInvoke();
+            customDestroy();
         }
     }
 }

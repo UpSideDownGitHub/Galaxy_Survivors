@@ -29,27 +29,27 @@ public class EnemyMovement : MonoBehaviour
     private float _timeSinceLastAttack;
 
     [Header("Trails")]
-    public TrailRenderer trail1;
-    public TrailRenderer trail2;
+    public GameObject trail1;
+    public GameObject trail2;
 
     [Header("DELETE THESE ITEMS")]
     public float attack_Distance;
 
     public void OnEnable()
     {
-        Invoke("turnOnTrails", 2f);
+        Invoke("turnOnTrails", 1f);
     }
 
     public void turnOffTrails()
     {
-        trail1.enabled = false;
-        trail2.enabled = false;
+        trail1.SetActive(false);
+        trail2.SetActive(false);
     }
 
     public void turnOnTrails()
     {
-        trail1.enabled = true;
-        trail2.enabled = true;
+        trail1.SetActive(true);
+        trail2.SetActive(true);
     }
 
     // Start is called before the first frame update

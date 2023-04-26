@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 3947828523643113074}
   - component: {fileID: 2952834886756555827}
   - component: {fileID: 8510049610231904819}
+  - component: {fileID: -4003822390674058573}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Untagged
@@ -278,13 +279,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841f4961881ed2b41ad75c4ca9b6da0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 88d9b88f8a369464487f089c2c701872, type: 2}
   toFollow: {fileID: 0}
   turnSpeed: 100
   movingSpeed: 10
   particleID: 2
   damage: 0
   explosionRadius: 0
+  destroyTime: 0
+  trail1: {fileID: 1817218121201917600}
+  trail2: {fileID: 9066987702926343390}
+--- !u!114 &-4003822390674058573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5154058618621714517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccca8bf7b4acad3489b107f59f8b0caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSpawnable: 0
 --- !u!1 &9066987702926343390
 GameObject:
   m_ObjectHideFlags: 0

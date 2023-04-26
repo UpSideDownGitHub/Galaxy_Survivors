@@ -61,6 +61,8 @@ public class SaveManager : MonoBehaviour
         SaveData tempData = new SaveData();
         tempData.playerInformation = new PlayerInformation[] { info1, info2, info3, info4, info5, info6 };
         tempData.perks = new Perks[] { perk1, perk2, perk3, perk4, perk5, perk6, perk7, perk8 };
+        tempData.currentMap = 0;
+        tempData.mapsUnlocked = new bool[] { true, false, false, false, false, false, false };
         tempData.currentPlayer = 0;
         tempData.currentPerk1 = -1;
         tempData.currentPerk2 = -1;
@@ -121,6 +123,8 @@ public class SaveData
     public int currentPerk1;
     public int currentPerk2;
     public int currentPerk3;
+    public int currentMap;
+    public bool[] mapsUnlocked;
     public bool[] perksUnlocked;
     public PlayerInformation[] playerInformation;
     public Perks[] perks;

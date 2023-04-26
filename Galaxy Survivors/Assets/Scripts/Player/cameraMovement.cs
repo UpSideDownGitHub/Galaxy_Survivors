@@ -14,7 +14,8 @@ public class cameraMovement : MonoBehaviour
     {
         if (Time.timeScale > 0)
         {
-            Vector3 newPos = Vector3.Lerp(transform.position, player.transform.position, lerpTime * Time.deltaTime);
+            float speedChanger = Vector2.Distance(transform.position, player.transform.position);
+            Vector3 newPos = Vector3.Lerp(transform.position, player.transform.position, lerpTime * speedChanger * Time.deltaTime);
             transform.position = new Vector3(newPos.x, newPos.y, transform.position.z);
         }
     }

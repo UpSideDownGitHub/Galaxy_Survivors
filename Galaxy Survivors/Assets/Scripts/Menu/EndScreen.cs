@@ -19,18 +19,26 @@ public class EndScreen : MonoBehaviour
     [Header("Links")]
     public Timer timer;
     public GameStats stats;
+    private SaveManager _saveData;
 
     public bool notDied = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        _saveData = SaveManager.instance;
         Time.timeScale = 0f;
         // need to load all of the player data
         diedText.SetActive(false);
         wellDoneText.SetActive(false);
         if (notDied)
-            wellDoneText.SetActive(true);
+        { 
+            wellDoneText.SetActive(true); 
+            if (_saveData.data.currentMap + 1 < _saveData.data.mapsUnlocked.Length)
+            {
+                _saveData.data.mapsUnlocked[_saveData.data.currentMap + 1] = true;
+            }
+        }
         else
             diedText.SetActive(true);
 
@@ -41,6 +49,10 @@ public class EndScreen : MonoBehaviour
         killsText.text = stats.kills.ToString();
         xpText.text = stats.XP.ToString();
         coinsText.text = stats.coins.ToString();
+        _saveData.data.gold += stats.coins;
+        
+        
+        _saveData.saveIntoJson();
     }
 
     public void restartGame()

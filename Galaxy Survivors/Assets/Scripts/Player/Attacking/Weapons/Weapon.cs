@@ -10,6 +10,7 @@ public abstract class Weapon : MonoBehaviour
 {
     PlayerStats stats;
     WeaponLevels levels;
+    ProjectilePool projPool;
 
     private int _currentWeaponLevel;
 
@@ -30,6 +31,7 @@ public abstract class Weapon : MonoBehaviour
         attackTime = val3;
         attackTimeModifyer = val4;
         stats = playerStats;
+        projPool = ProjectilePool.instance;
     }
 
     public void initiate(float val1, float val3, PlayerStats playerStats)
@@ -37,12 +39,14 @@ public abstract class Weapon : MonoBehaviour
         damage = val1;
         bulletSpeed = val3;
         stats = playerStats;
+        projPool = ProjectilePool.instance;
     }
 
     public void initiate(float val1, PlayerStats playerStats)
     {
         damage = val1;
         stats = playerStats;
+        projPool = ProjectilePool.instance;
     }
 
     public virtual float getDamage() { return damage; }
@@ -51,17 +55,18 @@ public abstract class Weapon : MonoBehaviour
     public virtual void setBuletSpeed(float val) { bulletSpeed = val; }
 
     // fire a straight bullet
-    public void fire(GameObject bullet, GameObject firePoint)
+    public void fire(int bulletID, GameObject firePoint)
     {
-        StartCoroutine(fire1(bullet, firePoint));
+        StartCoroutine(fire1(bulletID, firePoint));
     }
-    public IEnumerator fire1(GameObject bullet, GameObject firePoint)
+    public IEnumerator fire1(int bulletID, GameObject firePoint)
     {
         for (int i = -1; i < stats.projectileCount; i++)
         {
-            var tempBullet = Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
+            var tempBullet = projPool.spawnPickup(bulletID, firePoint.transform.position, firePoint.transform.rotation);
+            if (tempBullet == null)
+                continue;
             tempBullet.GetComponent<Rigidbody2D>().AddForce(tempBullet.transform.up * bulletSpeed);
-
             tempBullet.GetComponent<PlayerBullet>().damage = damage * stats.damageModifyer;
 
             yield return new WaitForSeconds(0.2f);
@@ -69,17 +74,20 @@ public abstract class Weapon : MonoBehaviour
     }
 
     // fire a bullet with given spread
-    public void fire(GameObject bullet, GameObject firePoint, float spread)
+    public void fire(int bulletID, GameObject firePoint, float spread)
     {
-            StartCoroutine(fire2(bullet, firePoint, spread));
+            StartCoroutine(fire2(bulletID, firePoint, spread));
     }
-    public IEnumerator fire2(GameObject bullet, GameObject firePoint, float spread)
+    public IEnumerator fire2(int bulletID, GameObject firePoint, float spread)
     {
         var rand1 = Random.Range(-spread, spread);
         var rand2 = Random.Range(-spread, spread);
         for (int i = -1; i < stats.projectileCount; i++)
         {
-            var tempBullet = Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
+            var tempBullet = projPool.spawnPickup(bulletID, firePoint.transform.position, firePoint.transform.rotation);
+            if (tempBullet == null)
+                continue;
+            //var tempBullet = Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
             Vector3 up = tempBullet.transform.up;
             Vector3 calculatedSpread = new Vector3(up.x + rand1, up.y + rand2, up.z);
             tempBullet.GetComponent<Rigidbody2D>().AddForce(calculatedSpread * bulletSpeed);
@@ -89,11 +97,11 @@ public abstract class Weapon : MonoBehaviour
     }
 
     // fire a bullet towards the closest enemy
-    public void fire(GameObject bullet, GameObject firePoint, Vector2 center, float radius)
+    public void fire(int bulletID, GameObject firePoint, Vector2 center, float radius)
     {
-        StartCoroutine(fire3(bullet, firePoint, center, radius));
+        StartCoroutine(fire3(bulletID, firePoint, center, radius));
     }
-    public IEnumerator fire3(GameObject bullet, GameObject firePoint, Vector2 center, float radius)
+    public IEnumerator fire3(int bulletID, GameObject firePoint, Vector2 center, float radius)
     {
         for (int j = -1; j < stats.projectileCount; j++)
         {
@@ -114,10 +122,13 @@ public abstract class Weapon : MonoBehaviour
                 }
             }
             //if (closest == null)
-                //StopCoroutine("fire3");
+            //StopCoroutine("fire3");
 
             // then need to shoot a bullet towards "closest"
-            var tempBullet = Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
+            var tempBullet = projPool.spawnPickup(bulletID, firePoint.transform.position, firePoint.transform.rotation);
+            if (tempBullet == null)
+                continue;
+            //var tempBullet = Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
             //tempBullet.transform.LookAt(closest.transform.position);
 
             try
@@ -142,15 +153,18 @@ public abstract class Weapon : MonoBehaviour
     }
 
     // Knife fire method
-    public void fire(GameObject bullet, GameObject firePoint, int peirceCount)
+    public void fire(int bulletID, GameObject firePoint, int peirceCount)
     {
-        StartCoroutine(fire4(bullet, firePoint, peirceCount));
+        StartCoroutine(fire4(bulletID, firePoint, peirceCount));
     }
-    public IEnumerator fire4(GameObject bullet, GameObject firePoint, int peirceCount)
+    public IEnumerator fire4(int bulletID, GameObject firePoint, int peirceCount)
     {
         for (int i = -1; i < stats.projectileCount; i++)
         {
-            var tempBullet = Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
+            var tempBullet = projPool.spawnPickup(bulletID, firePoint.transform.position, firePoint.transform.rotation);
+            if (tempBullet == null)
+                continue;
+            //var tempBullet = Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
             tempBullet.GetComponent<Rigidbody2D>().AddForce(tempBullet.transform.up * bulletSpeed);
 
             tempBullet.GetComponent<PlayerKnife>().damage = damage * stats.damageModifyer;
@@ -160,9 +174,12 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
-    public void placeAcid(GameObject acid, float size)
+    public void placeAcid(int acidID, float size)
     {
-        GameObject acidTemp = Instantiate(acid, transform.position, Quaternion.identity);
+        var acidTemp = projPool.spawnPickup(acidID, transform.position, Quaternion.identity);
+        if (acidTemp == null)
+            return;
+        //GameObject acidTemp = Instantiate(acid, transform.position, Quaternion.identity);
         acidTemp.transform.localScale = new Vector3(size, size, size);
         PlayerAcid acidObj = acidTemp.GetComponent<PlayerAcid>();
         acidObj.particlesReference.transform.localScale = new Vector3(size/2, size/2, size/2);

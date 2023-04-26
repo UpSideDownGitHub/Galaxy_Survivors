@@ -10,7 +10,7 @@ public class W_Acid : Weapon
     public PlayerPerks perks;
 
     [Header("Objects")]
-    public GameObject acid;
+    public int acid;
 
     [Header("Acid Spawning")]
     public float spawnRate;

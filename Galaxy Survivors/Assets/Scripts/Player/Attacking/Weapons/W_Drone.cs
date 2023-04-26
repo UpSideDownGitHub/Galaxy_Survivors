@@ -12,7 +12,7 @@ public class W_Drone : Weapon
     public GameObject droneObject;
     public GameObject[] _drones;
     public GameObject[] firePoints;
-    public GameObject bullet;
+    public int bullet;
     public Vector3[] droneSpawnOffsets;
 
     [Header("Values")]
@@ -27,6 +27,9 @@ public class W_Drone : Weapon
 
     [Header("Drone Movement")]
     public float lerpTime;
+
+    [Header("Drone Looks")]
+    public Sprite[] droneSprites;
 
     [Header("Level")]
     public WeaponLevels level;
@@ -98,13 +101,20 @@ public class W_Drone : Weapon
         _drones[1].SetActive(true);
         _drones[2].SetActive(true);
 
+        _drones[0].GetComponent<SpriteRenderer>().sprite = droneSprites[2];
+        _drones[1].GetComponent<SpriteRenderer>().sprite = droneSprites[2];
+        _drones[2].GetComponent<SpriteRenderer>().sprite = droneSprites[2];
+
         if (base.getWeaponLevel() == 0)
         {
+            _drones[0].GetComponent<SpriteRenderer>().sprite = droneSprites[0];
             _drones[1].SetActive(false);
             _drones[2].SetActive(false);
         }
         else if (base.getWeaponLevel() == 1)
         {
+            _drones[0].GetComponent<SpriteRenderer>().sprite = droneSprites[1];
+            _drones[1].GetComponent<SpriteRenderer>().sprite = droneSprites[1];
             _drones[2].SetActive(false);
         }
     }

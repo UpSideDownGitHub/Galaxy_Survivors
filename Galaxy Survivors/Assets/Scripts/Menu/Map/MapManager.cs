@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class MapManager : MonoBehaviour
 {
     [Header("Map Selection")]
+    public Button[] mapButtons;
     public Image[] mapObjects;
     public Color[] mapColors;
     private int _previousMapPressed;
@@ -25,7 +26,17 @@ public class MapManager : MonoBehaviour
     void Start()
     {
         _saveManager = SaveManager.instance;
+        _saveManager.loadFromJson();
         goldText.text = _saveManager.data.gold.ToString();
+        for (int i = 0; i < mapButtons.Length; i++)
+        {
+            if (!_saveManager.data.mapsUnlocked[i])
+                mapButtons[i].interactable = false;
+            else
+                mapButtons[i].interactable = true;
+        }
+        _saveManager.saveIntoJson();
+        _saveManager.loadFromJson();
     }
 
     public void OnEnable()
@@ -38,6 +49,9 @@ public class MapManager : MonoBehaviour
     {
         // load the map with the correct color but for now i am just going to load the first map as this feature needs some development yet
         Invoke("dontAsk", 2);
+        _saveManager.data.currentMap = _previousMapPressed;
+        _saveManager.saveIntoJson();
+        _saveManager.loadFromJson();
         LoadingScreen.SetActive(true);
     }
 

@@ -10,7 +10,7 @@ public class W_Cannon : Weapon
 
     public GameObject[] firePoints;
     public int[] levelFirepoints;
-    public GameObject bullet;
+    public int bullet;
 
     [Header("Values")]
     [SerializeField] private float _damage;

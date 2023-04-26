@@ -15,11 +15,48 @@ public class PlayerKnife : MonoBehaviour
 
     public int particleID;
 
+    [Header("Custom Destroy")]
+    public float destroyTime;
+    private float _spawnTime;
+
+    [Header("Trails")]
+    public GameObject trail1;
+
     public void Start()
     {
-        pierceCount = maxPeirce;
+        _spawnTime = Time.time;
+    }
+    public void OnEnable()
+    {
+        _spawnTime = Time.time;
+        turnOnTrails();
+    }
 
-        Destroy(gameObject, 10);
+    public void Update()
+    {
+        if (Time.time > destroyTime + _spawnTime)
+            customDestroy();
+    }
+
+    public void OnDisable()
+    {
+        turnOffTrails();
+    }
+
+    public void turnOffTrails()
+    {
+        trail1.SetActive(false);
+    }
+
+    public void turnOnTrails()
+    {
+        trail1.SetActive(true);
+    }
+
+    public void customDestroy()
+    {
+        ParticlePooler.instance.spawnParticle(particleID, transform.position, Color.blue);
+        GetComponent<Proj>().setFree();
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -34,8 +71,7 @@ public class PlayerKnife : MonoBehaviour
             else
             {
                 collision.GetComponent<EnemyHealth>().takeDamage(damage);
-                ParticlePooler.instance.spawnParticle(particleID, transform.position, Color.blue);
-                Destroy(gameObject);
+                customDestroy();
             }
         }
     }

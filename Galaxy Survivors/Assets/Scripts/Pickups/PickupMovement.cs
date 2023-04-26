@@ -41,7 +41,8 @@ public class PickupMovement : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player");
         _pickup = GetComponent<Pickup>();
         ID = _pickup.ID;
-        Invoke("freePickup", 5);
+        if (ID == 0)
+            Invoke("freePickup", 5);
     }
 
     public void freePickup()
@@ -59,7 +60,11 @@ public class PickupMovement : MonoBehaviour
         float distY = Mathf.Abs(transform.position.y - _player.transform.position.y);
         if (distX > _maxDistanceX || distY > _maxDistanceY)
         {
-            // Despawn the Pickup
+            if (ID == 0)
+            { 
+                attracted = true;
+                return;
+            }
             _pickup.setFree();
         }
 
@@ -72,7 +77,8 @@ public class PickupMovement : MonoBehaviour
             return;
         }
 
-        transform.position = Vector2.Lerp(transform.position, _player.transform.position, lerpTime);
+        float speedChanger = Vector2.Distance(transform.position, _player.transform.position);
+        transform.position = Vector2.Lerp(transform.position, _player.transform.position, lerpTime * speedChanger);
 
         if (Vector2.Distance(transform.position, _player.transform.position) < minDistance)
         {
