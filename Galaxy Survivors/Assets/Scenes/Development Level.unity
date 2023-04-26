@@ -24433,6 +24433,8 @@ MonoBehaviour:
     currentPerk1: 0
     currentPerk2: 0
     currentPerk3: 0
+    currentMap: 0
+    mapsUnlocked: 
     perksUnlocked: 
     playerInformation: []
     perks: []
@@ -24910,6 +24912,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStats: {fileID: 11400000, guid: 88d9b88f8a369464487f089c2c701872, type: 2}
   perks: {fileID: 11400000, guid: 3342c70343a71194185cf9ceb85458e8, type: 2}
+  orbSprites:
+  - {fileID: 664598195, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: -499568143, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: -1748640172, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
   Orb: {fileID: 2981198591102700084, guid: 8571345840634094d91ea2494c241a80, type: 3}
   spawnPoint: {x: 0, y: 3, z: 0}
   _damage: 10
@@ -28862,6 +28868,10 @@ MonoBehaviour:
   maxDistance: 30
   shootRate: 1.5
   lerpTime: 0.05
+  droneSprites:
+  - {fileID: -1819206047, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: -1564602491, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
+  - {fileID: 1155183520, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
   level: {fileID: 11400000, guid: c5494b8b2b8a6d542bb2976af3f89f8a, type: 2}
   shootRatePowerup: 1
 --- !u!1 &2122122912

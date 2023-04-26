@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  destroyTime: 5
   particleID: 2
 --- !u!114 &3656692242382628268
 MonoBehaviour:

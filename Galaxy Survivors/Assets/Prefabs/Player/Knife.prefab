@@ -292,9 +292,8 @@ MonoBehaviour:
   maxPeirce: 2
   pierceCount: 1
   particleID: 2
-  destroyTime: 0
+  destroyTime: 10
   trail1: {fileID: 7039949743158868082}
-  trail2: {fileID: 0}
 --- !u!114 &-1735745352763931811
 MonoBehaviour:
   m_ObjectHideFlags: 0

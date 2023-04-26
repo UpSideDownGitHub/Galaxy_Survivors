@@ -87,7 +87,6 @@ public class PlayerRocket : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             collision.GetComponent<EnemyHealth>().takeDamage(damage);
-            CancelInvoke();
             customDestroy();
         }
     }

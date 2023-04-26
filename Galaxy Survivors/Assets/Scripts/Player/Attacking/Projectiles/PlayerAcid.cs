@@ -6,9 +6,8 @@ using static UnityEngine.ParticleSystem;
 public class PlayerAcid : MonoBehaviour
 {
     public float damage;
-    public float deathTime;
     public float attackTime;
-    public float despawnTime;
+    public float deathTime;
     private float _spawnTime;
     private float _timeSinceLastAttack;
 
@@ -37,7 +36,7 @@ public class PlayerAcid : MonoBehaviour
             collision.GetComponent<EnemyHealth>().takeDamage(damage);
         }
 
-        if (Time.time > despawnTime + _spawnTime)
+        if (Time.time > deathTime + _spawnTime)
             customDestroy();
     }
 }

@@ -285,7 +285,7 @@ MonoBehaviour:
   particleID: 2
   damage: 0
   explosionRadius: 0
-  destroyTime: 0
+  destroyTime: 5
   trail1: {fileID: 1817218121201917600}
   trail2: {fileID: 9066987702926343390}
 --- !u!114 &-4003822390674058573
