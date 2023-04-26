@@ -41,6 +41,10 @@ public class PlayerMenuManager : MonoBehaviour
             tempObj.GetComponent<customButton>().setUp(ID, this);
         }
         goldText.text = _saveManager.data.gold.ToString();
+
+        // LOAD IN THE CURRENT PLAYER
+        currentPlayer.sprite = info.playerSprites[_saveManager.data.currentPlayer];
+        buttonPressed(0);
     }
     public void OnEnable()
     {

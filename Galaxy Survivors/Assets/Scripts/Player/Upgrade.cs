@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -265,11 +266,57 @@ public class Upgrade : MonoBehaviour
         if (upgradePassives.Count > 0)
             available.Add(4);
 
-        var upgradeOptions = new int[] { 
-            available[Random.Range(0, available.Count)],
-            available[Random.Range(0, available.Count)],
-            available[Random.Range(0, available.Count)]
-        };
+        if (available.Count == 0)
+            return;
+
+        var upgradeOptions = new int[3];
+        for (int i = 0; i < upgradeOptions.Length; i++)
+        {
+            int temp = available[Random.Range(0, available.Count)];
+            if (temp == 1)
+            {
+                int[] count = Array.FindAll(upgradeOptions, element => element == 1);
+                int ammount = count.Length;
+                if (ammount >= newWeapons.Count)
+                    continue;
+                break;
+            }
+            else if (temp == 2)
+            {
+                int[] count = Array.FindAll(upgradeOptions, element => element == 2);
+                int ammount = count.Length;
+                if (ammount >= upgradeWeapons.Count)
+                    continue;
+                break;
+            }
+            else if (temp == 3)
+            {
+                int[] count = Array.FindAll(upgradeOptions, element => element == 3);
+                int ammount = count.Length;
+                if (ammount >= newPassives.Count)
+                    continue;
+                break;
+            }
+            else if (temp == 4)
+            {
+                int[] count = Array.FindAll(upgradeOptions, element => element == 4);
+                int ammount = count.Length;
+                if (ammount >= upgradePassives.Count)
+                    continue;
+                break;
+            }
+        }
+
+        if (upgradeWeapons.Count == 1)
+        {
+            // only allow one
+        }
+        else if (upgradeWeapons.Count == 2)
+        {
+            // only allow two
+        }
+
+        print("Options Chosen: " + upgradeOptions[0] + ", " + upgradeOptions[1] + ", " + upgradeOptions[2]);
 
         for (int i = 0; i < upgradeOptions.Length; i++)
         {
@@ -280,7 +327,7 @@ public class Upgrade : MonoBehaviour
                     items[i].list = 1;
                     var rand = Random.Range(0, newWeapons.Count);
                     // do this a couple of times to make sure we get an orignal
-                    for (int j = 0; j < 10; j++)
+                    for (int j = 0; j < 50; j++)
                     {
                         if (items[0].list == 1 && items[0].index == rand ||
                             items[1].list == 1 && items[1].index == rand ||
@@ -296,7 +343,7 @@ public class Upgrade : MonoBehaviour
                     items[i].list = 2;
                     var rand2 = Random.Range(0, upgradeWeapons.Count);
                     // do this a couple of times to make sure we get an orignal
-                    for (int j = 0; j < 10; j++)
+                    for (int j = 0; j < 50; j++)
                     {
                         if (items[0].list == 2 && items[0].index == rand2 ||
                             items[1].list == 2 && items[1].index == rand2 ||
@@ -312,7 +359,7 @@ public class Upgrade : MonoBehaviour
                     items[i].list = 3;
                     var rand3 = Random.Range(0, newPassives.Count);
                     // do this a couple of times to make sure we get an orignal
-                    for (int j = 0; j < 10; j++)
+                    for (int j = 0; j < 50; j++)
                     {
                         if (items[0].list == 3 && items[0].index == rand3 ||
                             items[1].list == 3 && items[1].index == rand3 ||
@@ -328,7 +375,7 @@ public class Upgrade : MonoBehaviour
                     items[i].list = 4;
                     var rand4 = Random.Range(0, upgradePassives.Count);
                     // do this a couple of times to make sure we get an orignal
-                    for (int j = 0; j < 10; j++)
+                    for (int j = 0; j < 50; j++)
                     {
                         if (items[0].list == 4 && items[0].index == rand4 ||
                             items[1].list == 4 && items[1].index == rand4 ||
@@ -344,5 +391,9 @@ public class Upgrade : MonoBehaviour
                     break;
             }
         }
+        print("Items:");
+        print("Item 1: " + items[0].list + ", " + items[0].index);
+        print("Item 2: " + items[1].list + ", " + items[1].index);
+        print("Item 3: " + items[2].list + ", " + items[2].index);
     }
 }

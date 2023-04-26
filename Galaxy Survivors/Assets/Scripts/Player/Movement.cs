@@ -8,7 +8,6 @@ public class Movement : MonoBehaviour
 {
     public PlayerStats stats;
     public PlayerPerks perks;
-
     [Header("JoySick Movement")]
     public Joystick movementStick; // left
 

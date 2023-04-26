@@ -49,13 +49,13 @@ public class SaveManager : MonoBehaviour
         perk6.ID = 5;
         perk7.ID = 6;
         perk8.ID = 7;
-        perk1.unlocked = true;
+        perk1.unlocked = false;
         perk2.unlocked = false;
         perk3.unlocked = false;
-        perk4.unlocked = true;
+        perk4.unlocked = false;
         perk5.unlocked = false;
-        perk6.unlocked = true;
-        perk7.unlocked = true;
+        perk6.unlocked = false;
+        perk7.unlocked = false;
         perk8.unlocked = false;
 
         SaveData tempData = new SaveData();
@@ -65,7 +65,7 @@ public class SaveManager : MonoBehaviour
         tempData.currentPerk1 = -1;
         tempData.currentPerk2 = -1;
         tempData.currentPerk3 = -1;
-        tempData.gold = 1000;
+        tempData.gold = 1000000;
         tempData.perksUnlocked = new bool[] {false, false};
         data = tempData;
 

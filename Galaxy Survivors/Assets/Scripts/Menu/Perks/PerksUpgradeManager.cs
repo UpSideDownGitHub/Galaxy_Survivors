@@ -64,6 +64,26 @@ public class PerksUpgradeManager : MonoBehaviour
             extraPerkCostsText[i].text = extraButonCosts[i].ToString();
         }
         goldText.text = _saveManager.data.gold.ToString();
+
+        // LOAD IN ALL THE DATA FROM THE SAVE DATA
+
+        if (_saveManager.data.currentPerk1 > -1 )
+            perk[0].sprite = info.perkSprite[_saveManager.data.currentPerk1];
+        if (_saveManager.data.perksUnlocked[0])
+        {
+            perk2Button.SetActive(false);
+            perk2.SetActive(true);
+            if (_saveManager.data.currentPerk2 > -1)
+                perk[1].sprite = info.perkSprite[_saveManager.data.currentPerk2];
+        }
+        if (_saveManager.data.perksUnlocked[1])
+        {
+            perk3Button.SetActive(false);
+            perk3.SetActive(true);
+            if (_saveManager.data.currentPerk3 > -1)
+                perk[2].sprite = info.perkSprite[_saveManager.data.currentPerk3];
+        }
+        buttonPressed(0);
     }
 
     public void OnEnable()
