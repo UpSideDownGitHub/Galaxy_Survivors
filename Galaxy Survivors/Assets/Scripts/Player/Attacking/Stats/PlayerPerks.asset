@@ -17,9 +17,9 @@ MonoBehaviour:
   - 2
   - 1
   - 1
-  damageIncrease: 1
+  damageIncrease: 0
   damageIncreaseLevels:
-  - 2
+  - 5
   - 1
   - 1
   movementSpeed: 0
@@ -27,17 +27,17 @@ MonoBehaviour:
   - 1.5
   - 1
   - 1
-  healthIncrease: 1
+  healthIncrease: 0
   healthIncreaseLevels:
   - 2
   - 1
   - 1
-  healthRegen: 0
+  healthRegen: 1
   healthRegenLevels:
   - 1.5
   - 1
   - 1
-  fireRate: 0
+  fireRate: 1
   fireRateLevels:
   - 0.5
   - 1

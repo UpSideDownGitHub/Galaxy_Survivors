@@ -70,6 +70,7 @@ public class PlayerHealth : MonoBehaviour
         {
             if (Time.time > regenRate + _timeSiceLastRegen)
             {
+                _timeSiceLastRegen = Time.time;
                 increaseHealth(1);
             }
         }
