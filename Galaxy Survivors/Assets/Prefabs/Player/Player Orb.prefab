@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1178092685186314554}
   m_Layer: 0
   m_Name: Player Orb
-  m_TagString: Untagged
+  m_TagString: PlayerProj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

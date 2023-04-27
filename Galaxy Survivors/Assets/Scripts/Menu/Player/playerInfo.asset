@@ -26,4 +26,4 @@ MonoBehaviour:
   - Powerup \n kills all enemys around the player
   - Powerup \n gives player an extra life
   - Powerup \n increase damage done
-  costs: 0000000064000000c80000002c01000090010000f4010000
+  costs: 00000000020000000400000006000000080000000a000000

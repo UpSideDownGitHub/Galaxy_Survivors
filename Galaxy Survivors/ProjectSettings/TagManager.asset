@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Pickup
   - Loading
+  - PlayerProj
   layers:
   - Default
   - TransparentFX

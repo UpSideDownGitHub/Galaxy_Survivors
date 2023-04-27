@@ -33,12 +33,11 @@ public class StatManager : MonoBehaviour
         /*
          * Equation for Levels:
          * 
-         *   n^1.5
-         *  ------ x 10
-         *     2  
+         *   n^1.5 x 10
+         *      
         */
-        xpSlider.minValue = (float)((Math.Pow(stats.level, 1.5)/2) * 10);
-        xpSlider.maxValue = (float)((Math.Pow(stats.level + 1, 1.5)/2) * 10);
+        xpSlider.minValue = (float)((Math.Pow(stats.level, 1.9)) * 10);
+        xpSlider.maxValue = (float)((Math.Pow(stats.level + 1, 1.9)) * 10);
         xpSlider.value = stats.XP;
         levelText.text = "Level: " + stats.level;
 
@@ -56,13 +55,13 @@ public class StatManager : MonoBehaviour
             statsChanged = false;
 
             // XP/Level
-            if (stats.XP > (float)((Math.Pow(stats.level + 1, 1.5) / 2) * 10))
+            if (stats.XP > (float)((Math.Pow(stats.level + 1, 1.9)) * 10))
             { 
                 stats.level++;
                 upgradeSystem.levelUp();
             }
-            xpSlider.minValue = (float)((Math.Pow(stats.level, 1.5) / 2) * 10);
-            xpSlider.maxValue = (float)((Math.Pow(stats.level + 1, 1.5) / 2) * 10);
+            xpSlider.minValue = (float)((Math.Pow(stats.level, 1.9)) * 10);
+            xpSlider.maxValue = (float)((Math.Pow(stats.level + 1, 1.9)) * 10);
             xpSlider.value = stats.XP;
             levelText.text = "Level: " + stats.level;
 

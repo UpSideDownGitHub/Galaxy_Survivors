@@ -6,7 +6,6 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public float range, xStretch, yStretch;
-    public GameObject test_obj;
     public GameObject player;
 
     public EnemyPool pool;

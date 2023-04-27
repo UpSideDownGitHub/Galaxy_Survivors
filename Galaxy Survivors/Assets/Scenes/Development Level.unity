@@ -1565,7 +1565,6 @@ MonoBehaviour:
   range: 25
   xStretch: 1
   yStretch: 2
-  test_obj: {fileID: 5263726455295966305, guid: a63f825c48637cb478b1f08a5fa452db, type: 3}
   player: {fileID: 571382787}
   pool: {fileID: 1327847683}
   timer: {fileID: 1327847678}
@@ -3562,10 +3561,10 @@ MonoBehaviour:
   perks: {fileID: 11400000, guid: 3342c70343a71194185cf9ceb85458e8, type: 2}
   bullet: 0
   firePoint: {fileID: 2083737107}
-  _damage: 10
+  _damage: 2.5
   _bulletSpeed: 750
   spread: 0.65
-  bulletCount: 10
+  bulletCount: 3
   shootRate: 1
   level: {fileID: 11400000, guid: c5494b8b2b8a6d542bb2976af3f89f8a, type: 2}
   shootRatePowerup: 1
@@ -24296,7 +24295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 375883586b8517041baf4102c7262a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxParticles: 190000001900000019000000010000000a000000
+  maxParticles: 3200000096000000320000000100000014000000
   particles: []
   particlePrefabs:
   - {fileID: 4871898556187062165, guid: fcfaba9fbb614fe4f8ad17729a0aa2ec, type: 3}
@@ -24354,7 +24353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7c653f540d5381409c7620ec7a649b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnemies: 1400000014000000140000001400000014000000
+  maxEnemies: 1400000019000000190000001e00000023000000
   enemies: []
   enemyPrefabs:
   - {fileID: 5263726455295966305, guid: a63f825c48637cb478b1f08a5fa452db, type: 3}
@@ -25433,7 +25432,7 @@ MonoBehaviour:
   bullet: 2
   firePoint: {fileID: 211300713}
   _damage: 10
-  _bulletSpeed: 200
+  _bulletSpeed: 300
   peirceCount:
   - 1
   - 2

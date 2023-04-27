@@ -28,7 +28,7 @@ public class MapManager : MonoBehaviour
         _saveManager = SaveManager.instance;
         _saveManager.loadFromJson();
         goldText.text = _saveManager.data.gold.ToString();
-        for (int i = 0; i < mapButtons.Length; i++)
+        for (int i = 0; i < _saveManager.data.mapsUnlocked.Length; i++)
         {
             if (!_saveManager.data.mapsUnlocked[i])
                 mapButtons[i].interactable = false;

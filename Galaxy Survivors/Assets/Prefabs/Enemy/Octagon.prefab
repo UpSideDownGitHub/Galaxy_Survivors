@@ -110,10 +110,10 @@ MonoBehaviour:
   _maxDistanceY: 50
   melee: 0
   damage: 10
-  attackDistance: 20
+  attackDistance: 50
   projectile: {fileID: 3117282648370641613, guid: e219deadaa511e64f9894b717d9c3ee1, type: 3}
   projectileForce: 1000
-  attackTime: 0.75
+  attackTime: 2
   trail1: {fileID: 8518361870194879272}
   trail2: {fileID: 6645461917865621780}
   attack_Distance: 0
@@ -129,9 +129,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e9e763625c8ac4b983115b0ef03f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 40
   currentHealth: 0
   stats: {fileID: 11400000, guid: 8481fc705fdedcc419157a539d2ba042, type: 2}
+  mapID: 0
 --- !u!114 &4135034432971422595
 MonoBehaviour:
   m_ObjectHideFlags: 0

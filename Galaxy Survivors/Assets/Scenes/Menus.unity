@@ -4926,7 +4926,7 @@ MonoBehaviour:
   perk3Button: {fileID: 1017499697}
   perk2: {fileID: 1319171931}
   perk3: {fileID: 487192641}
-  extraButonCosts: f4010000e8030000
+  extraButonCosts: 050000000a000000
   extraPerkCostsText:
   - {fileID: 1367241886}
   - {fileID: 2066249643}

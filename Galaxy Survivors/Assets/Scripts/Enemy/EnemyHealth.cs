@@ -13,13 +13,24 @@ public class EnemyHealth : MonoBehaviour
 
     public GameStats stats;
 
+    [Header("Difficulty Scaling")]
+    private SaveManager _saveManager;
+    public float mapID;
+
     public void Start()
     {
-        currentHealth = maxHealth;
+        _saveManager = SaveManager.instance;
+        mapID = _saveManager.data.currentMap + 1;
+        currentHealth = maxHealth * mapID;
         _enemy = GetComponent<Enemy>();
         _renderer = GetComponent<SpriteRenderer>();
     }
-    
+
+    public void OnEnable()
+    {
+        currentHealth = maxHealth * mapID;
+    }
+
     public void takeDamage(float damage)
     {
         if (currentHealth - damage < 0)

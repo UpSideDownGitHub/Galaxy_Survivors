@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: -4003822390674058573}
   m_Layer: 0
   m_Name: Rocket
-  m_TagString: Untagged
+  m_TagString: PlayerProj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,8 +286,9 @@ MonoBehaviour:
   damage: 0
   explosionRadius: 0
   destroyTime: 5
-  trail1: {fileID: 1817218121201917600}
-  trail2: {fileID: 9066987702926343390}
+  trail1: {fileID: 6762043560720293454}
+  trail2: {fileID: 5931735556566900759}
+  trailRendererTime: 0.5
 --- !u!114 &-4003822390674058573
 MonoBehaviour:
   m_ObjectHideFlags: 0

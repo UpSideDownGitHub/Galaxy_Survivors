@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: -1735745352763931811}
   m_Layer: 0
   m_Name: Knife
-  m_TagString: Untagged
+  m_TagString: PlayerProj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -293,7 +293,8 @@ MonoBehaviour:
   pierceCount: 1
   particleID: 2
   destroyTime: 10
-  trail1: {fileID: 7039949743158868082}
+  trail1: {fileID: 8677711294774943397}
+  trailRendererTime: 0.5
 --- !u!114 &-1735745352763931811
 MonoBehaviour:
   m_ObjectHideFlags: 0

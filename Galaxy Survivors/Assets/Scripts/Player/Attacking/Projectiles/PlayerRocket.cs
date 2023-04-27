@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.SearchService;
@@ -26,8 +27,9 @@ public class PlayerRocket : MonoBehaviour
     private float _spawnTime;
 
     [Header("Trails")]
-    public GameObject trail1;
-    public GameObject trail2;
+    public TrailRenderer trail1;
+    public TrailRenderer trail2;
+    public float trailRendererTime;
 
     public void Start()
     {
@@ -48,19 +50,20 @@ public class PlayerRocket : MonoBehaviour
 
     public void turnOffTrails()
     {
-        trail1.SetActive(false);
-        trail2.SetActive(false);
+        trail1.time = 0;
+        trail2.time = 0;
     }
 
     public void turnOnTrails()
     {
-        trail1.SetActive(true);
-        trail2.SetActive(true);
+        trail1.time = trailRendererTime;
+        trail2.time = trailRendererTime;
+        trail1.Clear();
+        trail2.Clear();
     }
 
     public void customDestroy()
     {
-        print("DESTROYED");
         ParticlePooler.instance.spawnParticle(particleID, transform.position, Color.blue);
         GetComponent<Proj>().setFree();
     }
@@ -84,10 +87,7 @@ public class PlayerRocket : MonoBehaviour
         }
 
         if (Time.time > _spawnTime + destroyTime)
-        {
-            print("Destroyed");
             customDestroy();
-        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -95,7 +95,6 @@ public class PlayerRocket : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             collision.GetComponent<EnemyHealth>().takeDamage(damage);
-            print("HIT ENEMY");
             customDestroy();
         }
     }

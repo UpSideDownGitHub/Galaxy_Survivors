@@ -19,10 +19,13 @@ public class EnemyBullet : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        print("HIT");
         if (collision.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerHealth>().removeHealth(damage);
+            Destroy(gameObject);
+        }
+        else if (collision.CompareTag("PlayerProj"))
+        {
             Destroy(gameObject);
         }
     }

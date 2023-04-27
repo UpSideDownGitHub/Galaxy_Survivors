@@ -20,7 +20,8 @@ public class PlayerKnife : MonoBehaviour
     private float _spawnTime;
 
     [Header("Trails")]
-    public GameObject trail1;
+    public TrailRenderer trail1;
+    public float trailRendererTime;
 
     public void Start()
     {
@@ -45,12 +46,13 @@ public class PlayerKnife : MonoBehaviour
 
     public void turnOffTrails()
     {
-        trail1.SetActive(false);
+        trail1.time = 0;
     }
 
     public void turnOnTrails()
     {
-        trail1.SetActive(true);
+        trail1.time = trailRendererTime;
+        trail1.Clear();
     }
 
     public void customDestroy()

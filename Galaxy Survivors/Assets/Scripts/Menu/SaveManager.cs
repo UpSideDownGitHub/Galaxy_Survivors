@@ -67,7 +67,7 @@ public class SaveManager : MonoBehaviour
         tempData.currentPerk1 = -1;
         tempData.currentPerk2 = -1;
         tempData.currentPerk3 = -1;
-        tempData.gold = 1000000;
+        tempData.gold = 0;
         tempData.perksUnlocked = new bool[] {false, false};
         data = tempData;
 

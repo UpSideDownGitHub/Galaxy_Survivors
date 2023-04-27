@@ -64,14 +64,14 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // MOVEMENT
         Vector2 direction = _player.transform.position - transform.position;
         direction.Normalize();
         float rotateAmount = Vector3.Cross(direction, transform.up).z;
         _rb.angularVelocity = -_turnSpeed * rotateAmount;
         _rb.velocity = transform.up * _moveSpeed;
 
-        // if not within a certain distance from the player for a given ammount of time
-
+        // DISTANCE CHECK
         float distX = Mathf.Abs(transform.position.x - _player.transform.position.x);
         float distY = Mathf.Abs(transform.position.y - _player.transform.position.y);
         //Debug.Log("X: " + distX + "\nY: " + distY + "\n");
@@ -80,9 +80,10 @@ public class EnemyMovement : MonoBehaviour
             // despawn the enemy
             turnOffTrails();
             _enemy.setFree();
+            return;
         }
 
-        // shooting
+        //  ATTACKING
         if (Time.time < _timeSinceLastAttack + attackTime)
             return;
         _timeSinceLastAttack = Time.time;
@@ -96,6 +97,8 @@ public class EnemyMovement : MonoBehaviour
             }
             else
             {
+                if (Random.value > 0.5)
+                    return;
                 // fire a projectile at the player
                 GameObject tempBullet = Instantiate(projectile, transform.position, transform.rotation);
                 tempBullet.GetComponent<Rigidbody2D>().AddForce(tempBullet.transform.up * projectileForce);
