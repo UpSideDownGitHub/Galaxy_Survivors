@@ -22,8 +22,22 @@ public class StatManager : MonoBehaviour
     [Header("Kills")]
     public TMP_Text killsText;
 
+    [Header("Pasue Menu")]
+    public GameObject pauseMenu;
+
+    /*
+     * used to pause the game 
+    */ 
+    public void pauseGame()
+    {
+        Time.timeScale = 0f;
+        pauseMenu.SetActive(true);
+    }
+
+    // called before the first update frame
     public void Start()
     {
+        // initilse the stats at the start of the new round
         stats.kills = 0;
         stats.coins = 0;
         stats.XP = 0;
@@ -33,7 +47,7 @@ public class StatManager : MonoBehaviour
         /*
          * Equation for Levels:
          * 
-         *   n^1.5 x 10
+         *   n^1.9 x 10
          *      
         */
         xpSlider.minValue = (float)((Math.Pow(stats.level, 1.9)) * 10);
@@ -48,10 +62,13 @@ public class StatManager : MonoBehaviour
         killsText.text = "& " + stats.kills;
     }
 
+    // called once per frame
     public void Update()
     {
+        // if there has been a change to the stats then update them
         if (statsChanged) 
         {
+            // make it so that it is not running every frame
             statsChanged = false;
 
             // XP/Level

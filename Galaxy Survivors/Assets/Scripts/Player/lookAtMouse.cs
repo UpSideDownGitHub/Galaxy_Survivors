@@ -5,11 +5,15 @@ using UnityEngine.EventSystems;
 
 public class lookAtMouse : MonoBehaviour
 {
-    public Joystick lookingStick; // right stick
+    // public variables
+    public Joystick lookingStick; 
     public int angleOffset;
     public float rotateSpeed;
+
+    // private variable
     private Quaternion previousRotation;
 
+    // called once per frame
     void Update()
     {
         // TOUCH CONTROLS
