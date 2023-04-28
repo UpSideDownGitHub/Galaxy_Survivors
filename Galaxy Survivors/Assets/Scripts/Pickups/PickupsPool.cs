@@ -10,6 +10,7 @@ public class PickupsPool : MonoBehaviour
 
     public static PickupsPool instance;
 
+    // called when the object is being loaded
     public void Awake()
     {
         instance = this;
@@ -30,6 +31,7 @@ public class PickupsPool : MonoBehaviour
         }
     }
 
+    // will return true if a pickup is spawned
     public bool spawnPickup(int enemyID, Vector2 spawnPos)
     {
         // get the bound in the list of the current pickup type to be spawned

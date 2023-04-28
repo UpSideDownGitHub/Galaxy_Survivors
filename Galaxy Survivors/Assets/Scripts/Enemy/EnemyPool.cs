@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class EnemyPool : MonoBehaviour
 {
+    // public variables
     public int[] maxEnemies;
     public List<Enemy> enemies = new List<Enemy>();
     public GameObject[] enemyPrefabs;
 
     public static EnemyPool instance;
 
+    // called whislt the object is being loaded
     public void Awake()
     {
         instance = this;

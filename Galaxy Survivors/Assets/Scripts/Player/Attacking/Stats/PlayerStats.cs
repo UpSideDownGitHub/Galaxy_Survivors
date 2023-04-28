@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : ScriptableObject
 {
+    // player stats
     public float damageModifyer;
     public float reduceDamageTakenModifyer;
     public float healthModifyer;

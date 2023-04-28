@@ -96,8 +96,7 @@ public class Upgrade : MonoBehaviour
     */ 
     public void getInfo()
     {
-        // for all of the upgrades that have been chosen, which is 3 dont know why i did ther
-        // weird maths thing probably should change it but tbh i cant be fucked
+        // for all of the upgrades that have been chosen, which is 3
         for (int i = 0; i < upgradeUIElements.Length / 6; i++)
         {
             // enable the current upgrade options
@@ -337,14 +336,22 @@ public class Upgrade : MonoBehaviour
         if (upgradePassives.Count > 0)
             available.Add(4);
 
+        // if there are no options then do nothing as there is nothing to do
         if (available.Count == 0)
             return;
 
+        // for each of the items select the upgrade to show
         var upgradeOptions = new int[3];
+        // loop through all of the options to select an item for it
         for (int i = 0; i < upgradeOptions.Length; i++)
         {
+            // try 10 times, 10 is a max, the idea is to repeat until, 
+            // an item is found, but set limit to 10 to stop lag
             for (int J = 0; J < 10; J++)
             {
+                // depending on the upgrade selected, find one out of the options,
+                // that are available (then if the correct one is found then stop the
+                // generation and move to the next item)
                 int temp = available[Random.Range(0, available.Count)];
                 if (temp == 1)
                 {
@@ -387,15 +394,17 @@ public class Upgrade : MonoBehaviour
 
         //print("Options Chosen: " + upgradeOptions[0] + ", " + upgradeOptions[1] + ", " + upgradeOptions[2]);
 
+        // for all of the selected upgrades that have been selected
         for (int i = 0; i < upgradeOptions.Length; i++)
         {
+            // for each upgrade
             switch (upgradeOptions[i])
             {
                 // New Weapon
                 case 1:
                     items[i].list = 1;
                     var rand = Random.Range(0, newWeapons.Count);
-                    // do this a couple of times to make sure we get an orignal
+                    // do this a couple of times to make sure we get an original
                     for (int j = 0; j < 50; j++)
                     {
                         if (items[0].list == 1 && items[0].index == rand ||

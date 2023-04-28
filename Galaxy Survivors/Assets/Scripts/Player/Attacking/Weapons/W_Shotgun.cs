@@ -32,6 +32,7 @@ public class W_Shotgun : Weapon
     public override void startFrame()
     {
         updateWeaponLevel();
+        // initialize the damage & shoot rate
         var damageIncrease = perks.damageIncrease == 0 ? 1 : perks.damageIncreaseLevels[perks.damageIncrease - 1];
         shootRate = shootRate * (perks.fireRate == 0 ? 1 : perks.fireRateLevels[perks.fireRate - 1]);
         base.initiate(_damage * damageIncrease, _bulletSpeed, playerStats);
@@ -40,22 +41,27 @@ public class W_Shotgun : Weapon
     // Update is called once per frame
     public override void updateFrame()
     {
+        // if enough time has passed to shoot again
         if (Time.time > shootRate / playerStats.attackSpeed * shootRatePowerup + _timeOfLastShot)
         {
+            // based on the weapon level shoot a different ammount of bullets
             switch (base.getWeaponLevel())
             {
+                // level 1
                 case 0:
                     for (int i = 0; i < bulletCount; i++)
                     {
                         base.fire(bullet, firePoint, spread);
                     }
                     break;
+                // level 2
                 case 1:
                     for (int i = 0; i < bulletCount * 1.5; i++)
                     {
                         base.fire(bullet, firePoint, spread);
                     }
                     break;
+                // level 3
                 case 2:
                     for (int i = 0; i < bulletCount * 2; i++)
                     {
@@ -69,6 +75,7 @@ public class W_Shotgun : Weapon
         }
     }
 
+    // used to set the weapon level to the current level of the shotgun
     public override void updateWeaponLevel()
     {
         base.setWeaponLevel(level.shotGunLevel);

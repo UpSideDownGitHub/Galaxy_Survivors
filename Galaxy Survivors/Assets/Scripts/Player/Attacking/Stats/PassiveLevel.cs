@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PassiveLevel : ScriptableObject
 {
+    // passived levels
     public float[] damageModifyer;
     public float[] reduceDamageTakenModifyer;
     public float[] healthModifyer;

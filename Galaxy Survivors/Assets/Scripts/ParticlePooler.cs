@@ -37,7 +37,7 @@ public class ParticlePooler : MonoBehaviour
      *  when called will try and spawn a particle of type enemyID,
      *  at position spawnPos, with the given color.
      *  
-     *  if it cannont spawn a particle then it will return false meaning nothing
+     *  if it cannot spawn a particle then it will return false meaning nothing
      *  spawned, this would be caused by there being none available
     */
     public bool spawnParticle(int enemyID, Vector2 spawnPos, Color color)

@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
+    // public variables
     public static SaveManager instance;
 
     public SaveData data;
@@ -73,13 +74,17 @@ public class SaveManager : MonoBehaviour
 
     }
 
+    // called when the object is being loaded
     void Awake()
     {
+        // if there is no instance then set this to the instance
+        // if there is an instance then kill this version
         if (instance == null)
             instance = this;
         else
             Destroy(gameObject);
 
+        // if there is no save data then create one
         if (!fileExists())
         {
             initiliseData();
@@ -89,12 +94,14 @@ public class SaveManager : MonoBehaviour
         loadFromJson();
     }
 
+    // save the current data to the file
     public void saveIntoJson()
     {
         string temp = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/saveData.json", temp);
     }
 
+    // load the file into the current data
     public void loadFromJson()
     {
         if (fileExists())
@@ -104,17 +111,20 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
+            // if there is no file then create one
             initiliseData();
             saveIntoJson();
         }
     }
 
+    // check if the save file exists
     public bool fileExists()
     {
         return File.Exists(Application.persistentDataPath + "/saveData.json");
     }
 }
 
+// save data classes
 [Serializable]
 public class SaveData
 {

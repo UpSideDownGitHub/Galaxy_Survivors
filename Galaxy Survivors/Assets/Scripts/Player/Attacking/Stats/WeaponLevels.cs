@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WeaponLevels : ScriptableObject
 {
+    // weapon levels
     public int pistolLevel;
     public int shotGunLevel;
     public int orbsLevel;
@@ -15,6 +16,7 @@ public class WeaponLevels : ScriptableObject
     public int cannonsLevel;
     public int sheildLevel;
 
+    // return a list of the weapon level
     public int[] weaponLevels
     {
         get

@@ -32,6 +32,7 @@ public class W_Acid : Weapon
     public override void startFrame()
     {
         updateWeaponLevel();
+        // initialize the damage & shoot rate
         var damageIncrease = perks.damageIncrease == 0 ? 1 : perks.damageIncreaseLevels[perks.damageIncrease - 1];
         spawnRate = spawnRate * (perks.fireRate == 0 ? 1 : perks.fireRateLevels[perks.fireRate - 1]);
         base.initiate(_damage * damageIncrease, _acidDuration, _acidAttackTime, _acidAttackTimeModifyer, playerStats);
@@ -40,13 +41,16 @@ public class W_Acid : Weapon
     // Update is called once per frame
     public override void updateFrame()
     {
+        // if enough time has passed to fire again
         if(Time.time > spawnRate / playerStats.attackSpeed * shootRatePowerup + _lastSpawnTime)
         { 
+            // spawn the acid
             _lastSpawnTime = Time.time;
             base.placeAcid(acid, sizes[base.getWeaponLevel()]);
         }
     }
 
+    // used to set the weapon level to the current level of the shotgun
     public override void updateWeaponLevel()
     {
         base.setWeaponLevel(level.acidLevel);

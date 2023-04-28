@@ -31,14 +31,18 @@ public class EndScreen : MonoBehaviour
         // need to load all of the player data
         diedText.SetActive(false);
         wellDoneText.SetActive(false);
+
+        // if the player did not die (they reached 10 mins)
         if (notDied)
         { 
+            // show well done text and increase the unlocked maps if there are any to unlock
             wellDoneText.SetActive(true); 
             if (_saveData.data.currentMap + 1 < _saveData.data.mapsUnlocked.Length)
             {
                 _saveData.data.mapsUnlocked[_saveData.data.currentMap + 1] = true;
             }
         }
+        // show the died text
         else
             diedText.SetActive(true);
 
@@ -51,16 +55,18 @@ public class EndScreen : MonoBehaviour
         coinsText.text = stats.coins.ToString();
         _saveData.data.gold += stats.coins;
         
-        
+        // save the data
         _saveData.saveIntoJson();
     }
 
+    // reloads the current scene to restart the game
     public void restartGame()
     {
         Time.timeScale = 1f;
         SceneManager.LoadSceneAsync(1);
     }
 
+    // return to the main menu
     public void mainMenuPressed()
     {
         Time.timeScale = 1f;

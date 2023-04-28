@@ -35,17 +35,20 @@ public class EnemyMovement : MonoBehaviour
     [Header("DELETE THESE ITEMS")]
     public float attack_Distance;
 
+    // turn on the trails when the object is enabled
     public void OnEnable()
     {
         Invoke("turnOnTrails", 1f);
     }
-
+    
+    // turns off the trails
     public void turnOffTrails()
     {
         trail1.SetActive(false);
         trail2.SetActive(false);
     }
 
+    // truns on the trials
     public void turnOnTrails()
     {
         trail1.SetActive(true);

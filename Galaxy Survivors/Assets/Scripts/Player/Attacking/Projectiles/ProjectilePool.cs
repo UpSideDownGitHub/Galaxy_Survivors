@@ -10,13 +10,15 @@ public class ProjectilePool : MonoBehaviour
 
     public static ProjectilePool instance;
 
+    // called when the object is being loaded 
     public void Awake()
     {
         instance = this;
 
-        // this will spawn maxProj ammount of each pickup and store them in the proj list
+        // this will spawn maxProj amount of each pickup and store them in the proj list
         for (int j = 0; j < projPrefabs.Length; j++)
         {
+            // for the amount of projectiles
             for (int i = 0; i < maxProj[j]; i++)
             {
                 proj.Add(Instantiate(projPrefabs[j], new Vector3(0, 0, 0), new Quaternion()).GetComponent<Proj>());
@@ -50,6 +52,6 @@ public class ProjectilePool : MonoBehaviour
                 return proj[i].gameObject; // successfully spawned an projectile
             }
         }
-        return null; // projectile not spawned as there are none avaiable
+        return null; // projectile not spawned as there are none available
     }
 }

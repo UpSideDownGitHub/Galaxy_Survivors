@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerPerks : ScriptableObject
 {
+    // player perks
     public int minusDamageTaken;
     public float[] minusDamageTakenLevels;
 

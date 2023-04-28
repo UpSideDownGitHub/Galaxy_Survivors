@@ -28,10 +28,16 @@ public class AttackManager : MonoBehaviour
         callStartFunctions();
     }
 
+    /*
+    *   this will call all of the updates functions of all of the weapons, that are
+    *   currently equipped
+    */
     public void callStartFunctions()
     {
+        // loop through all of the active weapons
         for (int i = 0; i < activeWeapons.Count; i++)
         {
+            // call the start frame of the weapons
             weapons[(int)activeWeapons[i]].startFrame();
         }
     }
@@ -39,15 +45,22 @@ public class AttackManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // call all of the updates on each of the active wepaons
+        // call all of the updates on each of the active weapons
         for (int i = 0; i < activeWeapons.Count; i++)
         {
+            // call the update from to the weapons
             weapons[(int)activeWeapons[i]].updateFrame();
         }
     }
     
+    /*
+    *   when called this will add a weapon to the list of weapons,
+    *   as well as this it will also call the start frame of the added weapon
+    *   so it is initialize properly
+    */
     public void addWeapon(EquippedWeapons weapon)
     {
+        // add the weapon to the list and call the start frame
         activeWeapons.Add(weapon);
         weapons[(int)activeWeapons[activeWeapons.Count - 1]].startFrame();
     }

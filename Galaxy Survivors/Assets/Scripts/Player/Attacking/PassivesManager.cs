@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// list of passive abilities the player can have
 public enum PassiveAbilities
 {
     INCREASEDAMAGE,
@@ -16,6 +17,7 @@ public enum PassiveAbilities
 
 public class PassivesManager : MonoBehaviour
 {
+    // public variables
     public PlayerStats stats;
     public PassiveLevel levels;
 
@@ -36,21 +38,26 @@ public class PassivesManager : MonoBehaviour
         stats.pickupModifyer = 1;
         stats.xpModifyer = 1;
 
+        // set the passives to the initial level
         for (int i = 0; i < equippedPassives.Count; i++)
         {
             setPassivesLevel(equippedPassives[i], passiveLevels[i]);
         }
     }
 
+    /*
+    *   if it is possible to equip the given passive, then equip it, otherwise
+    *   don't equip the passive
+    */
     public void passiveEquipped(PassiveAbilities passive)
     {
-        // already have this passive then dont add
+        // already have this passive then don't add
         if (equippedPassives.Contains(passive))
             return;
         // if have can equip another passive
         if (equippedPassives.Count < maxPassives)
         { 
-            // add the passive to the list of equppied passived
+            // add the passive to the list of equipped passives
             equippedPassives.Add(passive);
             passiveLevels.Add(0);
             setPassivesLevel(passive, 0);
@@ -65,7 +72,9 @@ public class PassivesManager : MonoBehaviour
         setPassivesLevel(passive, passiveLevels[currentPassive]);
     }
 
-    // this will apply the level of the given passive 
+    /*
+    *   this will apply the level of the given passive 
+    */
     public void setPassivesLevel(PassiveAbilities passive, int level)
     {
         switch (passive)

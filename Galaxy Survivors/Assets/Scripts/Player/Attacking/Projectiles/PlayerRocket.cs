@@ -31,29 +31,35 @@ public class PlayerRocket : MonoBehaviour
     public TrailRenderer trail2;
     public float trailRendererTime;
 
+    // called before the first update frame
     public void Start()
     {
+        // set up all components of the player
         toFollow = GameObject.FindGameObjectWithTag("Player");
         _rb = GetComponent<Rigidbody2D>();
         _spawnTime = Time.time;
     }
+    // turn on the trail of the object
     public void OnEnable()
     {
         _spawnTime = Time.time;
         turnOnTrails();
     }
 
+    // turn off the trail on the object
     public void OnDisable()
     {
         turnOffTrails();
     }
 
+    // this will disable the trails
     public void turnOffTrails()
     {
         trail1.time = 0;
         trail2.time = 0;
     }
 
+    // turn on the trails 
     public void turnOnTrails()
     {
         trail1.time = trailRendererTime;
@@ -62,6 +68,7 @@ public class PlayerRocket : MonoBehaviour
         trail2.Clear();
     }
 
+    // spawn a destruction particle and then set this projectile free
     public void customDestroy()
     {
         ParticlePooler.instance.spawnParticle(particleID, transform.position, Color.blue);
@@ -71,6 +78,7 @@ public class PlayerRocket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // try and follow the player but if cant then destroy as there is no longer a player
         try
         {
             Vector2 direction = toFollow.transform.position - transform.position;
@@ -86,14 +94,18 @@ public class PlayerRocket : MonoBehaviour
             return;
         }
 
+        // if enough time has passed then kill the rocket
         if (Time.time > _spawnTime + destroyTime)
             customDestroy();
     }
 
+    // if collides with a enemy then damage the enemy, and destroy the rocket
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        // if enemy
         if (collision.CompareTag("Enemy"))
         {
+            // kill & suicide
             collision.GetComponent<EnemyHealth>().takeDamage(damage);
             customDestroy();
         }
