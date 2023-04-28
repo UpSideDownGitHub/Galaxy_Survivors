@@ -58,6 +58,7 @@ public class Upgrade : MonoBehaviour
         public int index;
     }
 
+    // called when the object is being loaded
     public void Awake()
     {
         weaponLevels.pistolLevel = 0;
@@ -71,68 +72,89 @@ public class Upgrade : MonoBehaviour
         weaponLevels.cannonsLevel = 0;
     }
 
-
+    /*
+     *  is called when the player reaches the next level
+    */ 
     public void levelUp()
     {
+        // if the player has reached the max level, then dont
         if (_level > 28)
             return;
+        
         // stop gameplay and enable the UI
         Time.timeScale = 0f;
         mainLevelUpUI.SetActive(true);
 
+        // get the 3 upgrades, then get the info for them to show the upgrades to the user
         generate3Upgrades();
         getInfo();
     }
 
 
-
+    /*
+     *  gets all of the information, from the 3 upgrades, then displays them to the user 
+    */ 
     public void getInfo()
     {
+        // for all of the upgrades that have been chosen, which is 3 dont know why i did ther
+        // weird maths thing probably should change it but tbh i cant be fucked
         for (int i = 0; i < upgradeUIElements.Length / 6; i++)
         {
+            // enable the current upgrade options
             upgradeUIElements[(i * 6) + 1].transform.parent.gameObject.SetActive(true);
+            // if there is not one then this will fail so in that case just turn it off
             try
             {
                 bool newItem = false;
 
+                // if a New Weapon then add it
                 int index = 0;
                 if (items[i].list == 1)
                 {
                     index = (int)newWeapons[items[i].index];
                     newItem = true;
                 }
+                // if a Upgrade Weapon then add it
                 else if (items[i].list == 2)
                     index = (int)upgradeWeapons[items[i].index];
+                // if a New Passive then add it
                 else if (items[i].list == 3)
                 {
                     index = (int)newPassives[items[i].index];
                     newItem = true;
                 }
+                // if a Upgrade Passive then add it
                 else if (items[i].list == 4)
                     index = (int)upgradePassives[items[i].index];
 
+                // VARIABLES
                 int index2;
                 string title;
                 Sprite upgrade1Icon;
                 string description;
 
+                // upgrading weapons
                 if (items[i].list <= 2)
                 {
+                    // get all of the info to show the user
                     index2 = index * 3 + weaponLevels.weaponLevels[index] + 1;
                     title = info.weaponTitle[index];
                     upgrade1Icon = info.weaponSprites[index2];
                     description = info.weaponDescription[index2];
                 }
+                // new Passive
                 else if (items[i].list == 3)
                 {
-                    // as new will be the base level
+                    // get all of the info to show the user
                     index2 = index * 3 + 0;
                     title = info.passiveTitle[index];
                     upgrade1Icon = info.passiveSprites[index2];
                     description = info.passiveDescription[index2];
                 }
+                // for new passives & new wepaons
                 else
                 {
+                    // get all of the info to show the user
                     int index3 = passives.equippedPassives.IndexOf(listOfPassives[index]);
                     index2 = index * 3 + passives.passiveLevels[index3] + 1;
                     title = info.passiveTitle[index];
@@ -140,10 +162,12 @@ public class Upgrade : MonoBehaviour
                     description = info.passiveDescription[index2];
                 }
 
+                // set the information to be show
                 upgradeUIElements[(i * 6) + 1].GetComponent<Image>().sprite = upgrade1Icon;
                 upgradeUIElements[(i * 6) + 2].GetComponent<TMP_Text>().text = title;
                 upgradeUIElements[(i * 6) + 3].GetComponent<TMP_Text>().text = description;
 
+                // if a new item then show "new" otherwise show "Level Up"
                 if (newItem)
                 {
                     upgradeUIElements[(i * 6) + 4].SetActive(true);
@@ -163,6 +187,9 @@ public class Upgrade : MonoBehaviour
         }
     }
 
+    /*
+     * this is called when an option is selected and will enable the given powerups 
+    */ 
     public void buttonPressed(int ID)
     {
         // apply the upgrade
@@ -288,11 +315,13 @@ public class Upgrade : MonoBehaviour
                 newPassives.Add(listOfPassives[i]);
         }
 
+        /*
         print("New Weapons Count: " + newWeapons.Count);
         print("Weapon Upgrade Count: " + upgradeWeapons.Count);
         print("New Passives Count: " + newPassives.Count);
         print("Passive Upgrade Count: " + upgradePassives.Count);
         print("\n\n");
+        */
 
         // generate which list should be used IE what type of item to offer the player
         // there are 4 items (new & upgrades of passives & weapons) then loop through them 
