@@ -2820,7 +2820,7 @@ MonoBehaviour:
   - {fileID: 2017730309}
   - {fileID: 539389798}
   - {fileID: 1832376449}
-  activeWeapons: 00000000
+  activeWeapons: 0000000002000000
 --- !u!50 &571382790
 Rigidbody2D:
   serializedVersion: 4
@@ -25527,8 +25527,8 @@ MonoBehaviour:
   - {fileID: -499568143, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
   - {fileID: -1748640172, guid: a4af46c27d7bf924d8f4186667ca444b, type: 3}
   Orb: {fileID: 2981198591102700084, guid: 8571345840634094d91ea2494c241a80, type: 3}
-  spawnPoint: {x: 0, y: 3, z: 0}
-  _damage: 10
+  spawnPoint: {x: 0, y: 7, z: 0}
+  _damage: 20
   maxOrbCount: 04000000060000000c000000
   orbSpawnWaitTime:
   - 0.9
