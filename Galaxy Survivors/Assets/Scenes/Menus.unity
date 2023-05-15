@@ -1587,10 +1587,10 @@ RectTransform:
   m_Father: {fileID: 1777143704}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -224, y: 213.05005}
-  m_SizeDelta: {x: -615.5161, y: -1994.6179}
+  m_SizeDelta: {x: 464.4839, y: 155.38208}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &301229079
 MonoBehaviour:
@@ -3272,10 +3272,10 @@ RectTransform:
   m_Father: {fileID: 1240225060}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -224, y: 213.04999}
-  m_SizeDelta: {x: -615.5161, y: -1994.6179}
+  m_SizeDelta: {x: 464.4839, y: 155.38208}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &577150054
 MonoBehaviour:
@@ -3350,10 +3350,10 @@ RectTransform:
   m_Father: {fileID: 1958176596}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1115}
-  m_SizeDelta: {x: -700, y: -2270}
+  m_SizeDelta: {x: 380, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &586858414
 MonoBehaviour:
@@ -3428,10 +3428,10 @@ RectTransform:
   m_Father: {fileID: 1892000364}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1115}
-  m_SizeDelta: {x: -700, y: -2270}
+  m_SizeDelta: {x: 380, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &593562726
 MonoBehaviour:
@@ -6487,10 +6487,10 @@ RectTransform:
   m_Father: {fileID: 828920981}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 125}
-  m_SizeDelta: {x: 0, y: -250.00002}
+  m_SizeDelta: {x: 1080, y: 2150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1240225061
 MonoBehaviour:
@@ -7580,10 +7580,10 @@ RectTransform:
   m_Father: {fileID: 828920981}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1115}
-  m_SizeDelta: {x: -700, y: -2270}
+  m_SizeDelta: {x: 380, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1408947077
 MonoBehaviour:
@@ -8901,10 +8901,10 @@ RectTransform:
   m_Father: {fileID: 1240225060}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -282.24, y: -78}
-  m_SizeDelta: {x: -615.5161, y: -1723.2823}
+  m_SizeDelta: {x: 464.4839, y: 426.71765}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1617797476
 MonoBehaviour:
@@ -9265,10 +9265,10 @@ RectTransform:
   m_Father: {fileID: 1777143704}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -282.24, y: -78}
-  m_SizeDelta: {x: -615.5161, y: -1723.2823}
+  m_SizeDelta: {x: 464.4839, y: 426.71765}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1726481484
 MonoBehaviour:
@@ -9705,10 +9705,10 @@ RectTransform:
   m_Father: {fileID: 1958176596}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 125}
-  m_SizeDelta: {x: 0, y: -250.00002}
+  m_SizeDelta: {x: 1080, y: 2150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1777143705
 MonoBehaviour:
@@ -10681,12 +10681,12 @@ MonoBehaviour:
   infoText: {fileID: 1695812131}
   costText: {fileID: 1972270123}
   selectedPlayer: {fileID: 1378295637}
+  goldText: {fileID: 1183972920}
   buyButton: {fileID: 1221506816}
   equipButton: {fileID: 1943044397}
   spawnUnder: {fileID: 1558993088}
   playerSpawnPrefab: {fileID: 1715634860149194077, guid: d100189502567a445a5c8e06a0687e8e, type: 3}
   info: {fileID: 11400000, guid: 51ff442387b7b914f8bcf479190911df, type: 2}
-  goldText: {fileID: 1183972920}
 --- !u!1 &1970420543
 GameObject:
   m_ObjectHideFlags: 0
