@@ -390,7 +390,7 @@ MonoBehaviour:
   _maxDistanceY: 50
   melee: 1
   damage: 10
-  attackDistance: 3
+  attackDistance: 4
   projectile: {fileID: 0}
   projectileForce: 0
   attackTime: 0.25
@@ -412,6 +412,7 @@ MonoBehaviour:
   maxHealth: 20
   currentHealth: 0
   stats: {fileID: 11400000, guid: 8481fc705fdedcc419157a539d2ba042, type: 2}
+  mapID: 0
 --- !u!114 &4135034432971422595
 MonoBehaviour:
   m_ObjectHideFlags: 0
